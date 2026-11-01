@@ -1,0 +1,48 @@
+/* Workbench UI: selectable list
+ *
+ * A list of items to pick from, one of them selected. Each item is a button
+ * (or a link), so it takes keyboard focus. Mark the selected one with
+ * aria-current="true" (it is the one showing) or aria-selected="true".
+ *
+ *   <ul class="wb-list">
+ *     <li><button type="button" class="wb-list-item">Project plan</button></li>
+ *     <li><button type="button" class="wb-list-item" aria-current="true">Q3 report</button></li>
+ *   </ul>
+ */
+
+.wb-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* In a pane, items line their text up with the pane's heading */
+.wb-pane > .wb-list {
+  margin-inline: -8px;
+}
+
+.wb-list-item {
+  display: block;
+  width: 100%;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink-2);
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.wb-list-item:hover {
+  background: var(--hover);
+}
+
+.wb-list-item[aria-current]:not([aria-current='false']),
+.wb-list-item[aria-selected='true'] {
+  background: var(--accent-soft);
+  box-shadow: inset 3px 0 0 var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+}

@@ -41,63 +41,75 @@
     </header>
 
     <main class="demo">
-      <aside class="demo-pane demo-files" aria-label="Files">
-        <div class="demo-pane-head">Files <span class="demo-count">6</span></div>
-        <ul class="demo-list wb-scroll">
-          <li>Project plan</li>
-          <li>Release notes</li>
-          <li class="active">Q3 report</li>
-          <li>Meeting notes</li>
-          <li>Roadmap</li>
-          <li>Style guide</li>
+      <aside class="wb-pane demo-files" aria-label="Files">
+        <h2 class="wb-pane-head">Files <span class="wb-count">6</span></h2>
+        <ul class="wb-list wb-scroll" id="files">
+          <li><button type="button" class="wb-list-item">Project plan</button></li>
+          <li><button type="button" class="wb-list-item">Release notes</button></li>
+          <li><button type="button" class="wb-list-item" aria-current="true">Q3 report</button></li>
+          <li><button type="button" class="wb-list-item">Meeting notes</button></li>
+          <li><button type="button" class="wb-list-item">Roadmap</button></li>
+          <li><button type="button" class="wb-list-item">Style guide</button></li>
         </ul>
       </aside>
 
-      <section class="demo-pane demo-doc">
+      <section class="wb-pane demo-doc">
         <div class="demo-doc-head">
           <h1 id="showing">Q3 report</h1>
-          <span class="demo-pill demo-pill-ok">Up to date</span>
+          <span class="wb-pill wb-pill-ok">Up to date</span>
         </div>
         <p class="demo-muted">Placeholder content: swap in your own data.</p>
-        <div class="demo-tiles">
-          <div class="demo-tile"><b>24</b><span>Items</span></div>
-          <div class="demo-tile"><b>18</b><span>Done</span></div>
-          <div class="demo-tile"><b>4</b><span>In progress</span></div>
-          <div class="demo-tile"><b>2</b><span>Blocked</span></div>
+        <div class="wb-tiles demo-tiles">
+          <div class="wb-tile">
+            <span class="wb-tile-value">24</span>
+            <span class="wb-tile-label">Items</span>
+          </div>
+          <div class="wb-tile">
+            <span class="wb-tile-value">18</span>
+            <span class="wb-tile-label">Done</span>
+          </div>
+          <div class="wb-tile">
+            <span class="wb-tile-value">4</span>
+            <span class="wb-tile-label">In progress</span>
+          </div>
+          <div class="wb-tile">
+            <span class="wb-tile-value">2</span>
+            <span class="wb-tile-label">Blocked</span>
+          </div>
         </div>
-        <table class="demo-table">
+        <table class="wb-table">
           <thead>
             <tr>
               <th>Item</th>
               <th>Owner</th>
               <th>Status</th>
-              <th class="num">Est.</th>
+              <th class="wb-num">Est.</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Onboarding flow</td>
               <td>Team A</td>
-              <td><span class="demo-pill demo-pill-ok">Done</span></td>
-              <td class="num">5</td>
+              <td><span class="wb-pill wb-pill-ok">Done</span></td>
+              <td class="wb-num">5</td>
             </tr>
             <tr>
               <td>Search filters</td>
               <td>Team B</td>
-              <td><span class="demo-pill demo-pill-accent">In progress</span></td>
-              <td class="num">8</td>
+              <td><span class="wb-pill wb-pill-accent">In progress</span></td>
+              <td class="wb-num">8</td>
             </tr>
             <tr>
               <td>Export to CSV</td>
               <td>Team A</td>
-              <td><span class="demo-pill demo-pill-err">Blocked</span></td>
-              <td class="num">3</td>
+              <td><span class="wb-pill wb-pill-err">Blocked</span></td>
+              <td class="wb-num">3</td>
             </tr>
             <tr>
               <td>Settings page</td>
               <td>Team C</td>
-              <td><span class="demo-pill">Not started</span></td>
-              <td class="num">5</td>
+              <td><span class="wb-pill">Not started</span></td>
+              <td class="wb-num">5</td>
             </tr>
           </tbody>
         </table>
@@ -108,14 +120,14 @@ tabs.<span class="hl-t">open</span>(<span class="hl-s">'q3'</span>, <span class=
 toast.<span class="hl-t">success</span>(<span class="hl-s">'Saved.'</span>); <span class="hl-c">// floats in, then goes</span></pre>
       </section>
 
-      <aside class="demo-pane demo-side" aria-label="Toasts and tokens">
-        <div class="demo-pane-head">Toasts</div>
+      <aside class="wb-pane demo-side" aria-label="Toasts and tokens">
+        <h2 class="wb-pane-head">Toasts</h2>
         <div class="demo-row">
           <button type="button" class="demo-btn" data-toast="success">Success</button>
           <button type="button" class="demo-btn" data-toast="error">Error</button>
           <button type="button" class="demo-btn" data-toast="info">Info</button>
         </div>
-        <div class="demo-pane-head">Tokens</div>
+        <h2 class="wb-pane-head">Tokens</h2>
         <div class="demo-swatches" id="swatches"></div>
       </aside>
     </main>

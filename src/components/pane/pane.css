@@ -1,0 +1,43 @@
+/* Workbench UI: panes
+ *
+ * A bordered card on the page background, with small uppercase headings.
+ *
+ *   <section class="wb-pane">
+ *     <h2 class="wb-pane-head">Files <span class="wb-count">6</span></h2>
+ *     …
+ *   </section>
+ */
+
+.wb-pane {
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--pane);
+}
+
+.wb-pane-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* A second heading in the same pane starts a new group */
+.wb-pane-head:not(:first-child) {
+  margin-top: 18px;
+}
+
+/* A small count, as in a heading */
+.wb-count {
+  padding: 0 7px;
+  border-radius: 999px;
+  background: var(--chip);
+  color: var(--ink-2);
+  letter-spacing: 0;
+}
