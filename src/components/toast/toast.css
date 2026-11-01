@@ -1,0 +1,95 @@
+/* Workbench UI: toasts
+ *
+ * Set --wb-toast-top on :root to move the stack down (for example below a
+ * header bar).
+ */
+
+.wb-toast-container {
+  position: fixed;
+  top: var(--wb-toast-top, 16px);
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  pointer-events: none;
+}
+
+/* A card on the pane surface, with an accent edge for its kind */
+.wb-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: min(360px, calc(100vw - 40px));
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--wb-toast-accent, var(--ok));
+  border-radius: 10px;
+  background: var(--pane);
+  color: var(--ink);
+  font-family: var(--font);
+  box-shadow: var(--shadow-float);
+  transform: translateY(-8px);
+  opacity: 0;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+  pointer-events: auto;
+}
+
+.wb-toast.show {
+  transform: none;
+  opacity: 1;
+}
+
+.wb-toast[data-type='success'] {
+  --wb-toast-accent: var(--ok);
+}
+
+.wb-toast[data-type='error'] {
+  --wb-toast-accent: var(--err-ink);
+}
+
+.wb-toast[data-type='info'] {
+  --wb-toast-accent: var(--accent);
+}
+
+.wb-toast-icon {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  color: var(--wb-toast-accent);
+}
+
+.wb-toast-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.wb-toast-body {
+  min-width: 0;
+}
+
+.wb-toast-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.wb-toast-content {
+  margin-top: 2px;
+  font-size: 14px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wb-toast {
+    transition: none;
+  }
+}

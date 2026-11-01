@@ -1,0 +1,110 @@
+/* Workbench UI: header bar
+ *
+ *   <header class="wb-header">
+ *     <div class="wb-bar">
+ *       <div class="wb-brand"><svg class="wb-brand-mark">…</svg><span class="wb-brand-name">Name</span></div>
+ *       <div class="wb-actions"><button class="wb-hbtn">…</button></div>
+ *     </div>
+ *     <nav class="wb-tabs"></nav>   (optional: see tabs.css)
+ *   </header>
+ */
+
+.wb-header {
+  background: var(--header);
+  color: var(--header-ink);
+}
+
+.wb-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 20px;
+}
+
+.wb-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wb-brand-mark {
+  color: var(--header-accent);
+}
+
+.wb-brand-name {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.wb-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* A button on the header bar. Also works on a <label> for a hidden file
+   input (see .wb-file-input). */
+.wb-hbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 7px;
+  border: 1px solid var(--header-line);
+  background: var(--header-2);
+  color: var(--header-ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+
+.wb-hbtn:hover {
+  border-color: var(--header-muted);
+}
+
+.wb-hbtn[aria-expanded='true'] {
+  border-color: var(--header-accent);
+}
+
+/* Square, icon only (the light / dark toggle) */
+.wb-hbtn-icon {
+  justify-content: center;
+  width: 34px;
+  padding: 0;
+}
+
+.wb-hbtn-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.wb-hbtn-primary {
+  background: var(--header-accent);
+  border-color: var(--header-accent);
+  color: var(--on-header-accent);
+}
+
+.wb-hbtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* A file input hidden behind its label, which acts as the button */
+.wb-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.wb-file-input:focus-visible + label {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}

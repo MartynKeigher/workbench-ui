@@ -1,0 +1,184 @@
+/* Workbench UI: design tokens
+ *
+ * Every colour, font and radius the components use, as CSS custom
+ * properties. Light by default; set data-color-mode="dark" on <html> for the
+ * dark palette (the ColorMode component does that). To re-theme, override
+ * any of these on :root after this file loads.
+ */
+
+:root {
+  color-scheme: light;
+
+  /* Surfaces */
+  --bg: #efede8;
+  --pane: #ffffff;
+  --control: #ffffff;
+  --hover: #f6f5f2;
+  --row-alt: #f6f5f1;
+  --tile: #faf9f6;
+  --chip: #f3efe6;
+  --pill: #f1f3f4;
+  --pill-line: #d9dde1;
+  --code: #fbfcfc;
+  --code-head: #f3fafb;
+  --highlight: #fde9b6;
+  --flash: #fff3b0;
+
+  /* Text */
+  --ink: #1d2329;
+  --ink-2: #3a434c;
+  --muted: #5d6670;
+  --faint: #646c74;
+  --label: #8a4b00;
+  --note: #1e7a3c;
+
+  /* Lines */
+  --line: #dcd8d0;
+  --line-soft: #eeebe6;
+  --control-line: #d3cec5;
+
+  /* Accent */
+  --accent: #0e6f7d;
+  --accent-ink: #0a525c;
+  --accent-soft: #e3f3f5;
+  --accent-line: #c9e4e8;
+  --on-accent: #ffffff;
+
+  /* Header bar (dark in both modes) */
+  --header: #1d2329;
+  --header-2: #2b333b;
+  --header-line: #3b444d;
+  --header-ink: #f4f2ee;
+  --header-muted: #b9c0c7;
+  --header-accent: #5fd0dc;
+  --on-header-accent: #0b2a2e;
+
+  /* Status */
+  --ok: #208637;
+  --ok-bg: #dff3e4;
+  --ok-ink: #155724;
+  --ok-line: #b9e2c4;
+  --err-bg: #fbe3e1;
+  --err-ink: #7a1f17;
+  --err-line: #f1c3be;
+
+  /* Diffs: removed, added, changed */
+  --diff-del-bg: #fcebea;
+  --diff-del-mark: #f5c2bd;
+  --diff-del-ink: #a3261b;
+  --diff-add-bg: #e6f5ea;
+  --diff-add-mark: #b4e2c0;
+  --diff-add-ink: #1a7031;
+  --diff-change-bg: #fdf4dc;
+  --diff-blank: #f1efea;
+
+  /* Code syntax */
+  --hl-keyword: #7c3aad;
+  --hl-builtin: #0b6573;
+  --hl-string: #a1260d;
+  --hl-variable: #0b5394;
+  --hl-number: #116644;
+  --hl-comment: #4f7a4f;
+  --hl-title: #795e26;
+  --hl-params: #8a4b00;
+
+  /* Search matches */
+  --match-mark: #fde9b6;
+  --match-current: #f2b33d;
+  --match-row: #fff4d6;
+  --match-edge: #e0b354;
+  --match-current-edge: #b26b00;
+  --match-pill-bg: #fff4d6;
+  --match-pill-line: #ecd39a;
+  --match-pill-ink: #6b4100;
+
+  /* Chrome */
+  --scrollbar: #b8b3a8;
+  --scrollbar-hover: #8f897c;
+  --focus-ring: #e8a33d;
+  --shadow-pop: 0 6px 20px rgb(0 0 0 / 18%);
+  --shadow-float: 0 8px 24px rgb(0 0 0 / 16%);
+
+  /* Type */
+  --font: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'Source Code Pro', ui-monospace, Consolas, 'Courier New', monospace;
+}
+
+/* Dark palette: the same roles, for dark surfaces. Text and accents keep
+   4.5:1 or better against the panes they sit on. */
+:root[data-color-mode='dark'] {
+  color-scheme: dark;
+
+  --bg: #14181c;
+  --pane: #1c2126;
+  --control: #232930;
+  --hover: #262c32;
+  --row-alt: #21272c;
+  --tile: #22282e;
+  --chip: #2a3036;
+  --pill: #2a3138;
+  --pill-line: #3c444c;
+  --code: #181d21;
+  --code-head: #1b2b2f;
+  --highlight: #6b5317;
+  --flash: #5a4a12;
+
+  --ink: #e8e5df;
+  --ink-2: #cfccc6;
+  --muted: #a3abb3;
+  --faint: #a0a8b0;
+  --label: #f0b067;
+  --note: #74d095;
+
+  --line: #31383f;
+  --line-soft: #272d33;
+  --control-line: #434b54;
+
+  --accent: #45b8c6;
+  --accent-ink: #8fdbe5;
+  --accent-soft: #183a40;
+  --accent-line: #24545c;
+  --on-accent: #0b1f22;
+
+  --header: #0e1114;
+  --header-2: #1a1f24;
+  --header-line: #2c3339;
+
+  --ok: #6fd08f;
+  --ok-bg: #17352a;
+  --ok-ink: #8fe0aa;
+  --ok-line: #2a5a40;
+  --err-bg: #3d1d1b;
+  --err-ink: #f4aaa2;
+  --err-line: #6b2e29;
+
+  --diff-del-bg: #3a1f1d;
+  --diff-del-mark: #6e2e28;
+  --diff-del-ink: #f4aaa2;
+  --diff-add-bg: #17331f;
+  --diff-add-mark: #2a6038;
+  --diff-add-ink: #8fe0aa;
+  --diff-change-bg: #352d16;
+  --diff-blank: #181c20;
+
+  --hl-keyword: #c792ea;
+  --hl-builtin: #6fd3df;
+  --hl-string: #f2a37f;
+  --hl-variable: #82b1ff;
+  --hl-number: #9fd8a6;
+  --hl-comment: #92b392;
+  --hl-title: #e3c27a;
+  --hl-params: #f0b067;
+
+  --match-mark: #6b5317;
+  --match-current: #b07a12;
+  --match-row: #3a2f17;
+  --match-edge: #a8822f;
+  --match-current-edge: #f0b067;
+  --match-pill-bg: #3d2e14;
+  --match-pill-line: #6b5317;
+  --match-pill-ink: #f0c27a;
+
+  --scrollbar: #4a535c;
+  --scrollbar-hover: #6b757f;
+}

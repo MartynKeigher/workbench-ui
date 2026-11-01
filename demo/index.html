@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Workbench UI</title>
+    <link rel="stylesheet" href="../src/fonts.css" />
+    <link rel="stylesheet" href="../src/workbench.css" />
+    <link rel="stylesheet" href="./demo.css" />
+  </head>
+  <body>
+    <header class="wb-header">
+      <div class="wb-bar">
+        <div class="wb-brand">
+          <svg
+            class="wb-brand-mark"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+            <path d="M3 9h18"></path>
+          </svg>
+          <span class="wb-brand-name">Workbench UI</span>
+        </div>
+        <div class="wb-actions">
+          <input class="wb-file-input" id="file" type="file" />
+          <label class="wb-hbtn" for="file">Open file</label>
+          <button class="wb-hbtn" type="button" id="addTab">New tab</button>
+          <button class="wb-hbtn wb-hbtn-primary" type="button" id="primary">Primary</button>
+          <button class="wb-hbtn wb-hbtn-icon" type="button" id="colorMode"></button>
+        </div>
+      </div>
+      <nav class="wb-tabs" aria-label="Open documents"></nav>
+    </header>
+
+    <main class="demo">
+      <section class="demo-card">
+        <h2>Toasts</h2>
+        <p>Short notes that float in the corner, then go.</p>
+        <div class="demo-row">
+          <button type="button" class="demo-btn" data-toast="success">Success</button>
+          <button type="button" class="demo-btn" data-toast="error">Error</button>
+          <button type="button" class="demo-btn" data-toast="info">Info</button>
+        </div>
+      </section>
+
+      <section class="demo-card">
+        <h2>Tabs</h2>
+        <p>
+          Right-click a tab for its menu, drag to reorder, or use Ctrl+Shift+←/→. Showing:
+          <strong id="showing">Home</strong>
+        </p>
+      </section>
+
+      <section class="demo-card">
+        <h2>Tokens</h2>
+        <div class="demo-swatches" id="swatches"></div>
+      </section>
+
+      <section class="demo-card">
+        <h2>Scroll pane</h2>
+        <div class="demo-scroll wb-scroll" id="scroll"></div>
+      </section>
+    </main>
+
+    <script type="module" src="./demo.js"></script>
+  </body>
+</html>
