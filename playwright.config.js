@@ -19,8 +19,11 @@ export default defineConfig({
     timezoneId: 'UTC',
   },
   expect: {
-    // Room for antialiasing noise only: a real change moves far more pixels
-    toHaveScreenshot: { maxDiffPixels: 100, threshold: 0.2 },
+    // Renders in the Playwright image are pixel-identical run to run, so any
+    // colour change in a pixel counts (threshold 0: the default lets small
+    // token changes through), and up to 100 changed pixels are allowed for
+    // stray antialiasing. A real change, even of one token, moves thousands.
+    toHaveScreenshot: { threshold: 0, maxDiffPixels: 100 },
   },
   webServer: {
     command: `npx vite --host 127.0.0.1 --port ${PORT} --strictPort`,
