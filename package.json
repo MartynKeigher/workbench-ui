@@ -47,14 +47,16 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test:visual": "playwright test",
-    "test:visual:update": "playwright test --update-snapshots",
-    "screenshots": "node scripts/screenshots.js"
+    "test:visual": "playwright test demo.spec",
+    "test:visual:update": "playwright test demo.spec --update-snapshots",
+    "screenshots": "node scripts/screenshots.js",
+    "test:a11y": "playwright test a11y.spec"
   },
   "engines": {
     "node": ">=20"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@eslint/js": "^10.0.1",
     "@fontsource/source-code-pro": "^5.3.1",
     "@fontsource/source-sans-3": "^5.3.1",

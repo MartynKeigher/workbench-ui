@@ -69,17 +69,19 @@ export async function offline(page) {
 }
 
 /**
- * Open the demo page in a colour mode, with timers paused.
+ * Open the demo page in a colour mode, with timers paused (unless `paused` is
+ * false: axe-core needs running timers).
  * @param {import('playwright').Page} page
  * @param {'light'|'dark'} mode
+ * @param {{ paused?: boolean }} [options]
  */
-export async function openDemo(page, mode) {
+export async function openDemo(page, mode, { paused = true } = {}) {
   await offline(page);
-  await page.clock.install({ time: new Date('2026-01-01T09:00:00Z') });
+  if (paused) await page.clock.install({ time: new Date('2026-01-01T09:00:00Z') });
   // The same way a saved choice arrives: ColorMode reads it on start
   await page.addInitScript((value) => localStorage.setItem('colorMode', value), mode);
   await page.goto(`${BASE_URL}/demo/`);
-  await page.clock.pauseAt(new Date('2026-01-01T09:00:01Z'));
+  if (paused) await page.clock.pauseAt(new Date('2026-01-01T09:00:01Z'));
   await page.evaluate(() => document.fonts.ready);
   await page.locator(`html[data-color-mode="${mode}"]`).waitFor({ state: 'attached' });
 }
