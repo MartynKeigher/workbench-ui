@@ -9,7 +9,11 @@ documents and panes of detail underneath.
 - **Plain JavaScript and CSS.** No framework and no build step, so it works with any bundler or
   framework, or with none.
 
-Run `npm run dev` to open the demo page with every component on it.
+![Workbench UI in light mode: a header bar with buttons, tabs with one pinned, a file list, a document with a status table, and a toast in the corner](docs/screenshot-light.png)
+
+![The same screen in dark mode, with a tab's right-click menu open](docs/screenshot-dark.png)
+
+Run `npm run dev` to open the demo page with every component on it. Everything in the screenshots comes from it.
 
 ## Install
 

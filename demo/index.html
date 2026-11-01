@@ -41,33 +41,83 @@
     </header>
 
     <main class="demo">
-      <section class="demo-card">
-        <h2>Toasts</h2>
-        <p>Short notes that float in the corner, then go.</p>
+      <aside class="demo-pane demo-files">
+        <div class="demo-pane-head">Files <span class="demo-count">6</span></div>
+        <ul class="demo-list wb-scroll">
+          <li>Project plan</li>
+          <li>Release notes</li>
+          <li class="active">Q3 report</li>
+          <li>Meeting notes</li>
+          <li>Roadmap</li>
+          <li>Style guide</li>
+        </ul>
+      </aside>
+
+      <section class="demo-pane demo-doc">
+        <div class="demo-doc-head">
+          <h1 id="showing">Q3 report</h1>
+          <span class="demo-pill demo-pill-ok">Up to date</span>
+        </div>
+        <p class="demo-muted">Placeholder content: swap in your own data.</p>
+        <div class="demo-tiles">
+          <div class="demo-tile"><b>24</b><span>Items</span></div>
+          <div class="demo-tile"><b>18</b><span>Done</span></div>
+          <div class="demo-tile"><b>4</b><span>In progress</span></div>
+          <div class="demo-tile"><b>2</b><span>Blocked</span></div>
+        </div>
+        <table class="demo-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Owner</th>
+              <th>Status</th>
+              <th class="num">Est.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Onboarding flow</td>
+              <td>Team A</td>
+              <td><span class="demo-pill demo-pill-ok">Done</span></td>
+              <td class="num">5</td>
+            </tr>
+            <tr>
+              <td>Search filters</td>
+              <td>Team B</td>
+              <td><span class="demo-pill demo-pill-accent">In progress</span></td>
+              <td class="num">8</td>
+            </tr>
+            <tr>
+              <td>Export to CSV</td>
+              <td>Team A</td>
+              <td><span class="demo-pill demo-pill-err">Blocked</span></td>
+              <td class="num">3</td>
+            </tr>
+            <tr>
+              <td>Settings page</td>
+              <td>Team C</td>
+              <td><span class="demo-pill">Not started</span></td>
+              <td class="num">5</td>
+            </tr>
+          </tbody>
+        </table>
+        <pre
+          class="demo-code wb-scroll"
+        ><span class="hl-k">const</span> tabs = <span class="hl-k">new</span> <span class="hl-t">Tabs</span>({ element, onSelect, onClose });
+tabs.<span class="hl-t">open</span>(<span class="hl-s">'q3'</span>, <span class="hl-s">'Q3 report'</span>);
+toast.<span class="hl-t">success</span>(<span class="hl-s">'Saved.'</span>); <span class="hl-c">// floats in, then goes</span></pre>
+      </section>
+
+      <aside class="demo-pane demo-side">
+        <div class="demo-pane-head">Toasts</div>
         <div class="demo-row">
           <button type="button" class="demo-btn" data-toast="success">Success</button>
           <button type="button" class="demo-btn" data-toast="error">Error</button>
           <button type="button" class="demo-btn" data-toast="info">Info</button>
         </div>
-      </section>
-
-      <section class="demo-card">
-        <h2>Tabs</h2>
-        <p>
-          Right-click a tab for its menu, drag to reorder, or use Ctrl+Shift+←/→. Showing:
-          <strong id="showing">Home</strong>
-        </p>
-      </section>
-
-      <section class="demo-card">
-        <h2>Tokens</h2>
+        <div class="demo-pane-head">Tokens</div>
         <div class="demo-swatches" id="swatches"></div>
-      </section>
-
-      <section class="demo-card">
-        <h2>Scroll pane</h2>
-        <div class="demo-scroll wb-scroll" id="scroll"></div>
-      </section>
+      </aside>
     </main>
 
     <script type="module" src="./demo.js"></script>
