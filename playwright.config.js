@@ -1,8 +1,8 @@
 import { defineConfig } from '@playwright/test';
 import { BASE_URL, PORT, SCALE, VIEWPORT } from './visual/demo-page.js';
 
-// Visual regression tests: screenshots of the demo page, compared with the
-// committed ones in visual/*-snapshots/. Pixels depend on the OS, so the
+// Browser tests of the demo page: screenshots compared with the committed
+// ones in visual/*-snapshots/ (demo.spec.js), and axe-core (a11y.spec.js). Pixels depend on the OS, so the
 // committed images come from the Playwright Docker image CI runs in (see the
 // README's "Visual tests").
 export default defineConfig({

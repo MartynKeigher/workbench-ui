@@ -261,6 +261,22 @@ docker run --rm -v "$PWD":/work -w /work mcr.microsoft.com/playwright:v1.63.0-no
 `npm run screenshots` regenerates the README's `docs/screenshot-light.png` and
 `docs/screenshot-dark.png` from the same page and states.
 
+### Accessibility tests
+
+```bash
+npm run test:a11y
+```
+
+[axe-core](https://github.com/dequelabs/axe-core) checks the demo page in light and dark, with
+nothing open, with a toast and with the tab menu open. Any WCAG 2.2 A or AA failure, or any axe
+best-practice failure, fails CI. That includes the contrast of the page's text in both
+palettes. The one exception is listed in `visual/a11y.spec.js` with its reason: the open
+tab menu sits outside the page's landmarks, as a context menu does, and takes the focus when it
+opens.
+
+axe can't check everything. Keyboard use, focus order and how a screen reader announces things
+still need a person, and the unit tests cover the components' keyboard handling.
+
 ### Releasing
 
 1. Bump `version` in `package.json`: patch for fixes, minor for anything new, major for anything
