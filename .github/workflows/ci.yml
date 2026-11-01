@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   pull_request:
+  # Lets the "Update screenshots" workflow re-run the checks on the commit it
+  # pushes (pushes made with the workflow token don't start workflows).
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -21,3 +24,26 @@ jobs:
       - run: npm run lint
       - run: npm run format:check
       - run: npm test
+
+  # Screenshots of the demo page, compared with visual/*-snapshots/. Runs in
+  # the Playwright image the committed images were made in, so text renders
+  # the same. Keep its version equal to @playwright/test in package.json.
+  visual:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.63.0-noble
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm ci
+      - run: npm run test:visual
+        env:
+          HOME: /root
+      - name: Upload the expected, actual and diff images
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-diffs
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14

@@ -13,7 +13,7 @@ documents and panes of detail underneath.
 
 ![The same screen in dark mode, with a tab's right-click menu open](docs/screenshot-dark.png)
 
-Run `npm run dev` to open the demo page with every component on it. Everything in the screenshots comes from it.
+Run `npm run dev` to open the demo page with every component on it. Everything in the screenshots comes from it (`npm run screenshots` makes them).
 
 ## Install
 
@@ -235,6 +235,31 @@ npm test
 ```
 
 `npm run lint` and `npm run format:check` run in CI with the tests.
+
+### Visual tests
+
+```bash
+npm run test:visual
+```
+
+Playwright takes screenshots of the demo page (light, dark, a toast in light and the tab menu
+in dark, 1200×600 at 2x) and compares them with the images in `visual/demo.spec.js-snapshots/`.
+Any visual change fails CI, and the run's `visual-diffs` artifact holds the expected, actual and
+diff images. The page loads its fonts from local copies and its timers are paused, so nothing
+depends on the network or timing.
+
+Text renders a little differently on each OS, so the committed images come from the Playwright
+Linux image CI runs in. When a pull request changes how something looks on purpose, update the
+images from GitHub: **Actions → Update screenshots → Run workflow** on the pull request's
+branch. It regenerates them, commits any that changed and re-runs CI. Then check the new images
+in the pull request's diff. To do the same locally, run this (with Docker):
+
+```bash
+docker run --rm -v "$PWD":/work -w /work mcr.microsoft.com/playwright:v1.63.0-noble bash -c 'npm ci && npm run test:visual:update && npm run screenshots'
+```
+
+`npm run screenshots` regenerates the README's `docs/screenshot-light.png` and
+`docs/screenshot-dark.png` from the same page and states.
 
 ### Releasing
 
