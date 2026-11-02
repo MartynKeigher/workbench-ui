@@ -1,0 +1,41 @@
+/* Workbench UI: data table
+ *
+ * Full width, small uppercase column headings and striped rows. Give number
+ * cells (and their heading) .wb-num to right-align them with even-width
+ * digits.
+ *
+ *   <table class="wb-table">
+ *     <thead><tr><th>Item</th><th class="wb-num">Est.</th></tr></thead>
+ *     <tbody><tr><td>Search filters</td><td class="wb-num">8</td></tr></tbody>
+ *   </table>
+ */
+
+.wb-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.wb-table th {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-align: left;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.wb-table td {
+  padding: 8px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.wb-table tbody tr:nth-child(even) {
+  background: var(--row-alt);
+}
+
+.wb-table .wb-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}

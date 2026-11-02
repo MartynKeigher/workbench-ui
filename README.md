@@ -5,6 +5,8 @@ documents and panes of detail underneath.
 
 - **Design tokens** for every colour, font and shadow, with a matching dark palette
 - **Header bar**, **tabs** and **toasts**, ready to drop in
+- **Panes**, **selectable lists**, **summary tiles**, **data tables** and **status pills** for the
+  content underneath
 - **Light / dark toggle** that remembers the choice
 - **Plain JavaScript and CSS.** No framework and no build step, so it works with any bundler or
   framework, or with none.
@@ -20,18 +22,18 @@ Run `npm run dev` to open the demo page with every component on it. Everything i
 The package installs straight from this repository's release tags:
 
 ```bash
-npm install github:MartynKeigher/workbench-ui#v0.1.0
+npm install github:MartynKeigher/workbench-ui#v0.2.0
 ```
 
 In `package.json` that reads:
 
 ```json
 "dependencies": {
-  "@martynkeigher/workbench-ui": "github:MartynKeigher/workbench-ui#v0.1.0"
+  "@martynkeigher/workbench-ui": "github:MartynKeigher/workbench-ui#v0.2.0"
 }
 ```
 
-`#v0.1.0` pins one release, so every install of your project gets exactly the same kit. See
+`#v0.2.0` pins one release, so every install of your project gets exactly the same kit. See
 [Staying up to date](#staying-up-to-date) to have new releases arrive on their own.
 
 ## Use
@@ -61,6 +63,11 @@ it.
 | `header.css` | The header bar and its buttons                                  |
 | `tabs.css`   | The tab strip and its menu                                      |
 | `toast.css`  | Toasts                                                          |
+| `pane.css`   | Panes, their headings and counts                                |
+| `list.css`   | Selectable lists                                                |
+| `tiles.css`  | Summary tiles                                                   |
+| `table.css`  | Data tables                                                     |
+| `pill.css`   | Status pills                                                    |
 | `fonts.css`  | The two typefaces, from Google Fonts. Without it, system fonts. |
 
 ### Header bar
@@ -165,6 +172,89 @@ It sets `data-color-mode="light"` or `"dark"` on `<html>` and keeps the choice i
 `localStorage` (key `colorMode`; pass `storageKey` to change it). An empty button gets moon and
 sun icons. A button with its own `.wb-icon-moon` and `.wb-icon-sun` elements keeps them.
 
+### Panes
+
+A bordered card for each area of the screen, with small uppercase headings. A `.wb-count` sits
+in a heading. A second heading in the same pane starts a new group, with space above it.
+
+```html
+<section class="wb-pane">
+  <h2 class="wb-pane-head">Files <span class="wb-count">6</span></h2>
+  …
+  <h2 class="wb-pane-head">Recent</h2>
+  …
+</section>
+```
+
+### Selectable lists
+
+Items to pick from, such as files. Each item is a `<button>` (or an `<a>`), so it takes keyboard
+focus. Mark the one showing with `aria-current="true"`, or use `aria-selected="true"` in a
+listbox. In a pane, the items line up with the pane's heading.
+
+```html
+<ul class="wb-list">
+  <li><button type="button" class="wb-list-item">Project plan</button></li>
+  <li><button type="button" class="wb-list-item" aria-current="true">Q3 report</button></li>
+</ul>
+```
+
+Add `.wb-scroll` to a long list in a fixed-height pane. Changing the selection is up to you:
+move `aria-current` to the item that was picked.
+
+### Summary tiles
+
+A row of numbers, each with a label. As many tiles fit on a row as there is room for, at least
+120px each.
+
+```html
+<div class="wb-tiles">
+  <div class="wb-tile">
+    <span class="wb-tile-value">24</span>
+    <span class="wb-tile-label">Items</span>
+  </div>
+  <div class="wb-tile">
+    <span class="wb-tile-value">2</span>
+    <span class="wb-tile-label">Blocked</span>
+  </div>
+</div>
+```
+
+### Data tables
+
+Full width, with small uppercase column headings and striped rows. `.wb-num` right-aligns a
+column of numbers, with every digit the same width so they line up.
+
+```html
+<table class="wb-table">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Status</th>
+      <th class="wb-num">Est.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Search filters</td>
+      <td><span class="wb-pill wb-pill-accent">In progress</span></td>
+      <td class="wb-num">8</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+### Status pills
+
+A short status word. A plain `.wb-pill` is neutral.
+
+```html
+<span class="wb-pill wb-pill-ok">Done</span>
+<span class="wb-pill wb-pill-accent">In progress</span>
+<span class="wb-pill wb-pill-err">Blocked</span>
+<span class="wb-pill">Not started</span>
+```
+
 ## Theming
 
 Every colour is a custom property. Override any of them after the kit loads, for one palette or
@@ -215,7 +305,7 @@ To have new releases arrive without lifting a finger, turn on
 ```
 
 Renovate watches this repository's tags. Each new patch or minor release opens a pull request
-in your project that moves the pinned tag (`#v0.1.0` → `#v0.1.1`). Once your checks pass, it
+in your project that moves the pinned tag (`#v0.2.0` → `#v0.2.1`). Once your checks pass, it
 merges itself. Major releases still open a pull request but wait for you, since they may
 need changes. (This needs branch protection with required status checks, so a failing build
 blocks the merge.)

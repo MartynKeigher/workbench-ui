@@ -4,3 +4,8 @@
 @import './header.css';
 @import './components/toast/toast.css';
 @import './components/tabs/tabs.css';
+@import './components/pane/pane.css';
+@import './components/list/list.css';
+@import './components/tiles/tiles.css';
+@import './components/table/table.css';
+@import './components/pill/pill.css';

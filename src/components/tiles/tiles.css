@@ -1,0 +1,38 @@
+/* Workbench UI: summary tiles
+ *
+ * A row of numbers with a label under each. As many fit per row as there is
+ * room for.
+ *
+ *   <div class="wb-tiles">
+ *     <div class="wb-tile">
+ *       <span class="wb-tile-value">24</span>
+ *       <span class="wb-tile-label">Items</span>
+ *     </div>
+ *   </div>
+ */
+
+.wb-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+}
+
+.wb-tile {
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--tile);
+}
+
+.wb-tile-value {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.wb-tile-label {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+}

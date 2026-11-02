@@ -3,8 +3,14 @@ import { ColorMode, Tabs, toast } from '../src/index.js';
 new ColorMode(document.getElementById('colorMode'));
 
 const showing = document.getElementById('showing');
+const files = [...document.querySelectorAll('#files .wb-list-item')];
+// A tab's id is its title. Show it, and select it in the file list if it's there.
 const show = (id) => {
-  showing.textContent = id ? tabs.tabs.find((tab) => tab.id === id).title : 'Overview';
+  showing.textContent = id ?? 'Overview';
+  for (const item of files) {
+    if (item.textContent === id) item.setAttribute('aria-current', 'true');
+    else item.removeAttribute('aria-current');
+  }
 };
 const tabs = new Tabs({
   element: document.querySelector('.wb-tabs'),
@@ -18,18 +24,22 @@ const tabs = new Tabs({
     show(null);
   },
 });
-tabs.setHome(true);
-const titles = ['Project plan', 'Release notes', 'Q3 report', 'Meeting notes', 'Roadmap'];
-let count = 0;
-const addTab = () => {
-  const title = titles[count] ?? `Untitled ${count + 1}`;
-  count += 1;
-  tabs.open(`doc-${count}`, title);
-  show(`doc-${count}`);
+const open = (title) => {
+  tabs.open(title, title);
+  show(title);
 };
-[1, 2, 3].forEach(addTab);
-tabs.togglePin('doc-1');
-document.getElementById('addTab').addEventListener('click', addTab);
+tabs.setHome(true);
+['Project plan', 'Release notes', 'Q3 report'].forEach(open);
+tabs.togglePin('Project plan');
+
+// Picking a file opens it in a tab, or goes to its tab
+files.forEach((item) => item.addEventListener('click', () => open(item.textContent)));
+
+let untitled = 0;
+document.getElementById('addTab').addEventListener('click', () => {
+  untitled += 1;
+  open(`Untitled ${untitled}`);
+});
 
 const messages = {
   success: 'Your changes were saved.',

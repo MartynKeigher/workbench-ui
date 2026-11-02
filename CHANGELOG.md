@@ -8,6 +8,20 @@ Every release, newest first. Versions follow [semantic versioning](https://semve
 
 While the version is 0.x, a minor release may still rename things; it says so here when it does.
 
+## 0.2.0
+
+Classes for the content under the header. Nothing renamed or removed.
+
+- Panes (`pane.css`): `.wb-pane`, `.wb-pane-head` and `.wb-count`.
+- Selectable lists (`list.css`): `.wb-list` and `.wb-list-item`. Items are buttons or links; the
+  selected one has `aria-current="true"` or `aria-selected="true"`.
+- Summary tiles (`tiles.css`): `.wb-tiles`, `.wb-tile`, `.wb-tile-value` and `.wb-tile-label`.
+- Data tables (`table.css`): `.wb-table`, with `.wb-num` for number columns.
+- Status pills (`pill.css`): `.wb-pill`, plus `.wb-pill-ok`, `.wb-pill-err` and
+  `.wb-pill-accent`.
+
+`workbench.css` includes all five. Each also has its own entry point.
+
 ## 0.1.0
 
 First release.
