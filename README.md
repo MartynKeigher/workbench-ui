@@ -7,11 +7,13 @@ documents and panes of detail underneath.
 - **Header bar**, **tabs** and **toasts**, ready to drop in
 - **Panes**, **selectable lists**, **summary tiles**, **data tables** and **status pills** for the
   content underneath
+- **Buttons**, **message bars**, a **status bar**, **dialogs** and **copy buttons**
+- A **splitter** that resizes and collapses side panes, and remembers how they were left
 - **Light / dark toggle** that remembers the choice
 - **Plain JavaScript and CSS.** No framework and no build step, so it works with any bundler or
   framework, or with none.
 
-![Workbench UI in light mode: a header bar with buttons, tabs with one pinned, a file list, a document with a status table, and a toast in the corner](docs/screenshot-light.png)
+![Workbench UI in light mode: a header bar with buttons, tabs with one pinned, a file list, a document with a message bar, tiles and a status table, a status bar, and a toast in the corner](docs/screenshot-light.png)
 
 ![The same screen in dark mode, with a tab's right-click menu open](docs/screenshot-dark.png)
 
@@ -22,18 +24,18 @@ Run `npm run dev` to open the demo page with every component on it. Everything i
 The package installs straight from this repository's release tags:
 
 ```bash
-npm install github:MartynKeigher/workbench-ui#v0.2.0
+npm install github:MartynKeigher/workbench-ui#v0.3.0
 ```
 
 In `package.json` that reads:
 
 ```json
 "dependencies": {
-  "@martynkeigher/workbench-ui": "github:MartynKeigher/workbench-ui#v0.2.0"
+  "@martynkeigher/workbench-ui": "github:MartynKeigher/workbench-ui#v0.3.0"
 }
 ```
 
-`#v0.2.0` pins one release, so every install of your project gets exactly the same kit. See
+`#v0.3.0` pins one release, so every install of your project gets exactly the same kit. See
 [Staying up to date](#staying-up-to-date) to have new releases arrive on their own.
 
 ## Use
@@ -56,19 +58,25 @@ import '@martynkeigher/workbench-ui/workbench.css';
 To take only some parts, import them one by one. `tokens.css` comes first, because the rest uses
 it.
 
-| File         | What's in it                                                    |
-| ------------ | --------------------------------------------------------------- |
-| `tokens.css` | Every colour, font and shadow, light and dark                   |
-| `base.css`   | Page defaults, the focus ring, `.sr-only`, `.wb-scroll`         |
-| `header.css` | The header bar and its buttons                                  |
-| `tabs.css`   | The tab strip and its menu                                      |
-| `toast.css`  | Toasts                                                          |
-| `pane.css`   | Panes, their headings and counts                                |
-| `list.css`   | Selectable lists                                                |
-| `tiles.css`  | Summary tiles                                                   |
-| `table.css`  | Data tables                                                     |
-| `pill.css`   | Status pills                                                    |
-| `fonts.css`  | The two typefaces, from Google Fonts. Without it, system fonts. |
+| File              | What's in it                                                    |
+| ----------------- | --------------------------------------------------------------- |
+| `tokens.css`      | Every colour, font and shadow, light and dark                   |
+| `base.css`        | Page defaults, the focus ring, `.sr-only`, `.wb-scroll`         |
+| `header.css`      | The header bar and its buttons                                  |
+| `tabs.css`        | The tab strip and its menu                                      |
+| `toast.css`       | Toasts                                                          |
+| `pane.css`        | Panes, their headings and counts                                |
+| `list.css`        | Selectable lists                                                |
+| `tiles.css`       | Summary tiles                                                   |
+| `table.css`       | Data tables                                                     |
+| `pill.css`        | Status pills                                                    |
+| `button.css`      | Buttons under the header bar                                    |
+| `message.css`     | Message bars                                                    |
+| `statusbar.css`   | The status bar                                                  |
+| `copy-button.css` | The copy button's copied and failed states                      |
+| `dialog.css`      | Dialogs                                                         |
+| `splitter.css`    | The splitter handle and a collapsed pane                        |
+| `fonts.css`       | The two typefaces, from Google Fonts. Without it, system fonts. |
 
 ### Header bar
 
@@ -250,9 +258,202 @@ A short status word. A plain `.wb-pill` is neutral.
 
 ```html
 <span class="wb-pill wb-pill-ok">Done</span>
+<span class="wb-pill wb-pill-warn">Needs owner</span>
 <span class="wb-pill wb-pill-accent">In progress</span>
 <span class="wb-pill wb-pill-err">Blocked</span>
 <span class="wb-pill">Not started</span>
+```
+
+### Buttons
+
+For the page under the header bar (the header bar has `.wb-hbtn`). `-primary` is the one main
+action in a place; `-danger` deletes or discards. `.wb-btn-row` lines several up.
+
+```html
+<div class="wb-btn-row">
+  <button type="button" class="wb-btn">Cancel</button>
+  <button type="button" class="wb-btn wb-btn-primary">Save</button>
+  <button type="button" class="wb-btn wb-btn-danger">Delete</button>
+</div>
+```
+
+### Message bars
+
+A note inside the content that stays until it no longer applies (a toast goes by itself). Kinds:
+`-info` (the default look), `-ok`, `-warn` and `-err`. Give it `role="status"`, or
+`role="alert"` for an error that needs action now. The close button is optional; removing the
+message is up to you.
+
+```html
+<div class="wb-message wb-message-warn" role="status">
+  <div class="wb-message-body">
+    <strong class="wb-message-title">Read only</strong>
+    Someone else has this file open.
+  </div>
+  <button type="button" class="wb-message-close" aria-label="Dismiss">×</button>
+</div>
+```
+
+### Status bar
+
+A thin bar along the bottom of the app. Items are text, or buttons when clicking one does
+something. `.wb-statusbar-end` pushes an item, and those after it, to the right. Put
+`role="status"` on an item whose text changes, so screen readers hear it. Where the bar sits (a
+grid row, `position: sticky`) is up to your layout.
+
+```html
+<footer class="wb-statusbar">
+  <span class="wb-statusbar-item">Q3 report</span>
+  <span class="wb-statusbar-item" role="status">All changes saved</span>
+  <button type="button" class="wb-statusbar-item wb-statusbar-end">
+    <span class="wb-pill wb-pill-warn">2 warnings</span>
+  </button>
+  <span class="wb-statusbar-item">UTF-8</span>
+</footer>
+```
+
+### Dialogs
+
+`confirmDialog()` asks a yes / no question and resolves `true` or `false`. Cancel, the × and
+Escape all mean no. With `danger: true` the yes button is a danger button and the focus starts
+on Cancel.
+
+```js
+import { confirmDialog } from '@martynkeigher/workbench-ui';
+
+const yes = await confirmDialog({
+  title: 'Delete Q3 report?',
+  message: "It goes for everyone with access. This can't be undone.",
+  confirmLabel: 'Delete', // default 'OK'
+  cancelLabel: 'Keep it', // default 'Cancel'
+  danger: true,
+});
+```
+
+For anything else, style a native `<dialog>` and open it with `showModal()`. The browser keeps
+the focus inside, closes it on Escape and puts the focus back afterwards. A `<form
+method="dialog">` closes it from any button, with the button's `value` as `returnValue`.
+
+```html
+<dialog class="wb-dialog" aria-labelledby="exportTitle">
+  <form method="dialog">
+    <div class="wb-dialog-head">
+      <h2 class="wb-dialog-title" id="exportTitle">Export</h2>
+      <button class="wb-dialog-close" value="cancel" aria-label="Close">×</button>
+    </div>
+    <div class="wb-dialog-body">…</div>
+    <div class="wb-dialog-actions">
+      <button class="wb-btn" value="cancel">Cancel</button>
+      <button class="wb-btn wb-btn-primary" value="export">Export</button>
+    </div>
+  </form>
+</dialog>
+```
+
+Titles and messages are set as text, never as HTML.
+
+### Copy button
+
+```js
+import { CopyButton } from '@martynkeigher/workbench-ui';
+
+new CopyButton(document.getElementById('copy'), {
+  getText: () => editor.value, // or text: 'a fixed string'
+});
+```
+
+After a click the button reads "Copied" (or "Couldn't copy") for a moment, and screen readers
+hear the same. A button with an icon keeps it: put the words in a `.wb-copy-label` element and
+only that changes. The clipboard needs a secure page (`https://` or `localhost`); elsewhere it
+fails, and says so.
+
+| Option        | Default           |                               |
+| ------------- | ----------------- | ----------------------------- |
+| `text`        |                   | The text to copy              |
+| `getText`     |                   | Or a function that returns it |
+| `copiedLabel` | `'Copied'`        | Shown after copying           |
+| `failedLabel` | `"Couldn't copy"` | Shown when it failed          |
+| `duration`    | `1500`            | Milliseconds either one shows |
+| `onCopy`      |                   | Called with the text          |
+| `onError`     |                   | Called with the error         |
+
+### Splitter
+
+A handle between two panes that resizes one of them. People drag it, or focus it and use the
+arrow keys (Shift for bigger steps), Home and End. Enter or a double-click collapses the pane out
+of the way; clicking or dragging the handle brings it back. Size and collapsed state are
+remembered with `storageKey`.
+
+It writes the size to a CSS custom property on the layout element, so your layout decides how to
+use it:
+
+```html
+<main class="layout">
+  <aside class="wb-pane" id="files">…</aside>
+  <div class="wb-splitter" aria-label="Files pane width"></div>
+  <section class="wb-pane">…</section>
+</main>
+```
+
+```css
+.layout {
+  display: grid;
+  grid-template-columns: var(--wb-split, 240px) 8px minmax(0, 1fr);
+}
+```
+
+```js
+import { Splitter } from '@martynkeigher/workbench-ui';
+
+const splitter = new Splitter(document.querySelector('.wb-splitter'), {
+  target: document.getElementById('files'),
+  min: 160,
+  max: 480,
+  storageKey: 'filesWidth',
+  toggles: [document.getElementById('toggleFiles')], // optional buttons elsewhere
+});
+```
+
+| Option        | Default               |                                                     |
+| ------------- | --------------------- | --------------------------------------------------- |
+| `target`      |                       | The pane it sizes, before or after the handle       |
+| `container`   | the handle's parent   | Where the custom property goes                      |
+| `property`    | `'--wb-split'`        | The custom property                                 |
+| `orientation` | `'vertical'`          | `'horizontal'` for a handle between stacked panes   |
+| `min`, `max`  | `120`, `600`          | In px                                               |
+| `size`        | the target's size now | Starting size, when nothing is saved                |
+| `step`        | `16`                  | Arrow key step in px (×4 with Shift)                |
+| `collapsible` | `true`                | Whether Enter, a double-click or a toggle collapses |
+| `storageKey`  | not remembered        | Remember size and collapsed state under this key    |
+| `toggles`     | `[]`                  | Buttons that collapse it or bring it back           |
+| `onResize`    |                       | Called with the size and whether it's collapsed     |
+
+A collapsed pane is sized 0, hidden, and inert, so the keyboard and screen readers skip it too.
+Toggle buttons get `aria-expanded`. Methods: `setSize(px)`, `collapse()`, `expand()`,
+`toggle()`, `destroy()`.
+
+### Folding panes
+
+`PaneToggle` folds a pane down to its headings, for a pane that stays where it is (a splitter
+collapses one sideways). Put the button last in the heading; it draws its own chevron.
+
+```html
+<section class="wb-pane" id="details">
+  <h2 class="wb-pane-head">
+    Details
+    <button type="button" class="wb-pane-toggle" aria-label="Details"></button>
+  </h2>
+  …
+</section>
+```
+
+```js
+import { PaneToggle } from '@martynkeigher/workbench-ui';
+
+new PaneToggle(document.querySelector('#details .wb-pane-toggle'), {
+  pane: document.getElementById('details'),
+  storageKey: 'detailsFolded', // optional
+});
 ```
 
 ## Theming
@@ -305,7 +506,7 @@ To have new releases arrive without lifting a finger, turn on
 ```
 
 Renovate watches this repository's tags. Each new patch or minor release opens a pull request
-in your project that moves the pinned tag (`#v0.2.0` → `#v0.2.1`). Once your checks pass, it
+in your project that moves the pinned tag (`#v0.3.0` → `#v0.3.1`). Once your checks pass, it
 merges itself. Major releases still open a pull request but wait for you, since they may
 need changes. (This needs branch protection with required status checks, so a failing build
 blocks the merge.)
@@ -332,8 +533,8 @@ npm test
 npm run test:visual
 ```
 
-Playwright takes screenshots of the demo page (light, dark, a toast in light and the tab menu
-in dark, 1200×600 at 2x) and compares them with the images in `visual/demo.spec.js-snapshots/`.
+Playwright takes screenshots of the demo page (light, dark, a toast and a dialog in light, the
+tab menu and a collapsed pane in dark, 1200×600 at 2x) and compares them with the images in `visual/demo.spec.js-snapshots/`.
 Any visual change fails CI, and the run's `visual-diffs` artifact holds the expected, actual and
 diff images. The page loads its fonts from local copies and its timers are paused, so nothing
 depends on the network or timing.
@@ -357,8 +558,8 @@ docker run --rm -v "$PWD":/work -w /work mcr.microsoft.com/playwright:v1.63.0-no
 npm run test:a11y
 ```
 
-[axe-core](https://github.com/dequelabs/axe-core) checks the demo page in light and dark, with
-nothing open, with a toast and with the tab menu open. Any WCAG 2.2 A or AA failure, or any axe
+[axe-core](https://github.com/dequelabs/axe-core) checks the demo page in light and dark: with
+nothing open, a toast, the tab menu, a dialog, and a collapsed pane. Any WCAG 2.2 A or AA failure, or any axe
 best-practice failure, fails CI. That includes the contrast of the page's text in both
 palettes. The one exception is listed in `visual/a11y.spec.js` with its reason: the open
 tab menu sits outside the page's landmarks, as a context menu does, and takes the focus when it
@@ -366,6 +567,15 @@ opens.
 
 axe can't check everything. Keyboard use, focus order and how a screen reader announces things
 still need a person, and the unit tests cover the components' keyboard handling.
+
+### Browser tests
+
+```bash
+npm run test:browser
+```
+
+What jsdom can't do, on the demo page in Chromium: the dialog's focus handling, dragging the
+splitter, the clipboard, and what's remembered across a reload.
 
 ### Releasing
 

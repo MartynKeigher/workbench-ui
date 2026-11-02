@@ -1,7 +1,7 @@
 {
   "name": "@martynkeigher/workbench-ui",
-  "version": "0.2.0",
-  "description": "A calm, dense UI kit for tool-style web apps: design tokens with light and dark palettes, a header bar, tabs and toasts. Plain JavaScript and CSS, no framework, no build step.",
+  "version": "0.3.0",
+  "description": "A calm, dense UI kit for tool-style web apps: design tokens with light and dark palettes, a header bar, tabs, toasts, panes, dialogs and more. Plain JavaScript and CSS, no framework, no build step.",
   "keywords": [
     "design system",
     "ui",
@@ -25,6 +25,10 @@
     "./toast": "./src/components/toast/toast.js",
     "./tabs": "./src/components/tabs/tabs.js",
     "./color-mode": "./src/components/color-mode/color-mode.js",
+    "./copy-button": "./src/components/copy-button/copy-button.js",
+    "./dialog": "./src/components/dialog/dialog.js",
+    "./splitter": "./src/components/splitter/splitter.js",
+    "./pane-toggle": "./src/components/pane/pane-toggle.js",
     "./workbench.css": "./src/workbench.css",
     "./fonts.css": "./src/fonts.css",
     "./tokens.css": "./src/tokens.css",
@@ -37,6 +41,12 @@
     "./tiles.css": "./src/components/tiles/tiles.css",
     "./table.css": "./src/components/table/table.css",
     "./pill.css": "./src/components/pill/pill.css",
+    "./button.css": "./src/components/button/button.css",
+    "./message.css": "./src/components/message/message.css",
+    "./statusbar.css": "./src/components/statusbar/statusbar.css",
+    "./copy-button.css": "./src/components/copy-button/copy-button.css",
+    "./dialog.css": "./src/components/dialog/dialog.css",
+    "./splitter.css": "./src/components/splitter/splitter.css",
     "./package.json": "./package.json"
   },
   "files": [
@@ -55,7 +65,8 @@
     "test:visual": "playwright test demo.spec",
     "test:visual:update": "playwright test demo.spec --update-snapshots",
     "screenshots": "node scripts/screenshots.js",
-    "test:a11y": "playwright test a11y.spec"
+    "test:a11y": "playwright test a11y.spec",
+    "test:browser": "playwright test components.spec"
   },
   "engines": {
     "node": ">=20"

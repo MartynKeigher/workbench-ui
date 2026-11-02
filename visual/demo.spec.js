@@ -1,9 +1,9 @@
 import { expect, test } from '@playwright/test';
-import { openDemo, openTabMenu, showToast } from './demo-page.js';
+import { collapseFiles, openDemo, openDialog, openTabMenu, showToast } from './demo-page.js';
 
-// The demo page in each mode, plus one open state in each: a toast in light
-// (also docs/screenshot-light.png) and the tab menu in dark (also
-// docs/screenshot-dark.png).
+// The demo page in each mode, plus open states: a toast in light (also
+// docs/screenshot-light.png), the tab menu in dark (also
+// docs/screenshot-dark.png), a dialog, and the Files pane collapsed.
 
 test('light', async ({ page }) => {
   await openDemo(page, 'light');
@@ -25,4 +25,16 @@ test('dark, with the tab menu open', async ({ page }) => {
   await openDemo(page, 'dark');
   await openTabMenu(page);
   await expect(page).toHaveScreenshot('dark-tab-menu.png');
+});
+
+test('light, with a dialog open', async ({ page }) => {
+  await openDemo(page, 'light');
+  await openDialog(page);
+  await expect(page).toHaveScreenshot('light-dialog.png');
+});
+
+test('dark, with the Files pane collapsed', async ({ page }) => {
+  await openDemo(page, 'dark');
+  await collapseFiles(page);
+  await expect(page).toHaveScreenshot('dark-collapsed.png');
 });

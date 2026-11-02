@@ -1,0 +1,86 @@
+/* Workbench UI: dialog
+ *
+ * Styles a native <dialog>. Open it with showModal(): the browser keeps the
+ * focus inside, closes it on Escape, and hands the focus back afterwards.
+ *
+ *   <dialog class="wb-dialog" aria-labelledby="exportTitle">
+ *     <form method="dialog">
+ *       <div class="wb-dialog-head">
+ *         <h2 class="wb-dialog-title" id="exportTitle">Export</h2>
+ *         <button class="wb-dialog-close" value="cancel" aria-label="Close">×</button>
+ *       </div>
+ *       <div class="wb-dialog-body">…</div>
+ *       <div class="wb-dialog-actions">
+ *         <button class="wb-btn" value="cancel">Cancel</button>
+ *         <button class="wb-btn wb-btn-primary" value="ok">Export</button>
+ *       </div>
+ *     </form>
+ *   </dialog>
+ *
+ * For a yes / no question, confirmDialog() builds one of these for you.
+ */
+
+.wb-dialog {
+  width: min(440px, calc(100vw - 32px));
+  max-height: calc(100vh - 64px);
+  padding: 0;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--pane);
+  color: var(--ink);
+  font-family: var(--font);
+  box-shadow: var(--shadow-pop);
+}
+
+.wb-dialog::backdrop {
+  background: rgb(10 14 18 / 45%);
+}
+
+.wb-dialog-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px 0;
+}
+
+.wb-dialog-title {
+  flex: 1;
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.wb-dialog-close {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  margin: -4px -6px -4px 0;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.wb-dialog-close:hover {
+  background: var(--hover);
+  color: var(--ink);
+}
+
+.wb-dialog-body {
+  padding: 10px 16px 4px;
+  color: var(--ink-2);
+  white-space: pre-line;
+}
+
+.wb-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 14px 16px 16px;
+}

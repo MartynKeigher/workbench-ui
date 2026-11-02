@@ -44,6 +44,11 @@ jobs:
         if: success() || failure()
         env:
           HOME: /root
+      # The components in a real browser: dialog focus, dragging, the clipboard
+      - run: npm run test:browser
+        if: success() || failure()
+        env:
+          HOME: /root
       - name: Upload the expected, actual and diff images
         if: failure()
         uses: actions/upload-artifact@v4
