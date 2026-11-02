@@ -61,6 +61,10 @@
   --err-bg: #fbe3e1;
   --err-ink: #7a1f17;
   --err-line: #f1c3be;
+  --warn: #b26b00;
+  --warn-bg: #fdf1d6;
+  --warn-ink: #6b4100;
+  --warn-line: #ecd39a;
 
   /* Diffs: removed, added, changed */
   --diff-del-bg: #fcebea;
@@ -151,6 +155,10 @@
   --err-bg: #3d1d1b;
   --err-ink: #f4aaa2;
   --err-line: #6b2e29;
+  --warn: #f0b067;
+  --warn-bg: #3a2c12;
+  --warn-ink: #f0c27a;
+  --warn-line: #6b5317;
 
   --diff-del-bg: #3a1f1d;
   --diff-del-mark: #6e2e28;

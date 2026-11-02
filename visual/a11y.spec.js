@@ -1,9 +1,10 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test } from '@playwright/test';
-import { openDemo, openTabMenu } from './demo-page.js';
+import { collapseFiles, openDemo, openDialog, openTabMenu } from './demo-page.js';
 
-// axe-core over the demo page, light and dark, closed and with a toast or the
-// tab menu open. Any WCAG 2.2 A / AA or axe best-practice violation fails.
+// axe-core over the demo page, light and dark: nothing open, a toast, the tab
+// menu, a dialog, and the Files pane collapsed. Any WCAG 2.2 A / AA or axe
+// best-practice violation fails.
 
 /** The demo's success toast, held on screen (axe needs running timers). */
 const showToast = (page) =>
@@ -35,6 +36,8 @@ const STATES = [
   ['closed', async () => {}],
   ['a toast', (page) => showToast(page).then(() => page.locator('.wb-toast.show').waitFor())],
   ['the tab menu open', openTabMenu],
+  ['a dialog open', openDialog],
+  ['the Files pane collapsed', collapseFiles],
 ];
 
 for (const mode of ['light', 'dark']) {

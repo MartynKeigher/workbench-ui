@@ -11,3 +11,7 @@ export {
   MOON_ICON,
   SUN_ICON,
 } from './components/color-mode/color-mode.js';
+export { CopyButton } from './components/copy-button/copy-button.js';
+export { confirmDialog } from './components/dialog/dialog.js';
+export { Splitter } from './components/splitter/splitter.js';
+export { PaneToggle } from './components/pane/pane-toggle.js';

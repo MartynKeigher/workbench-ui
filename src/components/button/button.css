@@ -1,0 +1,71 @@
+/* Workbench UI: buttons
+ *
+ * For the page under the header (the header bar has .wb-hbtn). Plain is the
+ * everyday button; -primary is the one main action; -danger deletes or
+ * discards.
+ *
+ *   <button type="button" class="wb-btn">Cancel</button>
+ *   <button type="button" class="wb-btn wb-btn-primary">Save</button>
+ *   <button type="button" class="wb-btn wb-btn-danger">Delete</button>
+ */
+
+.wb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--control-line);
+  border-radius: 7px;
+  background: var(--control);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+}
+
+.wb-btn:hover {
+  background: var(--hover);
+}
+
+.wb-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.wb-btn-primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.wb-btn-primary:hover {
+  border-color: var(--accent-ink);
+  background: var(--accent-ink);
+}
+
+.wb-btn-danger {
+  border-color: var(--err-line);
+  background: var(--err-bg);
+  color: var(--err-ink);
+}
+
+.wb-btn-danger:hover {
+  border-color: var(--err-ink);
+  background: var(--err-bg);
+}
+
+.wb-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* A row of buttons */
+.wb-btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}

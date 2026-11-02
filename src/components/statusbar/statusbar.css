@@ -1,0 +1,61 @@
+/* Workbench UI: status bar
+ *
+ * A thin bar along the bottom of the app: what's open, its state, counts.
+ * Items are text, or buttons when clicking one does something. Items after
+ * .wb-statusbar-end sit at the right.
+ *
+ *   <footer class="wb-statusbar">
+ *     <span class="wb-statusbar-item">Q3 report</span>
+ *     <span class="wb-statusbar-item" role="status">Saved</span>
+ *     <button type="button" class="wb-statusbar-item wb-statusbar-end">2 warnings</button>
+ *     <span class="wb-statusbar-item">UTF-8</span>
+ *   </footer>
+ *
+ * Put role="status" on an item whose text changes, so screen readers hear it.
+ * Placing the bar (a grid row, position: sticky) is up to your layout.
+ */
+
+.wb-statusbar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-height: 26px;
+  padding: 0 8px;
+  border-top: 1px solid var(--line);
+  background: var(--pane);
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.wb-statusbar-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  padding: 0 6px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+button.wb-statusbar-item {
+  cursor: pointer;
+}
+
+button.wb-statusbar-item:hover {
+  background: var(--hover);
+  color: var(--ink);
+}
+
+.wb-statusbar-end {
+  margin-left: auto;
+}
+
+/* A pill in the bar: smaller, to fit */
+.wb-statusbar .wb-pill {
+  padding: 0 7px;
+  font-size: 11px;
+}

@@ -102,3 +102,15 @@ export async function openTabMenu(page) {
   await tab.click({ button: 'right', position: { x: 60, y: box.height - 2 } });
   await page.locator('.wb-tab-menu').waitFor();
 }
+
+/** Open the demo's "Delete…" confirm dialog. */
+export async function openDialog(page) {
+  await page.getByRole('button', { name: 'Delete…' }).click();
+  await page.locator('dialog.wb-dialog[open]').waitFor();
+}
+
+/** Collapse the Files pane with the header bar's button. */
+export async function collapseFiles(page) {
+  await page.getByRole('button', { name: 'Files pane' }).click();
+  await page.locator('#filesPane[data-split-collapsed]').waitFor({ state: 'attached' });
+}

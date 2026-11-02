@@ -1,7 +1,7 @@
 /* Workbench UI: status pills
  *
- * A short status word. Plain .wb-pill is neutral; add -ok, -err or -accent
- * for the others.
+ * A short status word. Plain .wb-pill is neutral; add -ok, -warn, -err or
+ * -accent for the others.
  *
  *   <span class="wb-pill wb-pill-ok">Done</span>
  *   <span class="wb-pill">Not started</span>
@@ -35,4 +35,10 @@
   border-color: var(--accent-line);
   background: var(--accent-soft);
   color: var(--accent-ink);
+}
+
+.wb-pill-warn {
+  border-color: var(--warn-line);
+  background: var(--warn-bg);
+  color: var(--warn-ink);
 }

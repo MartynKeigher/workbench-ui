@@ -1,0 +1,86 @@
+/* Workbench UI: message bar
+ *
+ * A note inside the content: something that happened or needs attention,
+ * that stays until it no longer applies (a toast goes by itself). Give it
+ * role="status" for news, or role="alert" for an error that needs action now.
+ *
+ *   <div class="wb-message wb-message-warn" role="status">
+ *     <div class="wb-message-body">
+ *       <strong class="wb-message-title">Read only</strong>
+ *       Someone else has this file open.
+ *     </div>
+ *     <button type="button" class="wb-message-close" aria-label="Dismiss">×</button>
+ *   </div>
+ *
+ * Kinds: -info (default look), -ok, -warn, -err. The close button is
+ * optional; removing the message is up to you.
+ */
+
+.wb-message {
+  --wb-message-bg: var(--accent-soft);
+  --wb-message-ink: var(--accent-ink);
+  --wb-message-line: var(--accent-line);
+  --wb-message-edge: var(--accent);
+
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 10px 8px 12px;
+  border: 1px solid var(--wb-message-line);
+  border-left: 4px solid var(--wb-message-edge);
+  border-radius: 8px;
+  background: var(--wb-message-bg);
+  color: var(--wb-message-ink);
+  font-size: 14px;
+}
+
+.wb-message-ok {
+  --wb-message-bg: var(--ok-bg);
+  --wb-message-ink: var(--ok-ink);
+  --wb-message-line: var(--ok-line);
+  --wb-message-edge: var(--ok);
+}
+
+.wb-message-warn {
+  --wb-message-bg: var(--warn-bg);
+  --wb-message-ink: var(--warn-ink);
+  --wb-message-line: var(--warn-line);
+  --wb-message-edge: var(--warn);
+}
+
+.wb-message-err {
+  --wb-message-bg: var(--err-bg);
+  --wb-message-ink: var(--err-ink);
+  --wb-message-line: var(--err-line);
+  --wb-message-edge: var(--err-ink);
+}
+
+.wb-message-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.wb-message-title {
+  margin-right: 4px;
+  font-weight: 700;
+}
+
+.wb-message-close {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  margin: -2px -2px -2px 0;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.wb-message-close:hover {
+  background: color-mix(in srgb, currentcolor 12%, transparent);
+}

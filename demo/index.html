@@ -30,6 +30,21 @@
           <span class="wb-brand-name">Workbench UI</span>
         </div>
         <div class="wb-actions">
+          <button class="wb-hbtn wb-hbtn-icon" type="button" id="toggleFiles" title="Files pane">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+              <path d="M9 4v16"></path>
+            </svg>
+            <span class="sr-only">Files pane</span>
+          </button>
           <input class="wb-file-input" id="file" type="file" />
           <label class="wb-hbtn" for="file">Open file</label>
           <button class="wb-hbtn" type="button" id="addTab">New tab</button>
@@ -41,9 +56,9 @@
     </header>
 
     <main class="demo">
-      <aside class="wb-pane demo-files" aria-label="Files">
+      <aside class="wb-pane wb-scroll demo-files" id="filesPane" aria-label="Files">
         <h2 class="wb-pane-head">Files <span class="wb-count">6</span></h2>
-        <ul class="wb-list wb-scroll" id="files">
+        <ul class="wb-list" id="files">
           <li><button type="button" class="wb-list-item">Project plan</button></li>
           <li><button type="button" class="wb-list-item">Release notes</button></li>
           <li><button type="button" class="wb-list-item" aria-current="true">Q3 report</button></li>
@@ -53,12 +68,20 @@
         </ul>
       </aside>
 
-      <section class="wb-pane demo-doc">
+      <div class="demo-splitter" aria-label="Files pane width"></div>
+
+      <section class="wb-pane wb-scroll demo-doc">
         <div class="demo-doc-head">
           <h1 id="showing">Q3 report</h1>
           <span class="wb-pill wb-pill-ok">Up to date</span>
         </div>
-        <p class="demo-muted">Placeholder content: swap in your own data.</p>
+        <div class="wb-message demo-message" role="status" id="message">
+          <div class="wb-message-body">
+            <strong class="wb-message-title">Demo</strong>
+            Placeholder content: swap in your own data.
+          </div>
+          <button type="button" class="wb-message-close" aria-label="Dismiss">×</button>
+        </div>
         <div class="wb-tiles demo-tiles">
           <div class="wb-tile">
             <span class="wb-tile-value">24</span>
@@ -113,24 +136,45 @@
             </tr>
           </tbody>
         </table>
-        <pre
-          class="demo-code wb-scroll"
-        ><span class="hl-k">const</span> tabs = <span class="hl-k">new</span> <span class="hl-t">Tabs</span>({ element, onSelect, onClose });
-tabs.<span class="hl-t">open</span>(<span class="hl-s">'q3'</span>, <span class="hl-s">'Q3 report'</span>);
+        <div class="demo-code-wrap">
+          <button type="button" class="wb-btn demo-copy" id="copyCode">Copy</button>
+          <pre
+            class="demo-code wb-scroll"
+            id="code"
+          ><span class="hl-k">const</span> tabs = <span class="hl-k">new</span> <span class="hl-t">Tabs</span>({ element, onSelect, onClose });
 toast.<span class="hl-t">success</span>(<span class="hl-s">'Saved.'</span>); <span class="hl-c">// floats in, then goes</span></pre>
+        </div>
       </section>
 
-      <aside class="wb-pane demo-side" aria-label="Toasts and tokens">
-        <h2 class="wb-pane-head">Toasts</h2>
-        <div class="demo-row">
-          <button type="button" class="demo-btn" data-toast="success">Success</button>
-          <button type="button" class="demo-btn" data-toast="error">Error</button>
-          <button type="button" class="demo-btn" data-toast="info">Info</button>
-        </div>
-        <h2 class="wb-pane-head">Tokens</h2>
-        <div class="demo-swatches" id="swatches"></div>
-      </aside>
+      <div class="demo-side">
+        <section class="wb-pane" aria-labelledby="feedbackHead">
+          <h2 class="wb-pane-head" id="feedbackHead">Feedback</h2>
+          <div class="wb-btn-row">
+            <button type="button" class="wb-btn" data-toast="success">Success</button>
+            <button type="button" class="wb-btn" data-toast="error">Error</button>
+            <button type="button" class="wb-btn" data-toast="info">Info</button>
+            <button type="button" class="wb-btn wb-btn-danger" id="confirm">Delete…</button>
+          </div>
+        </section>
+        <section class="wb-pane wb-scroll demo-tokens" id="tokensPane" aria-labelledby="tokensHead">
+          <h2 class="wb-pane-head" id="tokensHead">
+            Tokens
+            <button type="button" class="wb-pane-toggle" aria-label="Tokens"></button>
+          </h2>
+          <div class="demo-swatches" id="swatches"></div>
+        </section>
+      </div>
     </main>
+
+    <footer class="wb-statusbar">
+      <span class="wb-statusbar-item" id="statusDoc">Q3 report</span>
+      <span class="wb-statusbar-item" role="status" id="statusSaved">All changes saved</span>
+      <button type="button" class="wb-statusbar-item wb-statusbar-end" id="warnings">
+        <span class="wb-pill wb-pill-warn">2 warnings</span>
+      </button>
+      <span class="wb-statusbar-item">UTF-8</span>
+      <span class="wb-statusbar-item">Placeholder data</span>
+    </footer>
 
     <script type="module" src="./demo.js"></script>
   </body>

@@ -41,3 +41,48 @@
   color: var(--ink-2);
   letter-spacing: 0;
 }
+
+/* Folds the pane to its heading (PaneToggle). A chevron that points down
+   when open and right when folded; put it last in the heading. */
+.wb-pane-toggle {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin: -4px -6px -4px auto;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.wb-pane-toggle::before {
+  content: '';
+  display: block;
+  width: 7px;
+  height: 7px;
+  margin: 5px auto 0;
+  border-right: 2px solid currentcolor;
+  border-bottom: 2px solid currentcolor;
+  transform: rotate(45deg);
+  transition: transform 0.15s ease;
+}
+
+.wb-pane-toggle[aria-expanded='false']::before {
+  margin-top: 7px;
+  transform: rotate(-45deg);
+}
+
+.wb-pane-toggle:hover {
+  background: var(--hover);
+  color: var(--ink);
+}
+
+.wb-pane[data-collapsed] > :not(.wb-pane-head) {
+  display: none;
+}
+
+.wb-pane[data-collapsed] > .wb-pane-head {
+  margin-bottom: 0;
+}
