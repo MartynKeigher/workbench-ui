@@ -1,7 +1,9 @@
 /**
  * Regenerates docs/screenshot-light.png and docs/screenshot-dark.png from the
  * demo page: 1200x600 at 2x, fonts loaded, in the same states as the visual
- * tests' light-toast and dark-tab-menu shots.
+ * tests' light-toast and dark-tab-menu shots. Then
+ * docs/screenshot-footer-columns-light.png and -dark.png: the overview page's
+ * columns footer on its own, 1200px wide at 2x.
  *
  *   npm run screenshots
  *
@@ -11,7 +13,15 @@
  */
 import { chromium } from '@playwright/test';
 import { createServer } from 'vite';
-import { PORT, SCALE, VIEWPORT, openDemo, openTabMenu, showToast } from '../visual/demo-page.js';
+import {
+  PORT,
+  SCALE,
+  VIEWPORT,
+  openDemo,
+  openOverview,
+  openTabMenu,
+  showToast,
+} from '../visual/demo-page.js';
 
 const SHOTS = [
   ['light', showToast],
@@ -24,19 +34,31 @@ const server = await createServer({
 });
 await server.listen();
 const browser = await chromium.launch();
+const newPage = () =>
+  browser.newPage({
+    viewport: VIEWPORT,
+    deviceScaleFactor: SCALE,
+    colorScheme: 'light',
+    locale: 'en-GB',
+    timezoneId: 'UTC',
+  });
 try {
   for (const [mode, setUp] of SHOTS) {
-    const page = await browser.newPage({
-      viewport: VIEWPORT,
-      deviceScaleFactor: SCALE,
-      colorScheme: 'light',
-      locale: 'en-GB',
-      timezoneId: 'UTC',
-    });
+    const page = await newPage();
     await openDemo(page, mode);
     await setUp(page);
     const file = `docs/screenshot-${mode}.png`;
     await page.screenshot({ path: file, animations: 'disabled', caret: 'hide' });
+    await page.close();
+    console.log(`Wrote ${file}`);
+  }
+  for (const mode of ['light', 'dark']) {
+    const page = await newPage();
+    await openOverview(page, mode);
+    const file = `docs/screenshot-footer-columns-${mode}.png`;
+    await page
+      .locator('footer.wb-footer-columns')
+      .screenshot({ path: file, animations: 'disabled', caret: 'hide' });
     await page.close();
     console.log(`Wrote ${file}`);
   }
