@@ -1,6 +1,6 @@
 {
   "name": "@martynkeigher/workbench-ui",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A calm, dense UI kit for tool-style web apps: design tokens with light and dark palettes, a header bar, tabs, toasts, panes, dialogs and more. Plain JavaScript and CSS, no framework, no build step.",
   "keywords": [
     "design system",
@@ -47,6 +47,7 @@
     "./copy-button.css": "./src/components/copy-button/copy-button.css",
     "./dialog.css": "./src/components/dialog/dialog.css",
     "./splitter.css": "./src/components/splitter/splitter.css",
+    "./footer.css": "./src/components/footer/footer.css",
     "./package.json": "./package.json"
   },
   "files": [

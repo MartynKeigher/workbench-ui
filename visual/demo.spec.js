@@ -1,5 +1,12 @@
 import { expect, test } from '@playwright/test';
-import { collapseFiles, openDemo, openDialog, openTabMenu, showToast } from './demo-page.js';
+import {
+  collapseFiles,
+  openDemo,
+  openDialog,
+  openOverview,
+  openTabMenu,
+  showToast,
+} from './demo-page.js';
 
 // The demo page in each mode, plus open states: a toast in light (also
 // docs/screenshot-light.png), the tab menu in dark (also
@@ -38,3 +45,11 @@ test('dark, with the Files pane collapsed', async ({ page }) => {
   await collapseFiles(page);
   await expect(page).toHaveScreenshot('dark-collapsed.png');
 });
+
+// The overview page, whole, so its columns footer is in the shot
+for (const mode of ['light', 'dark']) {
+  test(`overview, ${mode}`, async ({ page }) => {
+    await openOverview(page, mode);
+    await expect(page).toHaveScreenshot(`overview-${mode}.png`, { fullPage: true });
+  });
+}

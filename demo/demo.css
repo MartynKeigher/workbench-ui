@@ -3,10 +3,10 @@
   --wb-toast-top: 104px;
 }
 
-/* A full-height app: header, panes, status bar */
-body {
+/* A full-height app: header, panes, status bar, footer */
+.demo-app {
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
   height: 100vh;
 }
 
@@ -41,7 +41,7 @@ body {
 }
 
 @media (max-width: 900px) {
-  body {
+  .demo-app {
     height: auto;
   }
 
@@ -138,4 +138,34 @@ body {
   margin-bottom: 3px;
   border: 1px solid var(--line);
   border-radius: 6px;
+}
+
+/* The overview page: ordinary scrolling, footer at the end */
+.demo-overview {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px 20px 32px;
+}
+
+.demo-overview h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.demo-lead {
+  margin: 4px 0 16px;
+  color: var(--muted);
+}
+
+.demo-overview-panes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+@media (max-width: 700px) {
+  .demo-overview-panes {
+    grid-template-columns: 1fr;
+  }
 }

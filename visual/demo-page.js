@@ -69,18 +69,18 @@ export async function offline(page) {
 }
 
 /**
- * Open the demo page in a colour mode, with timers paused (unless `paused` is
- * false: axe-core needs running timers).
+ * Open the demo page (or another, by `path`) in a colour mode, with timers
+ * paused (unless `paused` is false: axe-core needs running timers).
  * @param {import('playwright').Page} page
  * @param {'light'|'dark'} mode
- * @param {{ paused?: boolean }} [options]
+ * @param {{ paused?: boolean, path?: string }} [options]
  */
-export async function openDemo(page, mode, { paused = true } = {}) {
+export async function openDemo(page, mode, { paused = true, path = '/demo/' } = {}) {
   await offline(page);
   if (paused) await page.clock.install({ time: new Date('2026-01-01T09:00:00Z') });
   // The same way a saved choice arrives: ColorMode reads it on start
   await page.addInitScript((value) => localStorage.setItem('colorMode', value), mode);
-  await page.goto(`${BASE_URL}/demo/`);
+  await page.goto(`${BASE_URL}${path}`);
   if (paused) await page.clock.pauseAt(new Date('2026-01-01T09:00:01Z'));
   await page.evaluate(() => document.fonts.ready);
   await page.locator(`html[data-color-mode="${mode}"]`).waitFor({ state: 'attached' });
@@ -114,3 +114,7 @@ export async function collapseFiles(page) {
   await page.getByRole('button', { name: 'Files pane' }).click();
   await page.locator('#filesPane[data-split-collapsed]').waitFor({ state: 'attached' });
 }
+
+/** The overview page, whose footer is the columns one. */
+export const openOverview = (page, mode, options) =>
+  openDemo(page, mode, { ...options, path: '/demo/overview.html' });

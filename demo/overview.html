@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Overview · Workbench UI</title>
+    <link rel="stylesheet" href="../src/fonts.css" />
+    <link rel="stylesheet" href="../src/workbench.css" />
+    <link rel="stylesheet" href="./demo.css" />
+  </head>
+  <body>
+    <header class="wb-header">
+      <div class="wb-bar">
+        <div class="wb-brand">
+          <svg
+            class="wb-brand-mark"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+            <path d="M3 9h18"></path>
+          </svg>
+          <span class="wb-brand-name">Workbench UI</span>
+        </div>
+        <div class="wb-actions">
+          <a class="wb-hbtn" href="./">Open the workbench</a>
+          <button class="wb-hbtn wb-hbtn-icon" type="button" id="colorMode"></button>
+        </div>
+      </div>
+    </header>
+
+    <main class="demo-overview">
+      <h1>Overview</h1>
+      <p class="demo-lead">A home page that scrolls, with the columns footer at the end of it.</p>
+
+      <div class="wb-tiles">
+        <div class="wb-tile">
+          <span class="wb-tile-value">6</span>
+          <span class="wb-tile-label">Documents</span>
+        </div>
+        <div class="wb-tile">
+          <span class="wb-tile-value">24</span>
+          <span class="wb-tile-label">Items</span>
+        </div>
+        <div class="wb-tile">
+          <span class="wb-tile-value">3</span>
+          <span class="wb-tile-label">Teams</span>
+        </div>
+        <div class="wb-tile">
+          <span class="wb-tile-value">2</span>
+          <span class="wb-tile-label">Warnings</span>
+        </div>
+      </div>
+
+      <div class="demo-overview-panes">
+        <section class="wb-pane" aria-labelledby="recentHead">
+          <h2 class="wb-pane-head" id="recentHead">Recent <span class="wb-count">3</span></h2>
+          <ul class="wb-list">
+            <li><a class="wb-list-item" href="./">Q3 report</a></li>
+            <li><a class="wb-list-item" href="./">Release notes</a></li>
+            <li><a class="wb-list-item" href="./">Project plan</a></li>
+          </ul>
+        </section>
+        <section class="wb-pane" aria-labelledby="teamsHead">
+          <h2 class="wb-pane-head" id="teamsHead">Teams</h2>
+          <table class="wb-table">
+            <thead>
+              <tr>
+                <th>Team</th>
+                <th>State</th>
+                <th class="wb-num">Items</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Team A</td>
+                <td><span class="wb-pill wb-pill-ok">On track</span></td>
+                <td class="wb-num">10</td>
+              </tr>
+              <tr>
+                <td>Team B</td>
+                <td><span class="wb-pill wb-pill-warn">Needs owner</span></td>
+                <td class="wb-num">8</td>
+              </tr>
+              <tr>
+                <td>Team C</td>
+                <td><span class="wb-pill">Not started</span></td>
+                <td class="wb-num">6</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </main>
+
+    <footer class="wb-footer wb-footer-columns">
+      <div class="wb-footer-about">
+        <span class="wb-footer-brand">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+            <path d="M3 9h18"></path>
+          </svg>
+          Workbench UI
+        </span>
+        <p>Placeholder text: a line about the tool and who runs it.</p>
+        <p class="wb-footer-note">
+          © 2026 Placeholder Co. <span class="wb-footer-version">v1.4.0</span>
+        </p>
+      </div>
+      <nav class="wb-footer-group" aria-labelledby="footProduct">
+        <h2 class="wb-footer-group-head" id="footProduct">Product</h2>
+        <a href="#">What's new</a>
+        <a href="#">Roadmap</a>
+        <a href="#">Status</a>
+      </nav>
+      <nav class="wb-footer-group" aria-labelledby="footHelp">
+        <h2 class="wb-footer-group-head" id="footHelp">Help</h2>
+        <a href="#">Docs</a>
+        <a href="#">Keyboard shortcuts</a>
+        <a href="#">Contact support</a>
+      </nav>
+      <nav class="wb-footer-group" aria-labelledby="footLegal">
+        <h2 class="wb-footer-group-head" id="footLegal">Legal</h2>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Cookies</a>
+      </nav>
+    </footer>
+
+    <script type="module" src="./overview.js"></script>
+  </body>
+</html>

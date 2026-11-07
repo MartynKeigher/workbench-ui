@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../src/workbench.css" />
     <link rel="stylesheet" href="./demo.css" />
   </head>
-  <body>
+  <body class="demo-app">
     <header class="wb-header">
       <div class="wb-bar">
         <div class="wb-brand">
@@ -73,7 +73,7 @@
       <section class="wb-pane wb-scroll demo-doc">
         <div class="demo-doc-head">
           <h1 id="showing">Q3 report</h1>
-          <span class="wb-pill wb-pill-ok">Up to date</span>
+          <span class="wb-pill">Draft</span>
         </div>
         <div class="wb-message demo-message" role="status" id="message">
           <div class="wb-message-body">
@@ -128,12 +128,6 @@
               <td><span class="wb-pill wb-pill-err">Blocked</span></td>
               <td class="wb-num">3</td>
             </tr>
-            <tr>
-              <td>Settings page</td>
-              <td>Team C</td>
-              <td><span class="wb-pill">Not started</span></td>
-              <td class="wb-num">5</td>
-            </tr>
           </tbody>
         </table>
         <div class="demo-code-wrap">
@@ -166,7 +160,7 @@ toast.<span class="hl-t">success</span>(<span class="hl-s">'Saved.'</span>); <sp
       </div>
     </main>
 
-    <footer class="wb-statusbar">
+    <section class="wb-statusbar" aria-label="Status">
       <span class="wb-statusbar-item" id="statusDoc">Q3 report</span>
       <span class="wb-statusbar-item" role="status" id="statusSaved">All changes saved</span>
       <button type="button" class="wb-statusbar-item wb-statusbar-end" id="warnings">
@@ -174,6 +168,32 @@ toast.<span class="hl-t">success</span>(<span class="hl-s">'Saved.'</span>); <sp
       </button>
       <span class="wb-statusbar-item">UTF-8</span>
       <span class="wb-statusbar-item">Placeholder data</span>
+    </section>
+
+    <footer class="wb-footer">
+      <span class="wb-footer-brand">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+          <path d="M3 9h18"></path>
+        </svg>
+        Workbench UI
+      </span>
+      <nav class="wb-footer-links" aria-label="Footer">
+        <a href="./overview.html">Overview</a>
+        <a href="#">Docs</a>
+        <a href="#">Status</a>
+        <a href="#">Privacy</a>
+      </nav>
+      <span class="wb-footer-end">© 2026 Placeholder Co.</span>
+      <span class="wb-footer-version">v1.4.0</span>
     </footer>
 
     <script type="module" src="./demo.js"></script>

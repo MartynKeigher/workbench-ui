@@ -104,3 +104,26 @@ test('message bar: its × removes it', async ({ page }) => {
   await page.getByRole('button', { name: 'Dismiss' }).click();
   await expect(page.locator('#message')).toHaveCount(0);
 });
+
+test('footers: the bar sits at the bottom of the window, the columns at the end of the page', async ({
+  page,
+}) => {
+  const bar = page.locator('footer.wb-footer');
+  const box = await bar.boundingBox();
+  const viewport = page.viewportSize();
+  expect(Math.round(box.y + box.height)).toBe(viewport.height);
+
+  await bar.getByRole('link', { name: 'Overview' }).click();
+  await expect(page).toHaveURL(/overview\.html$/);
+  const columns = page.locator('footer.wb-footer-columns');
+  // After the content, not over it
+  const mainBottom = await page.locator('main').evaluate((el) => el.getBoundingClientRect().bottom);
+  const footerTop = await columns.evaluate((el) => el.getBoundingClientRect().top);
+  expect(footerTop).toBeGreaterThanOrEqual(mainBottom);
+  // Every stacked link is at least 24px tall
+  const heights = await columns
+    .locator('.wb-footer-group a')
+    .evaluateAll((links) => links.map((a) => a.getBoundingClientRect().height));
+  expect(heights.length).toBe(9);
+  for (const height of heights) expect(height).toBeGreaterThanOrEqual(24);
+});
