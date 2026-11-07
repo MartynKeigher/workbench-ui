@@ -8,6 +8,7 @@ documents and panes of detail underneath.
 - **Panes**, **selectable lists**, **summary tiles**, **data tables** and **status pills** for the
   content underneath
 - **Buttons**, **message bars**, a **status bar**, **dialogs** and **copy buttons**
+- **Page footers**: a dark bar to match the header, and a columns footer for overview pages
 - A **splitter** that resizes and collapses side panes, and remembers how they were left
 - **Light / dark toggle** that remembers the choice
 - **Plain JavaScript and CSS.** No framework and no build step, so it works with any bundler or
@@ -17,25 +18,27 @@ documents and panes of detail underneath.
 
 ![The same screen in dark mode, with a tab's right-click menu open](docs/screenshot-dark.png)
 
-Run `npm run dev` to open the demo page with every component on it. Everything in the screenshots comes from it (`npm run screenshots` makes them).
+Run `npm run dev` to open the demo page with every component on it. Its footer links to a
+second page, an overview with the columns footer. Everything in the screenshots comes from the
+demo (`npm run screenshots` makes them).
 
 ## Install
 
 The package installs straight from this repository's release tags:
 
 ```bash
-npm install github:MartynKeigher/workbench-ui#v0.3.0
+npm install github:MartynKeigher/workbench-ui#v0.4.0
 ```
 
 In `package.json` that reads:
 
 ```json
 "dependencies": {
-  "@martynkeigher/workbench-ui": "github:MartynKeigher/workbench-ui#v0.3.0"
+  "@martynkeigher/workbench-ui": "github:MartynKeigher/workbench-ui#v0.4.0"
 }
 ```
 
-`#v0.3.0` pins one release, so every install of your project gets exactly the same kit. See
+`#v0.4.0` pins one release, so every install of your project gets exactly the same kit. See
 [Staying up to date](#staying-up-to-date) to have new releases arrive on their own.
 
 ## Use
@@ -73,6 +76,7 @@ it.
 | `button.css`      | Buttons under the header bar                                    |
 | `message.css`     | Message bars                                                    |
 | `statusbar.css`   | The status bar                                                  |
+| `footer.css`      | Page footers: the dark bar and the columns footer               |
 | `copy-button.css` | The copy button's copied and failed states                      |
 | `dialog.css`      | Dialogs                                                         |
 | `splitter.css`    | The splitter handle and a collapsed pane                        |
@@ -301,6 +305,9 @@ something. `.wb-statusbar-end` pushes an item, and those after it, to the right.
 `role="status"` on an item whose text changes, so screen readers hear it. Where the bar sits (a
 grid row, `position: sticky`) is up to your layout.
 
+A page has one `<footer>`. If yours also has a [page footer](#page-footers), make the status bar
+a named region instead: `<section class="wb-statusbar" aria-label="Status">`.
+
 ```html
 <footer class="wb-statusbar">
   <span class="wb-statusbar-item">Q3 report</span>
@@ -311,6 +318,57 @@ grid row, `position: sticky`) is up to your layout.
   <span class="wb-statusbar-item">UTF-8</span>
 </footer>
 ```
+
+### Page footers
+
+Two looks, from `footer.css`.
+
+**The bar** (`.wb-footer`) is dark in both modes, to match the header bar, and sits at the
+bottom of the window: brand, links, then anything from `.wb-footer-end` on at the right.
+
+```html
+<footer class="wb-footer">
+  <span class="wb-footer-brand"><svg>…</svg> My tool</span>
+  <nav class="wb-footer-links" aria-label="Footer">
+    <a href="/docs">Docs</a>
+    <a href="/status">Status</a>
+    <a href="/privacy">Privacy</a>
+  </nav>
+  <span class="wb-footer-end">© 2026 Example Ltd</span>
+  <span class="wb-footer-version">v1.4.0</span>
+</footer>
+```
+
+In a full-height layout, give it the last grid row (`grid-template-rows: auto 1fr auto`). It
+wraps onto two lines on a narrow screen.
+
+**The columns footer** (`.wb-footer.wb-footer-columns`) is light and taller, for the end of an
+overview or home page that scrolls: an about block, then groups of links, each with a heading.
+The groups wrap onto more rows when there isn't room, and every link is at least 24px tall to
+tap.
+
+```html
+<footer class="wb-footer wb-footer-columns">
+  <div class="wb-footer-about">
+    <span class="wb-footer-brand"><svg>…</svg> My tool</span>
+    <p>What it is and who runs it.</p>
+    <p class="wb-footer-note">© 2026 Example Ltd <span class="wb-footer-version">v1.4.0</span></p>
+  </div>
+  <nav class="wb-footer-group" aria-labelledby="footHelp">
+    <h2 class="wb-footer-group-head" id="footHelp">Help</h2>
+    <a href="/docs">Docs</a>
+    <a href="/support">Contact support</a>
+  </nav>
+  <nav class="wb-footer-group" aria-labelledby="footLegal">
+    <h2 class="wb-footer-group-head" id="footLegal">Legal</h2>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </nav>
+</footer>
+```
+
+Each `<nav>` needs a name: `aria-label` on the bar's, its heading on each group. The brand's
+icon is yours; mark it `aria-hidden="true"`.
 
 ### Dialogs
 
@@ -506,7 +564,7 @@ To have new releases arrive without lifting a finger, turn on
 ```
 
 Renovate watches this repository's tags. Each new patch or minor release opens a pull request
-in your project that moves the pinned tag (`#v0.3.0` → `#v0.3.1`). Once your checks pass, it
+in your project that moves the pinned tag (`#v0.4.0` → `#v0.4.1`). Once your checks pass, it
 merges itself. Major releases still open a pull request but wait for you, since they may
 need changes. (This needs branch protection with required status checks, so a failing build
 blocks the merge.)
@@ -534,9 +592,10 @@ npm run test:visual
 ```
 
 Playwright takes screenshots of the demo page (light, dark, a toast and a dialog in light, the
-tab menu and a collapsed pane in dark, 1200×600 at 2x) and compares them with the images in `visual/demo.spec.js-snapshots/`.
-Any visual change fails CI, and the run's `visual-diffs` artifact holds the expected, actual and
-diff images. The page loads its fonts from local copies and its timers are paused, so nothing
+tab menu and a collapsed pane in dark, 1200×600 at 2x) and of the whole overview page (light
+and dark), and compares them with the images in `visual/demo.spec.js-snapshots/`. Any visual
+change fails CI, and the run's `visual-diffs` artifact holds the expected, actual and diff
+images. The page loads its fonts from local copies and its timers are paused, so nothing
 depends on the network or timing.
 
 Text renders a little differently on each OS, so the committed images come from the Playwright
@@ -558,9 +617,9 @@ docker run --rm -v "$PWD":/work -w /work mcr.microsoft.com/playwright:v1.63.0-no
 npm run test:a11y
 ```
 
-[axe-core](https://github.com/dequelabs/axe-core) checks the demo page in light and dark: with
-nothing open, a toast, the tab menu, a dialog, and a collapsed pane. Any WCAG 2.2 A or AA failure, or any axe
-best-practice failure, fails CI. That includes the contrast of the page's text in both
+[axe-core](https://github.com/dequelabs/axe-core) checks the demo pages in light and dark: the
+workbench with nothing open, a toast, the tab menu, a dialog and a collapsed pane, and the
+overview page. Any WCAG 2.2 A or AA failure, or any axe best-practice failure, fails CI. That includes the contrast of the page's text in both
 palettes. The one exception is listed in `visual/a11y.spec.js` with its reason: the open
 tab menu sits outside the page's landmarks, as a context menu does, and takes the focus when it
 opens.

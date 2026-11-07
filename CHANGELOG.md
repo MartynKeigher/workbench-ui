@@ -8,6 +8,22 @@ Every release, newest first. Versions follow [semantic versioning](https://semve
 
 While the version is 0.x, a minor release may still rename things; it says so here when it does.
 
+## 0.4.0
+
+Page footers. Nothing renamed or removed.
+
+- `footer.css`: `.wb-footer`, a dark bar in both modes to match the header bar, with
+  `.wb-footer-brand`, `.wb-footer-links`, `.wb-footer-end` and `.wb-footer-version`.
+- `.wb-footer.wb-footer-columns`: a light, taller footer for the end of an overview or home page,
+  with `.wb-footer-about`, `.wb-footer-note`, `.wb-footer-group` and `.wb-footer-group-head`. Its
+  links are at least 24px tall (WCAG 2.2 target size).
+
+`workbench.css` includes it, and it has its own entry point. A page with a footer should make its
+status bar a named region (`<section class="wb-statusbar" aria-label="Status">`), since a page
+has one `<footer>`.
+
+Fixed: `.wb-hbtn` and `.wb-btn` on a link (`<a class="wb-btn">`) were underlined.
+
 ## 0.3.0
 
 New components. Nothing renamed or removed.
