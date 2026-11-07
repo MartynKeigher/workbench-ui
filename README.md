@@ -477,6 +477,10 @@ icon is yours; mark it `aria-hidden="true"`.
 `.wb-footer` is dark in both modes, to match the header bar, and sits at the bottom of the
 window: brand, links, then anything from `.wb-footer-end` on at the right. The demo page has one.
 
+![The footer bar in light mode: dark like the header bar, with the brand and four links on the left, and a copyright line and a version badge on the right](docs/screenshot-footer-bar-light.png)
+
+![The same footer bar in dark mode](docs/screenshot-footer-bar-dark.png)
+
 ```html
 <footer class="wb-footer">
   <span class="wb-footer-brand"><svg>…</svg> My tool</span>

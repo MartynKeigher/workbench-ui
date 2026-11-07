@@ -2,8 +2,9 @@
  * Regenerates docs/screenshot-light.png and docs/screenshot-dark.png from the
  * demo page: 1200x600 at 2x, fonts loaded, in the same states as the visual
  * tests' light-toast and dark-tab-menu shots. Then
- * docs/screenshot-footer-columns-light.png and -dark.png: the overview page's
- * columns footer on its own, 1200px wide at 2x.
+ * docs/screenshot-footer-bar-light.png and -dark.png (the demo page's footer
+ * bar) and docs/screenshot-footer-columns-light.png and -dark.png (the
+ * overview page's columns footer), each on its own, 1200px wide at 2x.
  *
  *   npm run screenshots
  *
@@ -52,15 +53,21 @@ try {
     await page.close();
     console.log(`Wrote ${file}`);
   }
-  for (const mode of ['light', 'dark']) {
-    const page = await newPage();
-    await openOverview(page, mode);
-    const file = `docs/screenshot-footer-columns-${mode}.png`;
-    await page
-      .locator('footer.wb-footer-columns')
-      .screenshot({ path: file, animations: 'disabled', caret: 'hide' });
-    await page.close();
-    console.log(`Wrote ${file}`);
+  const FOOTERS = [
+    ['bar', openDemo, 'footer.wb-footer'],
+    ['columns', openOverview, 'footer.wb-footer-columns'],
+  ];
+  for (const [name, open, selector] of FOOTERS) {
+    for (const mode of ['light', 'dark']) {
+      const page = await newPage();
+      await open(page, mode);
+      const file = `docs/screenshot-footer-${name}-${mode}.png`;
+      await page
+        .locator(selector)
+        .screenshot({ path: file, animations: 'disabled', caret: 'hide' });
+      await page.close();
+      console.log(`Wrote ${file}`);
+    }
   }
 } finally {
   await browser.close();
