@@ -20,7 +20,7 @@ documents and panes of detail underneath.
 
 Run `npm run dev` to open the demo page with every component on it. Its footer links to a
 second page, an overview with the columns footer. Everything in the screenshots comes from the
-demo (`npm run screenshots` makes them).
+demo (`npm run screenshots` makes them, and the [footer](#footer) ones too).
 
 ## Install
 
@@ -305,7 +305,7 @@ something. `.wb-statusbar-end` pushes an item, and those after it, to the right.
 `role="status"` on an item whose text changes, so screen readers hear it. Where the bar sits (a
 grid row, `position: sticky`) is up to your layout.
 
-A page has one `<footer>`. If yours also has a [page footer](#page-footers), make the status bar
+A page has one `<footer>`. If yours also has a [page footer](#footer), make the status bar
 a named region instead: `<section class="wb-statusbar" aria-label="Status">`.
 
 ```html
@@ -318,57 +318,6 @@ a named region instead: `<section class="wb-statusbar" aria-label="Status">`.
   <span class="wb-statusbar-item">UTF-8</span>
 </footer>
 ```
-
-### Page footers
-
-Two looks, from `footer.css`.
-
-**The bar** (`.wb-footer`) is dark in both modes, to match the header bar, and sits at the
-bottom of the window: brand, links, then anything from `.wb-footer-end` on at the right.
-
-```html
-<footer class="wb-footer">
-  <span class="wb-footer-brand"><svg>…</svg> My tool</span>
-  <nav class="wb-footer-links" aria-label="Footer">
-    <a href="/docs">Docs</a>
-    <a href="/status">Status</a>
-    <a href="/privacy">Privacy</a>
-  </nav>
-  <span class="wb-footer-end">© 2026 Example Ltd</span>
-  <span class="wb-footer-version">v1.4.0</span>
-</footer>
-```
-
-In a full-height layout, give it the last grid row (`grid-template-rows: auto 1fr auto`). It
-wraps onto two lines on a narrow screen.
-
-**The columns footer** (`.wb-footer.wb-footer-columns`) is light and taller, for the end of an
-overview or home page that scrolls: an about block, then groups of links, each with a heading.
-The groups wrap onto more rows when there isn't room, and every link is at least 24px tall to
-tap.
-
-```html
-<footer class="wb-footer wb-footer-columns">
-  <div class="wb-footer-about">
-    <span class="wb-footer-brand"><svg>…</svg> My tool</span>
-    <p>What it is and who runs it.</p>
-    <p class="wb-footer-note">© 2026 Example Ltd <span class="wb-footer-version">v1.4.0</span></p>
-  </div>
-  <nav class="wb-footer-group" aria-labelledby="footHelp">
-    <h2 class="wb-footer-group-head" id="footHelp">Help</h2>
-    <a href="/docs">Docs</a>
-    <a href="/support">Contact support</a>
-  </nav>
-  <nav class="wb-footer-group" aria-labelledby="footLegal">
-    <h2 class="wb-footer-group-head" id="footLegal">Legal</h2>
-    <a href="/privacy">Privacy</a>
-    <a href="/terms">Terms</a>
-  </nav>
-</footer>
-```
-
-Each `<nav>` needs a name: `aria-label` on the bar's, its heading on each group. The brand's
-icon is yours; mark it `aria-hidden="true"`.
 
 ### Dialogs
 
@@ -512,6 +461,67 @@ new PaneToggle(document.querySelector('#details .wb-pane-toggle'), {
   pane: document.getElementById('details'),
   storageKey: 'detailsFolded', // optional
 });
+```
+
+## Footer
+
+Two page footers, from `footer.css` (included in `workbench.css`, or on its own as
+`@martynkeigher/workbench-ui/footer.css`). Use one per page: a page has one `<footer>`, so if it
+also has a [status bar](#status-bar), make that a named region instead.
+
+Each `<nav>` needs a name: `aria-label` on the bar's, its heading on each group. The brand's
+icon is yours; mark it `aria-hidden="true"`.
+
+### Bar
+
+`.wb-footer` is dark in both modes, to match the header bar, and sits at the bottom of the
+window: brand, links, then anything from `.wb-footer-end` on at the right. The demo page has one.
+
+```html
+<footer class="wb-footer">
+  <span class="wb-footer-brand"><svg>…</svg> My tool</span>
+  <nav class="wb-footer-links" aria-label="Footer">
+    <a href="/docs">Docs</a>
+    <a href="/status">Status</a>
+    <a href="/privacy">Privacy</a>
+  </nav>
+  <span class="wb-footer-end">© 2026 Example Ltd</span>
+  <span class="wb-footer-version">v1.4.0</span>
+</footer>
+```
+
+In a full-height layout, give it the last grid row (`grid-template-rows: auto 1fr auto`). It
+wraps onto two lines on a narrow screen.
+
+### Columns
+
+`.wb-footer.wb-footer-columns` is light and taller, for the end of an overview or home page that
+scrolls: an about block, then groups of links, each with a heading. The groups wrap onto more
+rows when there isn't room, and every link is at least 24px tall to tap. The demo's overview
+page has one.
+
+![The columns footer in light mode: the brand, a line of placeholder text, a copyright line and a version badge on the left, then three groups of links headed Product, Help and Legal](docs/screenshot-footer-columns-light.png)
+
+![The same columns footer in dark mode](docs/screenshot-footer-columns-dark.png)
+
+```html
+<footer class="wb-footer wb-footer-columns">
+  <div class="wb-footer-about">
+    <span class="wb-footer-brand"><svg>…</svg> My tool</span>
+    <p>What it is and who runs it.</p>
+    <p class="wb-footer-note">© 2026 Example Ltd <span class="wb-footer-version">v1.4.0</span></p>
+  </div>
+  <nav class="wb-footer-group" aria-labelledby="footHelp">
+    <h2 class="wb-footer-group-head" id="footHelp">Help</h2>
+    <a href="/docs">Docs</a>
+    <a href="/support">Contact support</a>
+  </nav>
+  <nav class="wb-footer-group" aria-labelledby="footLegal">
+    <h2 class="wb-footer-group-head" id="footLegal">Legal</h2>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+  </nav>
+</footer>
 ```
 
 ## Theming
