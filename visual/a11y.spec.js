@@ -34,7 +34,16 @@ const excepted = (violation) =>
 
 const STATES = [
   ['closed', async () => {}],
-  ['a toast', (page) => showToast(page).then(() => page.locator('.wb-toast.show').waitFor())],
+  [
+    'a toast',
+    async (page) => {
+      await showToast(page);
+      // Wait out the fade-in too: mid-fade, axe reads the text as low contrast
+      await page
+        .locator('.wb-toast.show')
+        .evaluate((el) => Promise.all(el.getAnimations().map((a) => a.finished)));
+    },
+  ],
   ['the tab menu open', openTabMenu],
   ['a dialog open', openDialog],
   ['the Files pane collapsed', collapseFiles],
