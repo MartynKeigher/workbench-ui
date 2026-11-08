@@ -140,6 +140,24 @@
   border-radius: 6px;
 }
 
+/* The header's Buy Me a Coffee button, in BMC yellow */
+.wb-hbtn.demo-coffee-hbtn {
+  border-color: #ffdd00;
+  background: #ffdd00;
+  color: var(--header);
+}
+
+.wb-hbtn.demo-coffee-hbtn:hover {
+  border-color: #ffe94d;
+  background: #ffe94d;
+}
+
+.demo-coffee-hbtn svg {
+  flex: none;
+  width: 16px;
+  height: 16px;
+}
+
 /* The footer bar's Buy Me a Coffee link, in the header accent */
 .wb-footer a.demo-coffee {
   display: inline-flex;
