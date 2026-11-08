@@ -1,7 +1,7 @@
 {
   "name": "@martynkeigher/workbench-ui",
-  "version": "0.4.0",
-  "description": "A calm, dense UI kit for tool-style web apps: design tokens with light and dark palettes, a header bar, tabs, toasts, panes, dialogs and more. Plain JavaScript and CSS, no framework, no build step.",
+  "version": "0.4.1",
+  "description": "A calm, dense UI kit for tool-style web apps, with light and dark modes built in. Plain JavaScript and CSS: no framework, no build step. Accessibility checked with axe.",
   "keywords": [
     "design system",
     "ui",

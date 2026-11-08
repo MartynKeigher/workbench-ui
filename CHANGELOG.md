@@ -8,6 +8,14 @@ Every release, newest first. Versions follow [semantic versioning](https://semve
 
 While the version is 0.x, a minor release may still rename things; it says so here when it does.
 
+## 0.4.1
+
+Documentation and demo only. The kit itself is unchanged from 0.4.0.
+
+- README: footer sections with screenshots of the dark bar and the columns footer.
+- Demo: a Buy Me a Coffee button in the header bar and a link in the footer.
+- A shorter package description.
+
 ## 0.4.0
 
 Page footers. Nothing renamed or removed.
