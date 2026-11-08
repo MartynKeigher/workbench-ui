@@ -140,6 +140,20 @@
   border-radius: 6px;
 }
 
+/* The footer bar's Buy Me a Coffee link, in the header accent */
+.wb-footer a.demo-coffee {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--header-accent);
+}
+
+.demo-coffee svg {
+  flex: none;
+  width: 14px;
+  height: 14px;
+}
+
 /* The overview page: ordinary scrolling, footer at the end */
 .demo-overview {
   max-width: 1080px;

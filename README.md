@@ -1,5 +1,7 @@
 # Workbench UI
 
+[![Buy me a coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=martynkeigher&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff)](https://buymeacoffee.com/martynkeigher)
+
 A calm, dense UI kit for tool-style web apps: the kind with a dark header bar, tabs of open
 documents and panes of detail underneath.
 
@@ -657,6 +659,13 @@ splitter, the clipboard, and what's remembered across a reload.
 2. Add a section for it at the top of `CHANGELOG.md`.
 3. Merge to `main`. The release workflow tags `vX.Y.Z` and makes a GitHub release from the
    changelog section.
+
+## Support
+
+Workbench UI is free and MIT licensed. If it saves you time, you can buy me a coffee. It's
+appreciated, never expected.
+
+[![Buy me a coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=martynkeigher&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff)](https://buymeacoffee.com/martynkeigher)
 
 ## Licence
 
