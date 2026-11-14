@@ -8,6 +8,22 @@ Every release, newest first. Versions follow [semantic versioning](https://semve
 
 While the version is 0.x, a minor release may still rename things; it says so here when it does.
 
+## 0.5.0
+
+A new light palette, to match [Workbench for Obsidian](https://github.com/MartynKeigher/obsidian-workbench):
+parchment panes and a deep green header bar. Nothing renamed or removed, and the dark palette is
+unchanged. If you override any of these tokens, your values still win.
+
+Light mode token changes:
+
+- Header bar: `--header` `#0f2a27`, `--header-2` `#314845`, `--header-line` `#495d5b`,
+  `--header-muted` `#c3d8d5` (was charcoal). The footer bar follows it.
+- Panes: `--pane` `#f7f2e7` (was white). `--control` stays white, so buttons and fields stand out.
+- Surfaces on a pane, shifted to sit on parchment: `--hover` `#eee8da`, `--row-alt` `#eee8d9`,
+  `--tile` `#f2ecde`, `--chip` `#ebe2ce`.
+- Code: `--code` `#ece5d6`, and `--hl-comment` `#456d45` so comments keep 4.5:1 on it.
+- `--accent-ink` `#0b4f4a`, a slightly greener teal.
+
 ## 0.4.1
 
 Documentation and demo only. The kit itself is unchanged from 0.4.0.
