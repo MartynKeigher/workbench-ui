@@ -31,6 +31,10 @@ Headings and captions in the accent colour (light mode), also as in Obsidian:
 - `base.css` colours `h1` to `h4` with `--heading-ink`, at zero specificity (`:where()`), so any
   class of yours still wins. `.wb-dialog-title` uses it too.
 - `.wb-pane-head`, `.wb-table th` and `.wb-footer-group-head` use `--caption-ink`.
+- New `--strong-ink`: `b` and `strong` (through `:where()`) in `--accent-ink`, light and dark, as
+  Obsidian does. `.wb-message-title` keeps its message's colour.
+- New `--statusbar-ink`: `.wb-statusbar` text in `--accent-ink` in light mode, `--muted` in dark
+  as before.
 
 ## 0.4.1
 

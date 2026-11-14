@@ -63,6 +63,7 @@
 .wb-message-title {
   margin-right: 4px;
   font-weight: 700;
+  color: inherit;
 }
 
 .wb-message-close {

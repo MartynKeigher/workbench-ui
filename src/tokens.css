@@ -35,6 +35,9 @@
      panes, table columns and footer groups */
   --heading-ink: var(--accent-ink);
   --caption-ink: var(--accent-ink);
+  /* Bold text, and the status bar's text */
+  --strong-ink: var(--accent-ink);
+  --statusbar-ink: var(--accent-ink);
 
   /* Lines */
   --line: #dcd8d0;
@@ -139,6 +142,8 @@
   --note: #74d095;
   --heading-ink: var(--ink);
   --caption-ink: var(--muted);
+  --strong-ink: var(--accent-ink);
+  --statusbar-ink: var(--muted);
 
   --line: #31383f;
   --line-soft: #272d33;
