@@ -31,6 +31,10 @@
   --faint: #646c74;
   --label: #8a4b00;
   --note: #1e7a3c;
+  /* Headings (h1 to h4, dialog titles) and the small uppercase captions over
+     panes, table columns and footer groups */
+  --heading-ink: var(--accent-ink);
+  --caption-ink: var(--accent-ink);
 
   /* Lines */
   --line: #dcd8d0;
@@ -133,6 +137,8 @@
   --faint: #a0a8b0;
   --label: #f0b067;
   --note: #74d095;
+  --heading-ink: var(--ink);
+  --caption-ink: var(--muted);
 
   --line: #31383f;
   --line-soft: #272d33;
