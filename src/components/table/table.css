@@ -23,7 +23,7 @@
   letter-spacing: 0.04em;
   text-align: left;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--caption-ink);
 }
 
 .wb-table td {

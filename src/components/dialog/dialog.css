@@ -49,6 +49,7 @@
   margin: 0;
   font-size: 17px;
   font-weight: 700;
+  color: var(--heading-ink);
 }
 
 .wb-dialog-close {

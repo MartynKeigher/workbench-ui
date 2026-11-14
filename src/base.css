@@ -19,6 +19,15 @@ body {
   line-height: 1.4;
 }
 
+/* Headings: no specificity, so any class of yours wins */
+:where(h1, h2, h3, h4) {
+  color: var(--heading-ink);
+}
+
+:where(b, strong) {
+  color: var(--strong-ink);
+}
+
 textarea {
   color: var(--ink);
   background-color: var(--control);

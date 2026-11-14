@@ -29,18 +29,18 @@ demo (`npm run screenshots` makes them, and the [footer](#footer) ones too).
 The package installs straight from this repository's release tags:
 
 ```bash
-npm install github:MartynKeigher/workbench-ui#v0.4.1
+npm install github:MartynKeigher/workbench-ui#v0.5.0
 ```
 
 In `package.json` that reads:
 
 ```json
 "dependencies": {
-  "@martynkeigher/workbench-ui": "github:MartynKeigher/workbench-ui#v0.4.1"
+  "@martynkeigher/workbench-ui": "github:MartynKeigher/workbench-ui#v0.5.0"
 }
 ```
 
-`#v0.4.1` pins one release, so every install of your project gets exactly the same kit. See
+`#v0.5.0` pins one release, so every install of your project gets exactly the same kit. See
 [Staying up to date](#staying-up-to-date) to have new releases arrive on their own.
 
 ## Use
@@ -580,7 +580,7 @@ To have new releases arrive without lifting a finger, turn on
 ```
 
 Renovate watches this repository's tags. Each new patch or minor release opens a pull request
-in your project that moves the pinned tag (`#v0.4.1` → `#v0.4.2`). Once your checks pass, it
+in your project that moves the pinned tag (`#v0.5.0` → `#v0.5.1`). Once your checks pass, it
 merges itself. Major releases still open a pull request but wait for you, since they may
 need changes. (This needs branch protection with required status checks, so a failing build
 blocks the merge.)

@@ -8,6 +8,34 @@ Every release, newest first. Versions follow [semantic versioning](https://semve
 
 While the version is 0.x, a minor release may still rename things; it says so here when it does.
 
+## 0.5.0
+
+A new light palette, to match [Workbench for Obsidian](https://github.com/MartynKeigher/obsidian-workbench):
+parchment panes and a deep green header bar. Nothing renamed or removed, and the dark palette is
+unchanged. If you override any of these tokens, your values still win.
+
+Light mode token changes:
+
+- Header bar: `--header` `#0f2a27`, `--header-2` `#314845`, `--header-line` `#495d5b`,
+  `--header-muted` `#c3d8d5` (was charcoal). The footer bar follows it.
+- Panes: `--pane` `#f7f2e7` (was white). `--control` stays white, so buttons and fields stand out.
+- Surfaces on a pane, shifted to sit on parchment: `--hover` `#eee8da`, `--row-alt` `#eee8d9`,
+  `--tile` `#f2ecde`, `--chip` `#ebe2ce`.
+- Code: `--code` `#ece5d6`, and `--hl-comment` `#456d45` so comments keep 4.5:1 on it.
+- `--accent-ink` `#0b4f4a`, a slightly greener teal.
+
+Headings and captions in the accent colour (light mode), also as in Obsidian:
+
+- New tokens: `--heading-ink` for headings and `--caption-ink` for the small uppercase captions.
+  Light: both `--accent-ink`. Dark: `--ink` and `--muted`, as before.
+- `base.css` colours `h1` to `h4` with `--heading-ink`, at zero specificity (`:where()`), so any
+  class of yours still wins. `.wb-dialog-title` uses it too.
+- `.wb-pane-head`, `.wb-table th` and `.wb-footer-group-head` use `--caption-ink`.
+- New `--strong-ink`: `b` and `strong` (through `:where()`) in `--accent-ink`, light and dark, as
+  Obsidian does. `.wb-message-title` keeps its message's colour.
+- New `--statusbar-ink`: `.wb-statusbar` text in `--accent-ink` in light mode, `--muted` in dark
+  as before.
+
 ## 0.4.1
 
 Documentation and demo only. The kit itself is unchanged from 0.4.0.
