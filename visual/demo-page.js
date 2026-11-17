@@ -1,0 +1,114 @@
+/**
+ * Deterministic demo page setup shared by the visual tests and
+ * `npm run screenshots`: fonts served locally from @fontsource, other network
+ * requests blocked, timers paused, fonts loaded before capture.
+ */
+import { readFile } from 'node:fs/promises';
+import { createRequire } from 'node:module';
+import path from 'node:path';
+
+export const VIEWPORT = { width: 1200, height: 600 };
+export const SCALE = 2;
+export const PORT = 5179;
+export const BASE_URL = `http://127.0.0.1:${PORT}`;
+
+const require = createRequire(import.meta.url);
+const FONT_HOST = 'https://fonts.gstatic.com/workbench-local';
+// The families and weights src/fonts.css asks for
+const FONTS = [
+  ['Source Sans 3', '@fontsource/source-sans-3', 'source-sans-3', [400, 500, 600, 700]],
+  ['Source Code Pro', '@fontsource/source-code-pro', 'source-code-pro', [400, 500, 600]],
+];
+
+const fontCss = FONTS.flatMap(([family, , slug, weights]) =>
+  weights.map(
+    (weight) => `@font-face {
+  font-family: '${family}';
+  font-style: normal;
+  font-weight: ${weight};
+  font-display: block;
+  src: url(${FONT_HOST}/${slug}-latin-${weight}-normal.woff2) format('woff2');
+}`,
+  ),
+).join('\n');
+
+const fontFile = (name) => {
+  const [, pkg] = FONTS.find(([, , slug]) => name.startsWith(`${slug}-`)) ?? [];
+  if (!pkg) return null;
+  return path.join(path.dirname(require.resolve(`${pkg}/package.json`)), 'files', name);
+};
+
+/** Serve fonts locally and block other external requests */
+export async function offline(page) {
+  await page.route(
+    (url) => url.origin !== BASE_URL,
+    async (route) => {
+      const url = new URL(route.request().url());
+      if (url.hostname === 'fonts.googleapis.com') {
+        return route.fulfill({ contentType: 'text/css', body: fontCss });
+      }
+      if (url.href.startsWith(`${FONT_HOST}/`)) {
+        const file = fontFile(path.basename(url.pathname));
+        if (file) {
+          return route.fulfill({
+            contentType: 'font/woff2',
+            headers: { 'access-control-allow-origin': '*' },
+            body: await readFile(file),
+          });
+        }
+      }
+      return route.abort();
+    },
+  );
+}
+
+/**
+ * Open a demo page in a colour mode. Timers are paused unless `paused` is
+ * false (axe-core needs running timers).
+ * @param {import('playwright').Page} page
+ * @param {'light'|'dark'} mode
+ * @param {{ paused?: boolean, path?: string }} [options]
+ */
+export async function openDemo(page, mode, { paused = true, path = '/demo/' } = {}) {
+  await offline(page);
+  if (paused) await page.clock.install({ time: new Date('2026-01-01T09:00:00Z') });
+  // Seed storage the way a saved choice would be
+  await page.addInitScript((value) => localStorage.setItem('colorMode', value), mode);
+  await page.goto(`${BASE_URL}${path}`);
+  if (paused) await page.clock.pauseAt(new Date('2026-01-01T09:00:01Z'));
+  await page.evaluate(() => document.fonts.ready);
+  await page.locator(`html[data-color-mode="${mode}"]`).waitFor({ state: 'attached' });
+}
+
+/** Show the success toast from the demo's Toasts pane. */
+export async function showToast(page) {
+  await page.getByRole('button', { name: 'Success', exact: true }).click();
+  // Fire the entry timer; the hide timer never runs while time is paused
+  await page.clock.runFor(500);
+  await page.locator('.wb-toast.show').waitFor();
+}
+
+/** Open the right-click menu on the "Release notes" tab. */
+export async function openTabMenu(page) {
+  const tab = page.locator('.wb-tab', { hasText: 'Release notes' }).locator('.wb-tab-select');
+  // Click near the bottom edge so the menu opens below the label
+  const box = await tab.boundingBox();
+  await tab.click({ button: 'right', position: { x: 60, y: box.height - 2 } });
+  await page.locator('.wb-tab-menu').waitFor();
+}
+
+/** Open the demo's "Delete…" confirm dialog. */
+export async function openDialog(page) {
+  await page.getByRole('button', { name: 'Delete…' }).click();
+  await page.locator('dialog.wb-dialog[open]').waitFor();
+}
+
+/** Collapse the Files pane with the header bar's button. */
+export async function collapseFiles(page) {
+  await page.getByRole('button', { name: 'Files pane' }).click();
+  await page.locator('#filesPane[data-split-collapsed]').waitFor({ state: 'attached' });
+}
+
+/** The overview page, whose footer is the columns one. */
+export const openOverview = (page, mode, options) =>
+  openDemo(page, mode, { ...options, path: '/demo/overview.html' });

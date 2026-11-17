@@ -1,0 +1,89 @@
+{
+  "name": "@martynkeigher/workbench-ui",
+  "version": "0.5.0",
+  "description": "A calm, dense UI kit for tool-style web apps, with light and dark modes built in. Plain JavaScript and CSS: no framework, no build step. Accessibility checked with axe.",
+  "keywords": [
+    "design system",
+    "ui",
+    "components",
+    "css custom properties",
+    "design tokens",
+    "dark mode",
+    "vanilla js"
+  ],
+  "author": "Martyn Keigher (https://github.com/MartynKeigher)",
+  "repository": "https://github.com/MartynKeigher/workbench-ui.git",
+  "homepage": "https://github.com/MartynKeigher/workbench-ui",
+  "bugs": {
+    "url": "https://github.com/MartynKeigher/workbench-ui/issues"
+  },
+  "license": "MIT",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./toast": "./src/components/toast/toast.js",
+    "./tabs": "./src/components/tabs/tabs.js",
+    "./color-mode": "./src/components/color-mode/color-mode.js",
+    "./copy-button": "./src/components/copy-button/copy-button.js",
+    "./dialog": "./src/components/dialog/dialog.js",
+    "./splitter": "./src/components/splitter/splitter.js",
+    "./pane-toggle": "./src/components/pane/pane-toggle.js",
+    "./workbench.css": "./src/workbench.css",
+    "./fonts.css": "./src/fonts.css",
+    "./tokens.css": "./src/tokens.css",
+    "./base.css": "./src/base.css",
+    "./header.css": "./src/header.css",
+    "./toast.css": "./src/components/toast/toast.css",
+    "./tabs.css": "./src/components/tabs/tabs.css",
+    "./pane.css": "./src/components/pane/pane.css",
+    "./list.css": "./src/components/list/list.css",
+    "./tiles.css": "./src/components/tiles/tiles.css",
+    "./table.css": "./src/components/table/table.css",
+    "./pill.css": "./src/components/pill/pill.css",
+    "./button.css": "./src/components/button/button.css",
+    "./message.css": "./src/components/message/message.css",
+    "./statusbar.css": "./src/components/statusbar/statusbar.css",
+    "./copy-button.css": "./src/components/copy-button/copy-button.css",
+    "./dialog.css": "./src/components/dialog/dialog.css",
+    "./splitter.css": "./src/components/splitter/splitter.css",
+    "./footer.css": "./src/components/footer/footer.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "dev": "vite --open /demo/",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test:visual": "playwright test demo.spec",
+    "test:visual:update": "playwright test demo.spec --update-snapshots",
+    "screenshots": "node scripts/screenshots.js",
+    "test:a11y": "playwright test a11y.spec",
+    "test:browser": "playwright test components.spec"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@eslint/js": "^10.0.1",
+    "@fontsource/source-code-pro": "^5.3.1",
+    "@fontsource/source-sans-3": "^5.3.1",
+    "@playwright/test": "1.63.0",
+    "eslint": "^10.14.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.14.0",
+    "jsdom": "^29.1.1",
+    "prettier": "^3.9.10",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  }
+}

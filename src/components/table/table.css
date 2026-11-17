@@ -1,0 +1,31 @@
+/* Data table. Add .wb-num to number cells and headings to right-align them. */
+
+.wb-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.wb-table th {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--line);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-align: left;
+  text-transform: uppercase;
+  color: var(--caption-ink);
+}
+
+.wb-table td {
+  padding: 8px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.wb-table tbody tr:nth-child(even) {
+  background: var(--row-alt);
+}
+
+.wb-table .wb-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}

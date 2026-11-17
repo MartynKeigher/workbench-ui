@@ -1,0 +1,18 @@
+/* All Workbench UI styles. Or import only the parts you need. */
+@import './tokens.css';
+@import './base.css';
+@import './header.css';
+@import './components/toast/toast.css';
+@import './components/tabs/tabs.css';
+@import './components/pane/pane.css';
+@import './components/list/list.css';
+@import './components/tiles/tiles.css';
+@import './components/table/table.css';
+@import './components/pill/pill.css';
+@import './components/button/button.css';
+@import './components/message/message.css';
+@import './components/statusbar/statusbar.css';
+@import './components/copy-button/copy-button.css';
+@import './components/dialog/dialog.css';
+@import './components/splitter/splitter.css';
+@import './components/footer/footer.css';

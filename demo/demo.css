@@ -1,0 +1,203 @@
+:root {
+  /* Toasts below the header bar and tabs */
+  --wb-toast-top: 104px;
+}
+
+/* A full-height app: header, panes, status bar, footer */
+.demo-app {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto auto;
+  height: 100vh;
+}
+
+/* Files | splitter | document | side. The splitter writes --wb-split. */
+.demo {
+  display: grid;
+  grid-template-columns: var(--wb-split, 200px) 16px minmax(0, 1fr) 280px;
+  column-gap: 0;
+  min-height: 0;
+  padding: 10px 20px;
+}
+
+.demo > .wb-pane {
+  overflow: auto;
+}
+
+.demo-splitter {
+  justify-self: center;
+}
+
+.demo-side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+  margin-left: 16px;
+}
+
+.demo-tokens {
+  min-height: 0;
+  overflow: auto;
+}
+
+@media (max-width: 900px) {
+  .demo-app {
+    height: auto;
+  }
+
+  .demo {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .demo-splitter {
+    display: none;
+  }
+
+  .demo-side {
+    margin-left: 0;
+  }
+}
+
+.demo-doc-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.demo-doc h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.demo-message {
+  margin: 6px 0 10px;
+}
+
+.demo-tiles {
+  margin-bottom: 12px;
+}
+
+.demo-code-wrap {
+  position: relative;
+  margin-top: 12px;
+}
+
+.demo-copy {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+
+.demo-code {
+  margin: 0;
+  padding: 10px 12px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--code);
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.hl-k {
+  color: var(--hl-keyword);
+}
+
+.hl-t {
+  color: var(--hl-title);
+}
+
+.hl-s {
+  color: var(--hl-string);
+}
+
+.hl-c {
+  color: var(--hl-comment);
+}
+
+.demo-swatches {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.demo-swatch {
+  overflow: hidden;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.demo-swatch span {
+  display: block;
+  height: 26px;
+  margin-bottom: 3px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+/* The header's Buy Me a Coffee button, in BMC yellow */
+.wb-hbtn.demo-coffee-hbtn {
+  border-color: #ffdd00;
+  background: #ffdd00;
+  color: var(--header);
+}
+
+.wb-hbtn.demo-coffee-hbtn:hover {
+  border-color: #ffe94d;
+  background: #ffe94d;
+}
+
+.demo-coffee-hbtn svg {
+  flex: none;
+  width: 16px;
+  height: 16px;
+}
+
+/* The footer bar's Buy Me a Coffee link, in the header accent */
+.wb-footer a.demo-coffee {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--header-accent);
+}
+
+.demo-coffee svg {
+  flex: none;
+  width: 14px;
+  height: 14px;
+}
+
+/* The overview page: ordinary scrolling, footer at the end */
+.demo-overview {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px 20px 32px;
+}
+
+.demo-overview h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.demo-lead {
+  margin: 4px 0 16px;
+  color: var(--muted);
+}
+
+.demo-overview-panes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+@media (max-width: 700px) {
+  .demo-overview-panes {
+    grid-template-columns: 1fr;
+  }
+}

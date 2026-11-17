@@ -1,0 +1,78 @@
+import AxeBuilder from '@axe-core/playwright';
+import { expect, test } from '@playwright/test';
+import { collapseFiles, openDemo, openDialog, openOverview, openTabMenu } from './demo-page.js';
+
+// axe-core over the demo pages, light and dark: the workbench with nothing
+// open, a toast, the tab menu, a dialog and the Files pane collapsed, and the
+// overview page. Any WCAG 2.2 A / AA or axe best-practice violation fails.
+
+/** The demo's success toast, held on screen (axe needs running timers). */
+const showToast = (page) =>
+  page.evaluate(async () => {
+    const { toast } = await import('/src/index.js');
+    toast.success('Your changes were saved.', { duration: 600_000 });
+  });
+
+/**
+ * Known exceptions, each with its reason. A violation is dropped only when
+ * every element it names matches.
+ */
+const EXCEPTIONS = [
+  {
+    // The open tab menu is a fixed popup on <body>, outside the landmarks, like
+    // a native context menu. It takes the focus when it opens and hands it back
+    // when it closes, so nobody has to find it by landmark.
+    rule: 'region',
+    selector: '.wb-tab-menu',
+  },
+];
+const excepted = (violation) =>
+  EXCEPTIONS.some(
+    ({ rule, selector }) =>
+      violation.id === rule && violation.nodes.every((n) => n.target.join(' ') === selector),
+  );
+
+const STATES = [
+  ['closed', async () => {}],
+  [
+    'a toast',
+    async (page) => {
+      await showToast(page);
+      // Wait out the fade-in too: mid-fade, axe reads the text as low contrast
+      await page
+        .locator('.wb-toast.show')
+        .evaluate((el) => Promise.all(el.getAnimations().map((a) => a.finished)));
+    },
+  ],
+  ['the tab menu open', openTabMenu],
+  ['a dialog open', openDialog],
+  ['the Files pane collapsed', collapseFiles],
+];
+
+const check = async (page) => {
+  const { violations } = await new AxeBuilder({ page })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'])
+    .analyze();
+  // Rule, then each failing element and why: readable in the CI log
+  return violations
+    .filter((v) => !excepted(v))
+    .map((v) => ({
+      rule: `${v.id} (${v.impact}): ${v.help}`,
+      nodes: v.nodes.map((n) => `${n.target.join(' ')}: ${n.failureSummary}`),
+    }));
+};
+
+for (const mode of ['light', 'dark']) {
+  test(`overview page, ${mode}`, async ({ page }) => {
+    await openOverview(page, mode, { paused: false });
+    expect(await check(page)).toEqual([]);
+  });
+
+  for (const [name, setUp] of STATES) {
+    test(`${mode}, ${name}`, async ({ page }) => {
+      await openDemo(page, mode, { paused: false });
+      await setUp(page);
+      expect(await check(page)).toEqual([]);
+    });
+  }
+}

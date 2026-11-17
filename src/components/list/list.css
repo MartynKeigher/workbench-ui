@@ -1,0 +1,38 @@
+/* Selectable list. Mark the selected item with aria-current or aria-selected. */
+
+.wb-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Align item text with the pane heading */
+.wb-pane > .wb-list {
+  margin-inline: -8px;
+}
+
+.wb-list-item {
+  display: block;
+  width: 100%;
+  padding: 7px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink-2);
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.wb-list-item:hover {
+  background: var(--hover);
+}
+
+.wb-list-item[aria-current]:not([aria-current='false']),
+.wb-list-item[aria-selected='true'] {
+  background: var(--accent-soft);
+  box-shadow: inset 3px 0 0 var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+}
