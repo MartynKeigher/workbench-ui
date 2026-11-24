@@ -1,0 +1,88 @@
+/* Message bar. Kinds: -info (default), -ok, -warn, -err. Use role="alert" for errors. */
+
+.wb-message {
+  --wb-message-bg: var(--accent-soft);
+  --wb-message-ink: var(--accent-ink);
+  --wb-message-edge: var(--accent);
+  --wb-message-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 11v5M12 7.5v.01'/%3E%3C/svg%3E");
+
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 10px 8px 12px;
+  border: 1px solid var(--wb-message-edge);
+  border-left-width: 4px;
+  border-radius: 8px;
+  background: var(--wb-message-bg);
+  color: var(--wb-message-ink);
+  font-size: 14px;
+}
+
+.wb-message-ok {
+  --wb-message-bg: var(--ok-bg);
+  --wb-message-ink: var(--ok-ink);
+  --wb-message-edge: var(--ok);
+  --wb-message-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+}
+
+.wb-message-warn {
+  --wb-message-bg: var(--warn-bg);
+  --wb-message-ink: var(--warn-ink);
+  --wb-message-edge: var(--warn);
+  --wb-message-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10.3 3.9 2.4 17.6A2 2 0 0 0 4.1 20.6h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z'/%3E%3Cpath d='M12 9.5v4M12 17v.01'/%3E%3C/svg%3E");
+}
+
+.wb-message-err {
+  --wb-message-bg: var(--err-bg);
+  --wb-message-ink: var(--err-ink);
+  --wb-message-edge: var(--err-ink);
+  --wb-message-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 8v5M12 16.5v.01'/%3E%3C/svg%3E");
+}
+
+.wb-message::before {
+  content: '';
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  background: var(--wb-message-edge);
+  -webkit-mask: var(--wb-message-icon) center / contain no-repeat;
+  mask: var(--wb-message-icon) center / contain no-repeat;
+}
+
+@media (forced-colors: active) {
+  .wb-message::before {
+    background: CanvasText;
+  }
+}
+
+.wb-message-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.wb-message-title {
+  margin-right: 4px;
+  font-weight: 700;
+  color: inherit;
+}
+
+.wb-message-close {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  margin: -2px -2px -2px 0;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.wb-message-close:hover {
+  background: color-mix(in srgb, currentcolor 12%, transparent);
+}

@@ -1,0 +1,132 @@
+/* Page footer: a dark bar, or add .wb-footer-columns for a light one with columns. */
+
+/* Bar */
+.wb-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 24px;
+  min-height: 40px;
+  padding: 6px 20px;
+  background: var(--header);
+  color: var(--header-muted);
+  font-size: 12.5px;
+}
+
+.wb-footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wb-footer a:hover {
+  color: var(--header-ink);
+  text-decoration: underline;
+}
+
+.wb-footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--header-ink);
+  font-weight: 600;
+}
+
+.wb-footer-brand svg {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  color: var(--header-accent);
+}
+
+.wb-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+}
+
+/* This and following items align right */
+.wb-footer-end {
+  margin-left: auto;
+}
+
+.wb-footer-version {
+  padding: 1px 8px;
+  border: 1px solid var(--header-line);
+  border-radius: 999px;
+  color: var(--header-accent);
+  font-family: var(--mono);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+/* Columns variant */
+.wb-footer-columns {
+  align-items: flex-start;
+  gap: 20px 32px;
+  padding: 20px 20px 18px;
+  border-top: 1px solid var(--line);
+  background: var(--tile);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.wb-footer-columns a {
+  color: var(--ink-2);
+}
+
+.wb-footer-columns a:hover {
+  color: var(--ink);
+}
+
+.wb-footer-columns .wb-footer-brand {
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.wb-footer-columns .wb-footer-brand svg {
+  width: 18px;
+  height: 18px;
+  color: var(--accent);
+}
+
+.wb-footer-columns .wb-footer-version {
+  border-color: var(--line);
+  color: var(--accent-ink);
+}
+
+.wb-footer-about {
+  flex: 2 1 260px;
+}
+
+.wb-footer-about p {
+  max-width: 40ch;
+  margin: 6px 0 0;
+}
+
+.wb-footer-note {
+  font-size: 12px;
+}
+
+.wb-footer-group {
+  display: flex;
+  flex: 1 1 140px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Min 24px tall links (WCAG 2.2 target size) */
+.wb-footer-group a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+}
+
+.wb-footer-group-head {
+  margin: 0 0 4px;
+  color: var(--caption-ink);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}

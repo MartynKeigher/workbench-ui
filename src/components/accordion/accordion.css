@@ -1,0 +1,61 @@
+/* Accordion: native <details> sections, each opening on its own */
+
+.wb-accordion {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--control);
+}
+
+.wb-accordion details + details {
+  border-top: 1px solid var(--line);
+}
+
+.wb-accordion summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  color: var(--ink);
+  font-weight: 600;
+  list-style: none;
+  cursor: pointer;
+}
+
+.wb-accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.wb-accordion summary::before {
+  content: '';
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: rotate(-45deg);
+  transition: transform 0.15s;
+}
+
+.wb-accordion details[open] > summary::before {
+  transform: rotate(45deg);
+}
+
+.wb-accordion summary:hover {
+  background: var(--hover);
+}
+
+.wb-accordion summary:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: -3px;
+}
+
+.wb-accordion-body {
+  padding: 0 14px 12px 28px;
+  color: var(--ink-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wb-accordion summary::before {
+    transition: none;
+  }
+}

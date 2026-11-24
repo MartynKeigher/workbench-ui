@@ -1,0 +1,18 @@
+/* Tooltip: a short label shown on hover and keyboard focus (Tooltip in tooltip.js) */
+
+.wb-tooltip {
+  position: fixed;
+  z-index: 1100;
+  max-width: 240px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--header);
+  color: var(--header-ink);
+  font-size: 13px;
+  line-height: 1.35;
+  pointer-events: none;
+}
+
+.wb-tooltip[hidden] {
+  display: none;
+}

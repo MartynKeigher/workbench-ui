@@ -1,0 +1,1753 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Components · Workbench UI</title>
+    <link rel="stylesheet" href="../../src/fonts.css" />
+    <link rel="stylesheet" href="../../src/workbench.css" />
+    <link rel="stylesheet" href="../demo.css" />
+    <link rel="stylesheet" href="./components.css" />
+  </head>
+  <body class="demo-lib">
+    <header class="wb-header">
+      <div class="wb-bar">
+        <div class="wb-brand">
+          <svg
+            class="wb-brand-mark"
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+            <path d="M3 9h18"></path>
+          </svg>
+          <span class="wb-brand-name">Workbench UI</span>
+        </div>
+        <div class="wb-actions">
+          <a class="wb-hbtn" href="../">Workbench</a>
+          <a class="wb-hbtn" href="../overview.html">Overview</a>
+          <button class="wb-hbtn wb-hbtn-icon" type="button" id="colorMode"></button>
+        </div>
+      </div>
+    </header>
+
+    <div class="demo-lib-body">
+      <aside class="wb-pane wb-scroll demo-lib-nav" aria-label="Components">
+        <nav id="componentNav" aria-label="Components"></nav>
+      </aside>
+
+      <main class="wb-pane wb-scroll demo-lib-page">
+        <h1 class="sr-only">Workbench UI components</h1>
+        <section class="demo-lib-component" id="base" aria-labelledby="base-title" hidden>
+          <h2 class="demo-lib-title" id="base-title">Base styles</h2>
+          <p class="demo-lead">
+            Page defaults from <code>base.css</code>: headings, the keyboard focus ring and a few
+            utilities.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="base-headings">Headings</h3>
+            <p>Styled at zero specificity, so any class of yours wins.</p>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <h1>Heading 1</h1>
+              <h2>Heading 2</h2>
+              <h3>Heading 3</h3>
+              <h4>Heading 4</h4>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="base-strong">Bold text</h3>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <p>Totals are <strong>rounded to the nearest unit</strong>.</p>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="base-focus">Focus ring</h3>
+            <p>One ring wherever keyboard focus lands. Press Tab to see it.</p>
+            <div class="demo-lib-live" data-example>
+              <button type="button" class="wb-btn">First</button>
+              <button type="button" class="wb-btn">Second</button>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="base-sr-only">Screen-reader only</h3>
+            <p>Hidden on screen, read by screen readers. Here it names an icon button.</p>
+            <div class="demo-lib-live demo-lib-icon-btn" data-example>
+              <button type="button" class="wb-btn">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                  <path d="M9 4v16"></path>
+                </svg>
+                <span class="sr-only">Toggle sidebar</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="base-scroll">Always-visible scrollbar</h3>
+            <p>For panes that scroll, even where the OS hides scrollbars.</p>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <div class="wb-scroll" style="height: 96px; overflow: auto" tabindex="0">
+                <p>Row 1</p>
+                <p>Row 2</p>
+                <p>Row 3</p>
+                <p>Row 4</p>
+                <p>Row 5</p>
+                <p>Row 6</p>
+                <p>Row 7</p>
+                <p>Row 8</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="tokens" aria-labelledby="tokens-title" hidden>
+          <h2 class="demo-lib-title" id="tokens-title">Design tokens</h2>
+          <p class="demo-lead">
+            Every color, font and shadow the kit uses, as CSS custom properties. Switch to dark mode
+            to see the dark palette.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="tokens-colors">Colors</h3>
+            <p>Grouped by role. Use them in your own styles, e.g. <code>var(--pane)</code>.</p>
+            <div class="demo-lib-live demo-lib-live-block">
+              <div class="demo-lib-tokens" id="tokenGroups"></div>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="tokens-type">Type</h3>
+            <div class="demo-lib-live demo-lib-live-block">
+              <p class="demo-lib-type" style="font-family: var(--font)">
+                <code>--font</code> Source Sans 3, then system sans-serif
+              </p>
+              <p class="demo-lib-type" style="font-family: var(--mono)">
+                <code>--mono</code> Source Code Pro, then system monospace
+              </p>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="tokens-shadows">Shadows</h3>
+            <div class="demo-lib-live">
+              <div class="demo-lib-shadow" style="box-shadow: var(--shadow-pop)">
+                <code>--shadow-pop</code>
+              </div>
+              <div class="demo-lib-shadow" style="box-shadow: var(--shadow-float)">
+                <code>--shadow-float</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="tokens-theming">Theming</h3>
+            <p>Override any token after the kit loads, for one palette or both.</p>
+            <pre class="demo-code wb-scroll" tabindex="0" data-code>
+:root {
+  --accent: #6b3fd1;
+  --accent-ink: #4f2aa6;
+  --header-accent: #b49cff;
+}
+
+:root[data-color-mode='dark'] {
+  --accent: #a58cff;
+}</pre>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="buttons" aria-labelledby="buttons-title" hidden>
+          <h2 class="demo-lib-title" id="buttons-title">Buttons</h2>
+          <p class="demo-lead">
+            For actions in the page content. The header bar has its own <code>.wb-hbtn</code>.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="buttons-plain">Plain</h3>
+            <p>The everyday button.</p>
+            <div class="demo-lib-live" data-example>
+              <button type="button" class="wb-btn">Cancel</button>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="buttons-primary">Primary</h3>
+            <p>The one main action on a screen.</p>
+            <div class="demo-lib-live" data-example>
+              <button type="button" class="wb-btn wb-btn-primary">Save</button>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="buttons-danger">Danger</h3>
+            <p>For actions that delete or discard.</p>
+            <div class="demo-lib-live" data-example>
+              <button type="button" class="wb-btn wb-btn-danger">Delete</button>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="buttons-disabled">Disabled</h3>
+            <div class="demo-lib-live" data-example>
+              <button type="button" class="wb-btn" disabled>Cancel</button>
+              <button type="button" class="wb-btn wb-btn-primary" disabled>Save</button>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="buttons-link">Link</h3>
+            <p>A link that looks like a button, for navigation.</p>
+            <div class="demo-lib-live" data-example>
+              <a class="wb-btn" href="#">View report</a>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="buttons-row">Button row</h3>
+            <p>Spaces a group of buttons and wraps them on narrow screens.</p>
+            <div class="demo-lib-live" data-example>
+              <div class="wb-btn-row">
+                <button type="button" class="wb-btn">Cancel</button>
+                <button type="button" class="wb-btn wb-btn-primary">Save</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          class="demo-lib-component"
+          id="copy-button"
+          aria-labelledby="copy-button-title"
+          hidden
+        >
+          <h2 class="demo-lib-title" id="copy-button-title">Copy button</h2>
+          <p class="demo-lead">
+            Copies text to the clipboard, then reads "Copied" for a moment. Screen readers hear it
+            too.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="copy-button-copy">Copy button</h3>
+            <p>Any <code>.wb-btn</code>.</p>
+            <div class="demo-lib-live" data-example>
+              <button type="button" class="wb-btn" id="copyPlain">Copy link</button>
+            </div>
+            <pre class="demo-code wb-scroll" tabindex="0" data-code>
+new CopyButton(document.getElementById('copyPlain'), {
+  text: 'https://example.com/q3-report',
+});</pre>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="copy-button-copy-icon">With an icon</h3>
+            <p>Put the words in <code>.wb-copy-label</code> so only they change.</p>
+            <div class="demo-lib-live" data-example>
+              <button type="button" class="wb-btn demo-lib-icon-btn" id="copyIcon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="9" y="9" width="12" height="12" rx="2"></rect>
+                  <path d="M5 15V5a2 2 0 0 1 2-2h10"></path>
+                </svg>
+                <span class="wb-copy-label">Copy ID</span>
+              </button>
+            </div>
+            <pre class="demo-code wb-scroll" tabindex="0" data-code>
+new CopyButton(document.getElementById('copyIcon'), {
+  getText: () =&gt; 'Q3-2026-114',
+});</pre>
+          </div>
+        </section>
+        <section
+          class="demo-lib-component"
+          id="empty-state"
+          aria-labelledby="empty-state-title"
+          hidden
+        >
+          <h2 class="demo-lib-title" id="empty-state-title">Empty state</h2>
+          <p class="demo-lead">What goes in an empty area, and how to fill it.</p>
+          <div class="demo-lib-example">
+            <h3 id="empty-state-empty">Empty state</h3>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <div class="wb-empty">
+                <svg
+                  class="wb-empty-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 4h10l6 6v10H4z"></path>
+                  <path d="M14 4v6h6"></path>
+                </svg>
+                <h3 class="wb-empty-title">No reports yet</h3>
+                <p>Reports you create or are shared with you show up here.</p>
+                <div class="wb-btn-row">
+                  <button type="button" class="wb-btn wb-btn-primary">New report</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          class="demo-lib-component"
+          id="light-dark"
+          aria-labelledby="light-dark-title"
+          hidden
+        >
+          <h2 class="demo-lib-title" id="light-dark-title">Light / dark toggle</h2>
+          <p class="demo-lead">
+            Sets <code>data-color-mode</code> on <code>&lt;html&gt;</code> and remembers the choice.
+            The header of this page has one too.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="light-dark-toggle">Toggle</h3>
+            <p>An empty button gets the moon and sun icons.</p>
+            <div class="demo-lib-live demo-lib-live-header demo-lib-live-pad" data-example>
+              <button class="wb-hbtn wb-hbtn-icon" type="button" id="colorModeExample"></button>
+            </div>
+            <pre class="demo-code wb-scroll" tabindex="0" data-code>
+applySavedColorMode(); // early, so a dark page never flashes light
+new ColorMode(document.getElementById('colorModeExample'));</pre>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="loading" aria-labelledby="loading-title" hidden>
+          <h2 class="demo-lib-title" id="loading-title">Loading</h2>
+          <p class="demo-lead">
+            A spinner for short waits, a progress bar when you know how far along it is, and
+            skeletons for content still loading.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="loading-spinner">Spinner</h3>
+            <p>Give it <code>role="status"</code> and a name so screen readers hear it.</p>
+            <div class="demo-lib-live" data-example>
+              <span class="wb-spinner" role="status" aria-label="Loading"></span>
+              <span class="wb-spinner wb-spinner-lg" role="status" aria-label="Loading"></span>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="loading-progress">Progress bar</h3>
+            <p>
+              A native <code>&lt;progress&gt;</code>. Leave out <code>value</code> when you can't
+              tell how far along it is.
+            </p>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <label class="wb-field">
+                <span class="wb-field-label">Uploading report.pdf</span>
+                <progress class="wb-progress" max="100" value="64">64%</progress>
+              </label>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="loading-skeleton">Skeleton</h3>
+            <p>Stand-ins shaped like the content. Hide them from screen readers.</p>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <div aria-hidden="true">
+                <span class="wb-skeleton" style="width: 40%"></span>
+                <span class="wb-skeleton"></span>
+                <span class="wb-skeleton" style="width: 80%"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          class="demo-lib-component"
+          id="message-bar"
+          aria-labelledby="message-bar-title"
+          hidden
+        >
+          <h2 class="demo-lib-title" id="message-bar-title">Message bar</h2>
+          <p class="demo-lead">
+            A note inside the content that stays until it no longer applies. A toast goes by itself.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="message-bar-info">Info</h3>
+            <p>The default. Use <code>role="status"</code> for news.</p>
+            <div class="demo-lib-live" data-example>
+              <div class="wb-message" role="status">
+                <div class="wb-message-body">
+                  <strong class="wb-message-title">Heads up</strong>
+                  The export runs overnight.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="message-bar-ok">Success</h3>
+            <div class="demo-lib-live" data-example>
+              <div class="wb-message wb-message-ok" role="status">
+                <div class="wb-message-body">
+                  <strong class="wb-message-title">Published</strong>
+                  Everyone with access can see it now.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="message-bar-warn">Warning</h3>
+            <div class="demo-lib-live" data-example>
+              <div class="wb-message wb-message-warn" role="status">
+                <div class="wb-message-body">
+                  <strong class="wb-message-title">Read only</strong>
+                  Someone else has this file open.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="message-bar-err">Error</h3>
+            <p>Use <code>role="alert"</code> when it needs action now.</p>
+            <div class="demo-lib-live" data-example>
+              <div class="wb-message wb-message-err" role="alert">
+                <div class="wb-message-body">
+                  <strong class="wb-message-title">Not saved</strong>
+                  The connection dropped. Try again.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="message-bar-dismiss">With a close button</h3>
+            <p>Removing the message is up to you; this page removes it on click.</p>
+            <div class="demo-lib-live" data-example>
+              <div class="wb-message wb-message-warn" role="status">
+                <div class="wb-message-body">
+                  <strong class="wb-message-title">Read only</strong>
+                  Someone else has this file open.
+                </div>
+                <button type="button" class="wb-message-close" aria-label="Dismiss">×</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="toasts" aria-labelledby="toasts-title" hidden>
+          <h2 class="demo-lib-title" id="toasts-title">Toasts</h2>
+          <p class="demo-lead">
+            Short notes that float in the top-right corner, then go. Text is set as text, never as
+            HTML.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="toasts-toast-types">Types</h3>
+            <p>Each sets its own icon, color and default title.</p>
+            <div class="demo-lib-live">
+              <button type="button" class="wb-btn" data-toast="success">Success</button>
+              <button type="button" class="wb-btn" data-toast="error">Error</button>
+              <button type="button" class="wb-btn" data-toast="info">Info</button>
+            </div>
+            <pre class="demo-code wb-scroll" tabindex="0" data-code>
+toast.success('Saved.');
+toast.error('That file could not be read.', { duration: 6000 });
+toast.info('Three rows were skipped.', { title: 'Heads up' });</pre>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="toasts-toast-custom">Custom title</h3>
+            <div class="demo-lib-live">
+              <button type="button" class="wb-btn" id="toastCustom">Exported</button>
+            </div>
+            <pre class="demo-code wb-scroll" tabindex="0" data-code>
+toast.show('Report saved as PDF.', { type: 'success', title: 'Exported' });</pre>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="toasts-toast-offset">Below a header</h3>
+            <p>Move the stack down with <code>--wb-toast-top</code>.</p>
+            <pre class="demo-code wb-scroll" tabindex="0" data-code>
+:root {
+  --wb-toast-top: 104px;
+}</pre>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="footer" aria-labelledby="footer-title" hidden>
+          <h2 class="demo-lib-title" id="footer-title">Footer</h2>
+          <p class="demo-lead">Two page footers. Use one per page.</p>
+          <div class="demo-lib-example">
+            <h3 id="footer-footer-bar">Bar</h3>
+            <p>
+              Dark in both modes, to match the header bar. Give it the last row of a full-height
+              layout.
+            </p>
+            <div class="demo-lib-live demo-lib-live-flush" data-example>
+              <footer class="wb-footer">
+                <span class="wb-footer-brand">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                    <path d="M3 9h18"></path>
+                  </svg>
+                  My tool
+                </span>
+                <nav class="wb-footer-links" aria-label="Example footer">
+                  <a href="#">Docs</a>
+                  <a href="#">Status</a>
+                  <a href="#">Privacy</a>
+                </nav>
+                <span class="wb-footer-end">© 2026 Example Ltd</span>
+                <span class="wb-footer-version">v1.4.0</span>
+              </footer>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="footer-footer-columns">Columns</h3>
+            <p>
+              Light and taller, for the end of an overview or home page. Groups wrap when there is
+              no room.
+            </p>
+            <div class="demo-lib-live demo-lib-live-flush" data-example>
+              <footer class="wb-footer wb-footer-columns">
+                <div class="wb-footer-about">
+                  <span class="wb-footer-brand">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                      <path d="M3 9h18"></path>
+                    </svg>
+                    My tool
+                  </span>
+                  <p>What it is and who runs it.</p>
+                  <p class="wb-footer-note">
+                    © 2026 Example Ltd <span class="wb-footer-version">v1.4.0</span>
+                  </p>
+                </div>
+                <nav class="wb-footer-group" aria-labelledby="exampleFootHelp">
+                  <h3 class="wb-footer-group-head" id="exampleFootHelp">Help</h3>
+                  <a href="#">Docs</a>
+                  <a href="#">Contact support</a>
+                </nav>
+                <nav class="wb-footer-group" aria-labelledby="exampleFootLegal">
+                  <h3 class="wb-footer-group-head" id="exampleFootLegal">Legal</h3>
+                  <a href="#">Privacy</a>
+                  <a href="#">Terms</a>
+                </nav>
+              </footer>
+            </div>
+          </div>
+        </section>
+        <section
+          class="demo-lib-component"
+          id="header-bar"
+          aria-labelledby="header-bar-title"
+          hidden
+        >
+          <h2 class="demo-lib-title" id="header-bar-title">Header bar</h2>
+          <p class="demo-lead">
+            The dark bar across the top of the app: brand on the left, actions on the right. Add a
+            tab strip under it.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="header-bar-header">Header bar</h3>
+            <p>Header buttons: plain, primary, icon only, and a label that opens a file input.</p>
+            <div class="demo-lib-live demo-lib-live-flush" data-example>
+              <header class="wb-header">
+                <div class="wb-bar">
+                  <div class="wb-brand">
+                    <svg
+                      class="wb-brand-mark"
+                      width="22"
+                      height="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                      <path d="M3 9h18"></path>
+                    </svg>
+                    <span class="wb-brand-name">My tool</span>
+                  </div>
+                  <div class="wb-actions">
+                    <input class="wb-file-input" id="exampleFile" type="file" />
+                    <label class="wb-hbtn" for="exampleFile">Open file</label>
+                    <button class="wb-hbtn wb-hbtn-primary" type="button">Export</button>
+                    <button class="wb-hbtn wb-hbtn-icon" type="button">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                        <path d="M9 4v16"></path>
+                      </svg>
+                      <span class="sr-only">Toggle sidebar</span>
+                    </button>
+                  </div>
+                </div>
+              </header>
+            </div>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="splitter" aria-labelledby="splitter-title" hidden>
+          <h2 class="demo-lib-title" id="splitter-title">Splitter</h2>
+          <p class="demo-lead">
+            A handle between two panes that resizes one of them. Drag it, or focus it and use the
+            arrow keys, Home and End. Enter or a double-click collapses the pane.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="splitter-splitter">Splitter</h3>
+            <p>
+              It writes the size to <code>--wb-split</code> on its parent, so your layout decides
+              how to use it.
+            </p>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <div class="demo-lib-split">
+                <aside class="wb-pane" id="splitFiles">
+                  <h3 class="wb-pane-head">Files</h3>
+                </aside>
+                <div class="wb-splitter" aria-label="Files pane width"></div>
+                <section class="wb-pane">
+                  <h3 class="wb-pane-head">Document</h3>
+                </section>
+              </div>
+            </div>
+            <pre class="demo-code wb-scroll" tabindex="0" data-code>
+new Splitter(document.querySelector('.demo-lib-split .wb-splitter'), {
+  target: document.getElementById('splitFiles'),
+  min: 120,
+  max: 360,
+});</pre>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="splitter-splitter-css">Layout CSS</h3>
+            <p>The grid column reads the size the splitter writes.</p>
+            <pre class="demo-code wb-scroll" tabindex="0" data-code>
+.demo-lib-split {
+  display: grid;
+  grid-template-columns: var(--wb-split, 180px) 16px minmax(0, 1fr);
+}</pre>
+          </div>
+        </section>
+        <section
+          class="demo-lib-component"
+          id="status-bar"
+          aria-labelledby="status-bar-title"
+          hidden
+        >
+          <h2 class="demo-lib-title" id="status-bar-title">Status bar</h2>
+          <p class="demo-lead">
+            A thin bar along the bottom of the app. Items after <code>.wb-statusbar-end</code> sit
+            at the right.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="status-bar-statusbar">Status bar</h3>
+            <p>
+              Use <code>role="status"</code> on an item whose text changes. If the page also has a
+              footer, use <code>&lt;section aria-label="Status"&gt;</code> instead of
+              <code>&lt;footer&gt;</code>.
+            </p>
+            <div class="demo-lib-live demo-lib-live-flush" data-example>
+              <footer class="wb-statusbar">
+                <span class="wb-statusbar-item">Q3 report</span>
+                <span class="wb-statusbar-item" role="status">All changes saved</span>
+                <button type="button" class="wb-statusbar-item wb-statusbar-end">
+                  <span class="wb-pill wb-pill-warn">2 warnings</span>
+                </button>
+                <span class="wb-statusbar-item">UTF-8</span>
+              </footer>
+            </div>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="tabs" aria-labelledby="tabs-title" hidden>
+          <h2 class="demo-lib-title" id="tabs-title">Tabs</h2>
+          <p class="demo-lead">
+            A strip of tabs, one per open item, as in a browser. The strip holds no content: you
+            decide what each tab shows.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="tabs-tabs-plain">Tab strip</h3>
+            <p>
+              One tab per open item. Click to select, × to close, drag to reorder, right-click for
+              the menu. Close them all to see the <code>empty</code> message.
+            </p>
+            <div class="demo-lib-live demo-lib-live-header" data-example>
+              <nav class="wb-tabs" id="tabsPlain" aria-label="Open files"></nav>
+            </div>
+            <pre class="demo-code wb-scroll" tabindex="0" data-code>
+const tabs = new Tabs({
+  element: document.getElementById('tabsPlain'),
+  onSelect: (id) =&gt; tabs.activate(id),
+  onClose: (id) =&gt; tabs.close(id),
+  // Shown when every tab is closed; leave it out to hide the strip instead
+  empty: { text: 'No open files.', action: 'Reopen them', onAction: reopen },
+});
+tabs.open('plan', 'Project plan');
+tabs.open('notes', 'Release notes');
+tabs.open('q3', 'Q3 report');</pre>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="tabs-tabs-home">With a Home tab</h3>
+            <p>An icon tab that always sits first. It is active when no other tab is.</p>
+            <div class="demo-lib-live demo-lib-live-header" data-example>
+              <nav class="wb-tabs" id="tabsHome" aria-label="Open reports"></nav>
+            </div>
+            <pre class="demo-code wb-scroll" tabindex="0" data-code>
+const tabs = new Tabs({
+  element: document.getElementById('tabsHome'),
+  onSelect: (id) =&gt; tabs.activate(id),
+  onClose: (id) =&gt; tabs.close(id),
+  onHome: () =&gt; tabs.activate(null),
+});
+tabs.setHome(true);
+tabs.open('q3', 'Q3 report');
+tabs.activate(null);</pre>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="tabs-tabs-pinned">With a pinned tab</h3>
+            <p>Pinned tabs sit first and have no ×. Pin or unpin from the right-click menu.</p>
+            <div class="demo-lib-live demo-lib-live-header" data-example>
+              <nav class="wb-tabs" id="tabsPinned" aria-label="Open documents"></nav>
+            </div>
+            <pre class="demo-code wb-scroll" tabindex="0" data-code>
+const tabs = new Tabs({
+  element: document.getElementById('tabsPinned'),
+  onSelect: (id) =&gt; tabs.activate(id),
+  onClose: (id) =&gt; tabs.close(id),
+});
+tabs.open('guide', 'Style guide');
+tabs.togglePin('guide');
+tabs.open('roadmap', 'Roadmap');</pre>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="accordion" aria-labelledby="accordion-title" hidden>
+          <h2 class="demo-lib-title" id="accordion-title">Accordion</h2>
+          <p class="demo-lead">
+            Sections that open and close on their own. Native <code>&lt;details&gt;</code>, so it
+            works without JavaScript.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="accordion-accordion">Accordion</h3>
+            <p>Add <code>open</code> to start a section open.</p>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <div class="wb-accordion">
+                <details open>
+                  <summary>What counts as done?</summary>
+                  <div class="wb-accordion-body">Reviewed, merged and released.</div>
+                </details>
+                <details>
+                  <summary>Who can edit?</summary>
+                  <div class="wb-accordion-body">Anyone on Team A.</div>
+                </details>
+                <details>
+                  <summary>Where is it exported?</summary>
+                  <div class="wb-accordion-body">To the shared Reports folder.</div>
+                </details>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="avatar" aria-labelledby="avatar-title" hidden>
+          <h2 class="demo-lib-title" id="avatar-title">Avatar and badges</h2>
+          <p class="demo-lead">
+            Initials or a photo for a person or team, plus status dots and count badges.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="avatar-avatar">Avatars</h3>
+            <p>Name the person with <code>aria-label</code> or nearby text.</p>
+            <div class="demo-lib-live" data-example>
+              <span class="wb-avatar" role="img" aria-label="Sam Rivera">SR</span>
+              <span class="wb-avatar wb-avatar-lg" role="img" aria-label="Team A">TA</span>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="avatar-avatar-group">Avatar group</h3>
+            <div class="demo-lib-live" data-example>
+              <span class="wb-avatar-group" role="group" aria-label="Shared with 3 people">
+                <span class="wb-avatar" role="img" aria-label="Sam Rivera">SR</span>
+                <span class="wb-avatar" role="img" aria-label="Jo Lee">JL</span>
+                <span class="wb-avatar" role="img" aria-label="Ana Cruz">AC</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="avatar-dots">Status dots</h3>
+            <p>Color alone doesn't say enough: put the status in words beside it.</p>
+            <div class="demo-lib-live" data-example>
+              <span><span class="wb-dot wb-dot-ok"></span> Online</span>
+              <span><span class="wb-dot wb-dot-warn"></span> Away</span>
+              <span><span class="wb-dot wb-dot-err"></span> Offline</span>
+              <span><span class="wb-dot"></span> Unknown</span>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="avatar-badge">Count badge</h3>
+            <div class="demo-lib-live" data-example>
+              <button type="button" class="wb-btn">Inbox <span class="wb-badge">3</span></button>
+            </div>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="table" aria-labelledby="table-title" hidden>
+          <h2 class="demo-lib-title" id="table-title">Data table</h2>
+          <p class="demo-lead">Full width, small uppercase column headings and striped rows.</p>
+          <div class="demo-lib-example">
+            <h3 id="table-table">Table</h3>
+            <p>
+              <code>.wb-num</code> right-aligns a column of numbers, with every digit the same
+              width.
+            </p>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <table class="wb-table">
+                <thead>
+                  <tr>
+                    <th>Item</th>
+                    <th>Owner</th>
+                    <th>Status</th>
+                    <th class="wb-num">Est.</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Onboarding flow</td>
+                    <td>Team A</td>
+                    <td><span class="wb-pill wb-pill-ok">Done</span></td>
+                    <td class="wb-num">5</td>
+                  </tr>
+                  <tr>
+                    <td>Search filters</td>
+                    <td>Team B</td>
+                    <td><span class="wb-pill wb-pill-accent">In progress</span></td>
+                    <td class="wb-num">8</td>
+                  </tr>
+                  <tr>
+                    <td>Export to CSV</td>
+                    <td>Team A</td>
+                    <td><span class="wb-pill wb-pill-err">Blocked</span></td>
+                    <td class="wb-num">3</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="key-value" aria-labelledby="key-value-title" hidden>
+          <h2 class="demo-lib-title" id="key-value-title">Key–value list</h2>
+          <p class="demo-lead">Labels and their values, e.g. the details of a record.</p>
+          <div class="demo-lib-example">
+            <h3 id="key-value-kv">Side by side</h3>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <dl class="wb-kv">
+                <dt>Owner</dt>
+                <dd>Team A</dd>
+                <dt>Status</dt>
+                <dd><span class="wb-pill wb-pill-accent">In progress</span></dd>
+                <dt>Due</dt>
+                <dd>Friday 20 November</dd>
+              </dl>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="key-value-kv-stacked">Stacked</h3>
+            <p>For narrow panes.</p>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <dl class="wb-kv wb-kv-stacked">
+                <dt>Owner</dt>
+                <dd>Team A</dd>
+                <dt>Due</dt>
+                <dd>Friday 20 November</dd>
+              </dl>
+            </div>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="kbd" aria-labelledby="kbd-title" hidden>
+          <h2 class="demo-lib-title" id="kbd-title">Keyboard keys</h2>
+          <p class="demo-lead">For shortcuts in menus, tooltips and help text.</p>
+          <div class="demo-lib-example">
+            <h3 id="kbd-kbd">Keys</h3>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <p>Press <kbd class="wb-kbd">Ctrl</kbd> + <kbd class="wb-kbd">K</kbd> to search.</p>
+            </div>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="panes" aria-labelledby="panes-title" hidden>
+          <h2 class="demo-lib-title" id="panes-title">Panes</h2>
+          <p class="demo-lead">
+            A bordered card for each area of the screen, with small uppercase headings.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="panes-pane">Pane</h3>
+            <p>A <code>.wb-count</code> sits in a heading. A second heading starts a new group.</p>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <section class="wb-pane">
+                <h3 class="wb-pane-head">Files <span class="wb-count">6</span></h3>
+                <p>Project plan, Q3 report…</p>
+                <h3 class="wb-pane-head">Recent</h3>
+                <p>Release notes</p>
+              </section>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="panes-pane-fold">Folding pane</h3>
+            <p>A toggle in the heading folds the pane down to its headings.</p>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <section class="wb-pane" id="foldDetails">
+                <h3 class="wb-pane-head">
+                  Details
+                  <button type="button" class="wb-pane-toggle" aria-label="Details"></button>
+                </h3>
+                <p>Owner: Team A. Due: Friday.</p>
+              </section>
+            </div>
+            <pre class="demo-code wb-scroll" tabindex="0" data-code>
+new PaneToggle(document.querySelector('#foldDetails .wb-pane-toggle'), {
+  pane: document.getElementById('foldDetails'),
+  storageKey: 'detailsFolded', // optional
+});</pre>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="list" aria-labelledby="list-title" hidden>
+          <h2 class="demo-lib-title" id="list-title">Selectable list</h2>
+          <p class="demo-lead">
+            Items to pick from, such as files. Each item is a button or a link, so it takes keyboard
+            focus.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="list-list-buttons">Buttons</h3>
+            <p>
+              Mark the one showing with <code>aria-current="true"</code>. Moving it is up to you;
+              this page does it on click.
+            </p>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <ul class="wb-list">
+                <li><button type="button" class="wb-list-item">Project plan</button></li>
+                <li>
+                  <button type="button" class="wb-list-item" aria-current="true">Q3 report</button>
+                </li>
+                <li><button type="button" class="wb-list-item">Roadmap</button></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="list-list-links">Links</h3>
+            <p>For items that go to another page.</p>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <ul class="wb-list">
+                <li><a class="wb-list-item" href="#">Release notes</a></li>
+                <li><a class="wb-list-item" href="#">Style guide</a></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="pills" aria-labelledby="pills-title" hidden>
+          <h2 class="demo-lib-title" id="pills-title">Status pills</h2>
+          <p class="demo-lead">A short status word. A plain <code>.wb-pill</code> is neutral.</p>
+          <div class="demo-lib-example">
+            <h3 id="pills-pills">Pills</h3>
+            <div class="demo-lib-live" data-example>
+              <span class="wb-pill wb-pill-ok">Done</span>
+              <span class="wb-pill wb-pill-warn">Needs owner</span>
+              <span class="wb-pill wb-pill-accent">In progress</span>
+              <span class="wb-pill wb-pill-err">Blocked</span>
+              <span class="wb-pill">Not started</span>
+            </div>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="tiles" aria-labelledby="tiles-title" hidden>
+          <h2 class="demo-lib-title" id="tiles-title">Summary tiles</h2>
+          <p class="demo-lead">
+            A row of numbers, each with a label. As many fit on a row as there is room for, at least
+            120px each.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="tiles-tiles">Tiles</h3>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <div class="wb-tiles">
+                <div class="wb-tile">
+                  <span class="wb-tile-value">24</span>
+                  <span class="wb-tile-label">Items</span>
+                </div>
+                <div class="wb-tile">
+                  <span class="wb-tile-value">18</span>
+                  <span class="wb-tile-label">Done</span>
+                </div>
+                <div class="wb-tile">
+                  <span class="wb-tile-value">4</span>
+                  <span class="wb-tile-label">In progress</span>
+                </div>
+                <div class="wb-tile">
+                  <span class="wb-tile-value">2</span>
+                  <span class="wb-tile-label">Blocked</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="tags" aria-labelledby="tags-title" hidden>
+          <h2 class="demo-lib-title" id="tags-title">Tags</h2>
+          <p class="demo-lead">
+            Short labels, such as active filters. A remove button makes one removable; removing it
+            is up to you.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="tags-tags">Tags</h3>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <ul class="wb-tags">
+                <li class="wb-tag">Design</li>
+                <li class="wb-tag">Q3</li>
+                <li class="wb-tag">Team A</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="tags-tags-remove">Removable</h3>
+            <p>
+              Name each remove button, e.g. <code>aria-label="Remove Q3"</code>. This page removes
+              the tag on click.
+            </p>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <ul class="wb-tags" aria-label="Filters">
+                <li class="wb-tag">
+                  Owner: Team A
+                  <button type="button" class="wb-tag-remove" aria-label="Remove Owner: Team A">
+                    ×
+                  </button>
+                </li>
+                <li class="wb-tag">
+                  Status: Open
+                  <button type="button" class="wb-tag-remove" aria-label="Remove Status: Open">
+                    ×
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section
+          class="demo-lib-component"
+          id="checkbox-radio"
+          aria-labelledby="checkbox-radio-title"
+          hidden
+        >
+          <h2 class="demo-lib-title" id="checkbox-radio-title">Checkbox and radio</h2>
+          <p class="demo-lead">
+            Native inputs in the accent color. The label wraps the input, so the whole line is
+            clickable.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="checkbox-radio-checkbox">Checkbox</h3>
+            <div class="demo-lib-live" data-example>
+              <label class="wb-check"><input type="checkbox" checked /> Email me a summary</label>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="checkbox-radio-checkbox-group">Checkbox group</h3>
+            <p>Group related choices in a <code>fieldset</code> with a <code>legend</code>.</p>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <fieldset class="wb-fieldset">
+                <legend>Columns</legend>
+                <label class="wb-check"><input type="checkbox" checked /> Owner</label>
+                <label class="wb-check"><input type="checkbox" checked /> Status</label>
+                <label class="wb-check"><input type="checkbox" /> Estimate</label>
+              </fieldset>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="checkbox-radio-radio">Radio group</h3>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <fieldset class="wb-fieldset">
+                <legend>Export as</legend>
+                <label class="wb-check"><input type="radio" name="exFormat" checked /> PDF</label>
+                <label class="wb-check"><input type="radio" name="exFormat" /> CSV</label>
+                <label class="wb-check"
+                  ><input type="radio" name="exFormat" disabled /> Excel</label
+                >
+              </fieldset>
+            </div>
+          </div>
+        </section>
+        <section
+          class="demo-lib-component"
+          id="form-layout"
+          aria-labelledby="form-layout-title"
+          hidden
+        >
+          <h2 class="demo-lib-title" id="form-layout-title">Form layout</h2>
+          <p class="demo-lead">
+            Stack fields with <code>.wb-form</code>; put short ones side by side with
+            <code>.wb-form-row</code>.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="form-layout-form">Form</h3>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <form class="wb-form">
+                <div class="wb-field">
+                  <label class="wb-field-label" for="fmTitle">Title</label>
+                  <input class="wb-input" id="fmTitle" type="text" value="Q3 report" />
+                </div>
+                <div class="wb-form-row">
+                  <div class="wb-field">
+                    <label class="wb-field-label" for="fmOwner">Owner</label>
+                    <div class="wb-select">
+                      <select class="wb-input" id="fmOwner">
+                        <option>Team A</option>
+                        <option>Team B</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="wb-field">
+                    <label class="wb-field-label" for="fmDue">Due</label>
+                    <input class="wb-input" id="fmDue" type="date" />
+                  </div>
+                </div>
+                <label class="wb-check">
+                  <input type="checkbox" role="switch" class="wb-switch" />
+                  Share with everyone
+                </label>
+                <div class="wb-btn-row">
+                  <button type="button" class="wb-btn">Cancel</button>
+                  <button type="submit" class="wb-btn wb-btn-primary">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="search" aria-labelledby="search-title" hidden>
+          <h2 class="demo-lib-title" id="search-title">Search field</h2>
+          <p class="demo-lead">
+            A text field with a search icon. <code>type="search"</code> gives it a clear button (the
+            x, once there is text) and the right keyboard on phones.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="search-search">Search field</h3>
+            <p>Give it a name with <code>aria-label</code> when there is no visible label.</p>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <div class="wb-search">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="11" cy="11" r="7"></circle>
+                  <path d="m20 20-3.5-3.5"></path>
+                </svg>
+                <input
+                  class="wb-input"
+                  type="search"
+                  placeholder="Search files"
+                  aria-label="Search files"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="search-search-filled">With a search term</h3>
+            <p>The x clears the field. Escape does too.</p>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <div class="wb-search">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="11" cy="11" r="7"></circle>
+                  <path d="m20 20-3.5-3.5"></path>
+                </svg>
+                <input
+                  class="wb-input"
+                  type="search"
+                  value="Q3 report"
+                  aria-label="Search reports"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="select" aria-labelledby="select-title" hidden>
+          <h2 class="demo-lib-title" id="select-title">Select</h2>
+          <p class="demo-lead">
+            The browser's own list, styled to match. Wrap it in <code>.wb-select</code> for the
+            chevron.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="select-select">Select</h3>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <div class="wb-field">
+                <label class="wb-field-label" for="exStatus">Status</label>
+                <div class="wb-select">
+                  <select class="wb-input" id="exStatus">
+                    <option>Not started</option>
+                    <option selected>In progress</option>
+                    <option>Done</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="select-select-disabled">Disabled</h3>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <div class="wb-field">
+                <label class="wb-field-label" for="exTeam">Team</label>
+                <div class="wb-select">
+                  <select class="wb-input" id="exTeam" disabled>
+                    <option>Team A</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="switch" aria-labelledby="switch-title" hidden>
+          <h2 class="demo-lib-title" id="switch-title">Switch</h2>
+          <p class="demo-lead">
+            An on / off setting that applies straight away. It is a checkbox with
+            <code>role="switch"</code>.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="switch-switch">Switch</h3>
+            <div class="demo-lib-live" data-example>
+              <label class="wb-check">
+                <input type="checkbox" role="switch" class="wb-switch" checked />
+                Show weekends
+              </label>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="switch-switch-off">Off and disabled</h3>
+            <div class="demo-lib-live" data-example>
+              <label class="wb-check">
+                <input type="checkbox" role="switch" class="wb-switch" />
+                Compact rows
+              </label>
+              <label class="wb-check">
+                <input type="checkbox" role="switch" class="wb-switch" disabled />
+                Sync (needs admin)
+              </label>
+            </div>
+          </div>
+        </section>
+        <section
+          class="demo-lib-component"
+          id="text-input"
+          aria-labelledby="text-input-title"
+          hidden
+        >
+          <h2 class="demo-lib-title" id="text-input-title">Text input</h2>
+          <p class="demo-lead">
+            Single- and multi-line text. Wrap a control in <code>.wb-field</code> to give it a label
+            and a hint or error.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="text-input-input">Input</h3>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <div class="wb-field">
+                <label class="wb-field-label" for="exName">Name</label>
+                <input class="wb-input" id="exName" type="text" placeholder="Q3 report" />
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="text-input-hint">With a hint</h3>
+            <p>Point <code>aria-describedby</code> at the hint so screen readers read it too.</p>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <div class="wb-field">
+                <label class="wb-field-label" for="exSlug">Short name</label>
+                <input class="wb-input" id="exSlug" type="text" aria-describedby="exSlugHint" />
+                <span class="wb-field-hint" id="exSlugHint">Letters, numbers and dashes.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="text-input-error">With an error</h3>
+            <p>Set <code>aria-invalid="true"</code> on the control.</p>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <div class="wb-field">
+                <label class="wb-field-label" for="exEmail">Email</label>
+                <input
+                  class="wb-input"
+                  id="exEmail"
+                  type="email"
+                  value="sam@"
+                  aria-invalid="true"
+                  aria-describedby="exEmailError"
+                />
+                <span class="wb-field-error" id="exEmailError">Enter a full email address.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="text-input-textarea">Textarea</h3>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <div class="wb-field">
+                <label class="wb-field-label" for="exNotes">Notes</label>
+                <textarea class="wb-input" id="exNotes" rows="3"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="text-input-disabled-input">Disabled</h3>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <div class="wb-field">
+                <label class="wb-field-label" for="exOwner">Owner</label>
+                <input class="wb-input" id="exOwner" type="text" value="Team A" disabled />
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          class="demo-lib-component"
+          id="breadcrumbs"
+          aria-labelledby="breadcrumbs-title"
+          hidden
+        >
+          <h2 class="demo-lib-title" id="breadcrumbs-title">Breadcrumbs</h2>
+          <p class="demo-lead">Where this page sits. The last item is the current page.</p>
+          <div class="demo-lib-example">
+            <h3 id="breadcrumbs-breadcrumbs">Breadcrumbs</h3>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <nav class="wb-breadcrumbs" aria-label="Breadcrumb">
+                <ol>
+                  <li><a href="#">Reports</a></li>
+                  <li><a href="#">2026</a></li>
+                  <li><span aria-current="page">Q3 report</span></li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </section>
+        <section
+          class="demo-lib-component"
+          id="tab-panels"
+          aria-labelledby="tab-panels-title"
+          hidden
+        >
+          <h2 class="demo-lib-title" id="tab-panels-title">In-page tabs</h2>
+          <p class="demo-lead">
+            Tabs that switch panels inside a pane or page. For tabs of open documents, use Tabs.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="tab-panels-tabpanels">In-page tabs</h3>
+            <p>
+              Arrow keys, Home and End move between tabs; only the selected tab is in the Tab order.
+            </p>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <div class="wb-tablist" role="tablist" aria-label="Report">
+                <button
+                  type="button"
+                  role="tab"
+                  id="tpOverview"
+                  aria-controls="tpOverviewPanel"
+                  aria-selected="true"
+                >
+                  Overview
+                </button>
+                <button type="button" role="tab" id="tpActivity" aria-controls="tpActivityPanel">
+                  Activity
+                </button>
+                <button type="button" role="tab" id="tpSettings" aria-controls="tpSettingsPanel">
+                  Settings
+                </button>
+              </div>
+              <div
+                class="wb-tabpanel"
+                role="tabpanel"
+                id="tpOverviewPanel"
+                aria-labelledby="tpOverview"
+              >
+                24 items, 18 done.
+              </div>
+              <div
+                class="wb-tabpanel"
+                role="tabpanel"
+                id="tpActivityPanel"
+                aria-labelledby="tpActivity"
+              >
+                Sam edited the summary.
+              </div>
+              <div
+                class="wb-tabpanel"
+                role="tabpanel"
+                id="tpSettingsPanel"
+                aria-labelledby="tpSettings"
+              >
+                Shared with Team A.
+              </div>
+            </div>
+            <pre class="demo-code wb-scroll" tabindex="0" data-code>
+new TabPanels(document.querySelector('[role="tablist"]'), {
+  onChange: (tab, panel) =&gt; console.log(tab.id, panel.id),
+});</pre>
+          </div>
+        </section>
+        <section
+          class="demo-lib-component"
+          id="pagination"
+          aria-labelledby="pagination-title"
+          hidden
+        >
+          <h2 class="demo-lib-title" id="pagination-title">Pagination</h2>
+          <p class="demo-lead">
+            Links or buttons for moving between pages of results. Mark the current one with
+            <code>aria-current="page"</code>.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="pagination-pagination">Pagination</h3>
+            <p>Mark an unavailable link with <code>aria-disabled="true"</code>.</p>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <nav class="wb-pagination" aria-label="Pages">
+                <a href="#" aria-label="Previous page" aria-disabled="true">‹</a>
+                <a href="#" aria-current="page">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <span class="wb-pagination-gap">…</span>
+                <a href="#">12</a>
+                <a href="#" aria-label="Next page">›</a>
+              </nav>
+            </div>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="segmented" aria-labelledby="segmented-title" hidden>
+          <h2 class="demo-lib-title" id="segmented-title">Segmented control</h2>
+          <p class="demo-lead">
+            Two to five options in a joined row, where exactly one is picked. They are radio buttons
+            underneath.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="segmented-segmented">Segmented control</h3>
+            <p>Name the group with <code>aria-label</code>.</p>
+            <div class="demo-lib-live" data-example>
+              <div class="wb-segmented" role="radiogroup" aria-label="View">
+                <label><input type="radio" name="segView" checked /> List</label>
+                <label><input type="radio" name="segView" /> Grid</label>
+                <label><input type="radio" name="segView" /> Board</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="segmented-segmented-disabled">With a disabled option</h3>
+            <div class="demo-lib-live" data-example>
+              <div class="wb-segmented" role="radiogroup" aria-label="Range">
+                <label><input type="radio" name="segRange" checked /> Week</label>
+                <label><input type="radio" name="segRange" /> Month</label>
+                <label><input type="radio" name="segRange" disabled /> Year</label>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="dialog" aria-labelledby="dialog-title" hidden>
+          <h2 class="demo-lib-title" id="dialog-title">Dialog</h2>
+          <p class="demo-lead">
+            Styles for a native <code>&lt;dialog&gt;</code>. The browser keeps the focus inside,
+            closes it on Escape and hands the focus back.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="dialog-confirm">Confirm</h3>
+            <p>
+              Asks a yes / no question and resolves <code>true</code> or <code>false</code>. With
+              <code>danger</code>, the focus starts on Cancel.
+            </p>
+            <div class="demo-lib-live">
+              <button type="button" class="wb-btn wb-btn-danger" id="confirmDelete">Delete…</button>
+            </div>
+            <pre class="demo-code wb-scroll" tabindex="0" data-code>
+const yes = await confirmDialog({
+  title: 'Delete Q3 report?',
+  message: "It goes for everyone with access. This can't be undone.",
+  confirmLabel: 'Delete',
+  danger: true,
+});</pre>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="dialog-native">Your own dialog</h3>
+            <p>
+              Open it with <code>showModal()</code>. A
+              <code>&lt;form method="dialog"&gt;</code> closes it from any button.
+            </p>
+            <div class="demo-lib-live" data-example>
+              <button type="button" class="wb-btn" id="openExport">Export…</button>
+              <dialog class="wb-dialog" id="exportDialog" aria-labelledby="exportTitle">
+                <form method="dialog">
+                  <div class="wb-dialog-head">
+                    <h2 class="wb-dialog-title" id="exportTitle">Export</h2>
+                    <button class="wb-dialog-close" value="cancel" aria-label="Close">×</button>
+                  </div>
+                  <div class="wb-dialog-body">Export the Q3 report as a PDF?</div>
+                  <div class="wb-dialog-actions">
+                    <button class="wb-btn" value="cancel">Cancel</button>
+                    <button class="wb-btn wb-btn-primary" value="export">Export</button>
+                  </div>
+                </form>
+              </dialog>
+            </div>
+            <pre class="demo-code wb-scroll" tabindex="0" data-code>
+document.getElementById('openExport').addEventListener('click', () =&gt; {
+  document.getElementById('exportDialog').showModal();
+});</pre>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="drawer" aria-labelledby="drawer-title" hidden>
+          <h2 class="demo-lib-title" id="drawer-title">Drawer</h2>
+          <p class="demo-lead">
+            A dialog that slides in from the side, for details or settings next to the page. It uses
+            the dialog parts.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="drawer-drawer">Drawer</h3>
+            <p>Add <code>wb-drawer-left</code> to slide in from the left.</p>
+            <div class="demo-lib-live" data-example>
+              <button type="button" class="wb-btn" id="openDrawer">Filters</button>
+              <dialog class="wb-dialog wb-drawer" id="filterDrawer" aria-labelledby="drawerTitle">
+                <form method="dialog">
+                  <div class="wb-dialog-head">
+                    <h2 class="wb-dialog-title" id="drawerTitle">Filters</h2>
+                    <button class="wb-dialog-close" value="cancel" aria-label="Close">×</button>
+                  </div>
+                  <div class="wb-dialog-body">
+                    <label class="wb-check"><input type="checkbox" checked /> Open items</label>
+                  </div>
+                  <div class="wb-dialog-actions">
+                    <button class="wb-btn wb-btn-primary" value="apply">Apply</button>
+                  </div>
+                </form>
+              </dialog>
+            </div>
+            <pre class="demo-code wb-scroll" tabindex="0" data-code>
+document.getElementById('openDrawer').addEventListener('click', () =&gt; {
+  document.getElementById('filterDrawer').showModal();
+});</pre>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="menu" aria-labelledby="menu-title" hidden>
+          <h2 class="demo-lib-title" id="menu-title">Dropdown menu</h2>
+          <p class="demo-lead">
+            A list of actions opened from a button. Arrow keys, Home and End move through it; Escape
+            closes it.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="menu-menu">Dropdown menu</h3>
+            <div class="demo-lib-live" data-example>
+              <button type="button" class="wb-btn" id="menuButton">Actions ▾</button>
+            </div>
+            <pre class="demo-code wb-scroll" tabindex="0" data-code>
+new Menu(document.getElementById('menuButton'), {
+  items: [
+    { id: 'rename', label: 'Rename' },
+    { id: 'duplicate', label: 'Duplicate' },
+    { id: 'move', label: 'Move to…', disabled: true },
+    '-',
+    { id: 'delete', label: 'Delete', danger: true },
+  ],
+  onSelect: (id) =&gt; console.log(id),
+});</pre>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="hint" aria-labelledby="hint-title" hidden>
+          <h2 class="demo-lib-title" id="hint-title">Help & info icons</h2>
+          <p class="demo-lead">
+            A small circled <b>?</b> that links to help, or a circled <b>i</b> that explains
+            something. Both show their text on hover and keyboard focus.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="hint-help">Help link</h3>
+            <p>A link, so it opens the help page. Name it with <code>aria-label</code>.</p>
+            <div class="demo-lib-live" data-example>
+              <p>
+                Exports
+                <a
+                  class="wb-help"
+                  href="https://example.com/help/exports"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Help with exports"
+                  data-tooltip="Open the exports guide"
+                  >?</a
+                >
+              </p>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="hint-info">Info icon</h3>
+            <p>A button, so it can take focus and show its text on touch screens too.</p>
+            <div class="demo-lib-live" data-example>
+              <p>
+                Storage used
+                <button
+                  type="button"
+                  class="wb-info"
+                  aria-label="About storage"
+                  data-tooltip="Includes files in the trash"
+                >
+                  i
+                </button>
+              </p>
+            </div>
+          </div>
+
+          <div class="demo-lib-example">
+            <h3 id="hint-field">Next to a field label</h3>
+            <div class="demo-lib-live demo-lib-live-block" data-example>
+              <div class="wb-field">
+                <div class="wb-field-label">
+                  <label for="hintKeep">Keep deleted items for</label>
+                  <button
+                    type="button"
+                    class="wb-info"
+                    aria-label="About keeping deleted items"
+                    data-tooltip="After this they can't be restored"
+                  >
+                    i
+                  </button>
+                </div>
+                <select class="wb-input" id="hintKeep">
+                  <option>7 days</option>
+                  <option selected>30 days</option>
+                  <option>90 days</option>
+                </select>
+              </div>
+            </div>
+            <pre class="demo-code wb-scroll" tabindex="0" data-code>
+// Every element with data-tooltip gets a Tooltip
+Tooltip.attach();</pre>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="popover" aria-labelledby="popover-title" hidden>
+          <h2 class="demo-lib-title" id="popover-title">Popover</h2>
+          <p class="demo-lead">
+            A small panel by its button, for a bit more than a tooltip holds. The browser closes it
+            on Escape or a click outside.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="popover-popover">Popover</h3>
+            <p>
+              The <code>popover</code> attribute does the opening and closing;
+              <code>Popover</code> places it by the button.
+            </p>
+            <div class="demo-lib-live" data-example>
+              <button type="button" class="wb-btn" popovertarget="ownerInfo" id="ownerButton">
+                Owner: Team A
+              </button>
+              <div class="wb-popover" id="ownerInfo" popover>
+                <h3 class="wb-popover-title">Team A</h3>
+                <p>Five people. Reviews on Fridays.</p>
+              </div>
+            </div>
+            <pre class="demo-code wb-scroll" tabindex="0" data-code>
+new Popover(document.getElementById('ownerButton'), document.getElementById('ownerInfo'));</pre>
+          </div>
+        </section>
+        <section class="demo-lib-component" id="tooltip" aria-labelledby="tooltip-title" hidden>
+          <h2 class="demo-lib-title" id="tooltip-title">Tooltip</h2>
+          <p class="demo-lead">
+            A short label on hover and keyboard focus. Keep it to a few words; it can't hold links
+            or buttons.
+          </p>
+          <div class="demo-lib-example">
+            <h3 id="tooltip-tooltip">Tooltip</h3>
+            <p>Hover or tab to the buttons.</p>
+            <div class="demo-lib-live" data-example>
+              <button type="button" class="wb-btn" id="tipSave">Save</button>
+              <button type="button" class="wb-btn" id="tipShare">Share</button>
+            </div>
+            <pre class="demo-code wb-scroll" tabindex="0" data-code>
+new Tooltip(document.getElementById('tipSave'), { text: 'Ctrl+S' });
+new Tooltip(document.getElementById('tipShare'), {
+  text: 'Anyone with the link can view',
+  placement: 'bottom',
+});</pre>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="wb-footer">
+      <span class="wb-footer-brand">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+          <path d="M3 9h18"></path>
+        </svg>
+        Workbench UI
+      </span>
+      <nav class="wb-footer-links" aria-label="Footer">
+        <a href="../">Workbench</a>
+        <a href="../overview.html">Overview</a>
+        <a href="./">Components</a>
+      </nav>
+      <span class="wb-footer-end">MIT license</span>
+    </footer>
+
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>

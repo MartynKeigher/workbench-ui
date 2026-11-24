@@ -1,0 +1,49 @@
+/* Segmented control: radio buttons shown as one joined row of options */
+
+.wb-segmented {
+  display: inline-flex;
+  padding: 2px;
+  border: 1px solid var(--control-line);
+  border-radius: 8px;
+  background: var(--chip);
+}
+
+.wb-segmented label {
+  position: relative;
+  padding: 4px 12px;
+  border-radius: 6px;
+  color: var(--ink-2);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* The radio stays focusable and readable, just not seen */
+.wb-segmented input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.wb-segmented label:hover {
+  color: var(--ink);
+}
+
+.wb-segmented label:has(input:checked) {
+  background: var(--control);
+  color: var(--accent-ink);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 12%);
+}
+
+.wb-segmented label:has(input:focus-visible) {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 1px;
+}
+
+.wb-segmented label:has(input:disabled) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

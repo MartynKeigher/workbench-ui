@@ -1,0 +1,34 @@
+/* In-page tabs: a tab list over panels, inside a pane or page. For document tabs, see tabs.css. */
+
+.wb-tablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+.wb-tablist [role='tab'] {
+  margin-bottom: -1px;
+  padding: 7px 12px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.wb-tablist [role='tab']:hover {
+  color: var(--ink);
+}
+
+.wb-tablist [role='tab'][aria-selected='true'] {
+  border-bottom-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.wb-tabpanel {
+  padding-top: 12px;
+}

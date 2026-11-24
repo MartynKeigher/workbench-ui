@@ -1,0 +1,21 @@
+/* Popover: a small panel by its button, using the browser's popover attribute */
+
+.wb-popover {
+  position: fixed;
+  inset: auto;
+  width: max-content;
+  max-width: min(320px, calc(100vw - 16px));
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--pane);
+  color: var(--ink);
+  box-shadow: var(--shadow-pop);
+}
+
+.wb-popover-title {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 700;
+}

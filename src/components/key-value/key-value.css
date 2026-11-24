@@ -1,0 +1,29 @@
+/* Key–value list: a <dl> of labels and their values */
+
+.wb-kv {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 6px 16px;
+  margin: 0;
+}
+
+.wb-kv dt {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.wb-kv dd {
+  margin: 0;
+  color: var(--ink);
+}
+
+/* Stacked: each label over its value, for narrow panes */
+.wb-kv-stacked {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2px;
+}
+
+.wb-kv-stacked dd + dt {
+  margin-top: 8px;
+}

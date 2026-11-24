@@ -1,0 +1,154 @@
+/* Component library pages: header, nav | page, footer */
+.demo-lib {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  height: 100vh;
+}
+
+.demo-lib-body {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 16px;
+  min-height: 0;
+  padding: 10px 20px;
+}
+
+.demo-lib-nav,
+.demo-lib-page {
+  overflow: auto;
+}
+
+.demo-lib-title {
+  margin: 0;
+  font-size: 22px;
+}
+
+.demo-lib-example {
+  margin-top: 24px;
+}
+
+.demo-lib-example > h3 {
+  margin: 0 0 2px;
+  font-size: 15px;
+}
+
+.demo-lib-example > p {
+  margin: 0 0 8px;
+  color: var(--muted);
+}
+
+.demo-lib-live {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.demo-lib-live > .wb-message {
+  flex: 1;
+}
+
+/* Tabs sit on the header bar's color, with the page below the active tab */
+.demo-lib-live-header {
+  display: block;
+  padding: 12px 0 0;
+  background: var(--header);
+  box-shadow: inset 0 -8px 0 var(--bg);
+}
+
+@media (max-width: 700px) {
+  .demo-lib {
+    height: auto;
+  }
+
+  .demo-lib-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+:root {
+  --wb-toast-top: 72px;
+}
+
+.demo-lib-live-block {
+  display: block;
+}
+
+/* Full-width examples (header bar, footers, status bar) */
+.demo-lib-live-flush {
+  display: block;
+  padding: 0;
+  overflow: hidden;
+}
+
+.demo-lib-live-pad {
+  padding: 12px 16px;
+  box-shadow: none;
+}
+
+.demo-lib-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.demo-lib-icon-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.demo-lib-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.demo-lib-type {
+  margin: 4px 0;
+  font-size: 16px;
+}
+
+.demo-lib-shadow {
+  padding: 16px 20px;
+  border-radius: 8px;
+  background: var(--pane);
+}
+
+.demo-lib-split {
+  display: grid;
+  grid-template-columns: var(--wb-split, 180px) 16px minmax(0, 1fr);
+  height: 140px;
+}
+
+.demo-lib-split .wb-splitter {
+  justify-self: center;
+}
+
+.demo-lib-swatch {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  font-size: 12px;
+}
+
+.demo-lib-swatch span {
+  height: 32px;
+  margin-bottom: 2px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+.demo-lib-swatch code {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.demo-lib-swatch-value {
+  color: var(--muted);
+  text-transform: uppercase;
+}

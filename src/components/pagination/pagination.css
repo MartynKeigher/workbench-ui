@@ -1,0 +1,50 @@
+/* Pagination: links or buttons in a <nav>. Mark the current page with aria-current="page". */
+
+.wb-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+
+.wb-pagination > a,
+.wb-pagination > button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 8px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: none;
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.wb-pagination > a:hover,
+.wb-pagination > button:hover {
+  background: var(--hover);
+}
+
+.wb-pagination > [aria-current='page'] {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  font-weight: 700;
+}
+
+.wb-pagination > [aria-disabled='true'],
+.wb-pagination > :disabled {
+  color: var(--faint);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.wb-pagination-gap {
+  padding: 0 4px;
+  color: var(--faint);
+}

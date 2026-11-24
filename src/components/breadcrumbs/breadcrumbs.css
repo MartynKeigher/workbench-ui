@@ -1,0 +1,32 @@
+/* Breadcrumbs: <nav class="wb-breadcrumbs" aria-label="Breadcrumb"><ol>…</ol></nav> */
+
+.wb-breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+}
+
+.wb-breadcrumbs li + li::before {
+  content: '/';
+  margin: 0 8px;
+  color: var(--faint);
+}
+
+.wb-breadcrumbs a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.wb-breadcrumbs a:hover {
+  color: var(--accent-ink);
+  text-decoration: underline;
+}
+
+.wb-breadcrumbs [aria-current='page'] {
+  color: var(--ink);
+  font-weight: 600;
+}

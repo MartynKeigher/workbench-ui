@@ -1,0 +1,81 @@
+/* Avatars (initials or an image), status dots and count badges */
+
+.wb-avatar {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.wb-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wb-avatar-lg {
+  width: 40px;
+  height: 40px;
+  font-size: 15px;
+}
+
+/* Overlapping row of avatars */
+.wb-avatar-group {
+  display: inline-flex;
+}
+
+.wb-avatar-group .wb-avatar {
+  box-shadow: 0 0 0 2px var(--pane);
+}
+
+.wb-avatar-group .wb-avatar + .wb-avatar {
+  margin-left: -6px;
+}
+
+.wb-dot {
+  display: inline-block;
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--faint);
+  vertical-align: middle;
+}
+
+.wb-dot-ok {
+  background: var(--ok);
+}
+
+.wb-dot-warn {
+  background: var(--warn);
+}
+
+.wb-dot-err {
+  background: var(--err-ink);
+}
+
+.wb-dot-accent {
+  background: var(--accent);
+}
+
+.wb-badge {
+  display: inline-block;
+  min-width: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+}

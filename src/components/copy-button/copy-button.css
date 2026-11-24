@@ -1,0 +1,13 @@
+/* Copy button. CopyButton sets data-copy-state briefly after a click. */
+
+.wb-btn[data-copy-state='copied'] {
+  border-color: var(--ok-line);
+  background: var(--ok-bg);
+  color: var(--ok-ink);
+}
+
+.wb-btn[data-copy-state='failed'] {
+  border-color: var(--err-line);
+  background: var(--err-bg);
+  color: var(--err-ink);
+}

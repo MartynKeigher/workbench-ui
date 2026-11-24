@@ -1,0 +1,79 @@
+/* Panes: bordered cards with small uppercase headings */
+
+.wb-pane {
+  min-width: 0;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--pane);
+}
+
+.wb-pane-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--caption-ink);
+}
+
+/* Subsequent headings start a new group */
+.wb-pane-head:not(:first-child) {
+  margin-top: 18px;
+}
+
+/* Small count badge */
+.wb-count {
+  padding: 0 7px;
+  border-radius: 999px;
+  background: var(--chip);
+  color: var(--ink-2);
+  letter-spacing: 0;
+}
+
+/* PaneToggle chevron: down when open, right when folded. Place last in the heading. */
+.wb-pane-toggle {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin: -4px -6px -4px auto;
+  padding: 0;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.wb-pane-toggle::before {
+  content: '';
+  display: block;
+  width: 7px;
+  height: 7px;
+  margin: 5px auto 0;
+  border-right: 2px solid currentcolor;
+  border-bottom: 2px solid currentcolor;
+  transform: rotate(45deg);
+  transition: transform 0.15s ease;
+}
+
+.wb-pane-toggle[aria-expanded='false']::before {
+  margin-top: 7px;
+  transform: rotate(-45deg);
+}
+
+.wb-pane-toggle:hover {
+  background: var(--hover);
+  color: var(--ink);
+}
+
+.wb-pane[data-collapsed] > :not(.wb-pane-head) {
+  display: none;
+}
+
+.wb-pane[data-collapsed] > .wb-pane-head {
+  margin-bottom: 0;
+}

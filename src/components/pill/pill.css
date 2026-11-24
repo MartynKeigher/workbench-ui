@@ -1,0 +1,37 @@
+/* Status pills: neutral by default; -ok, -warn, -err or -accent for the others */
+
+.wb-pill {
+  display: inline-block;
+  padding: 1px 9px;
+  border: 1px solid var(--pill-line);
+  border-radius: 999px;
+  background: var(--pill);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+.wb-pill-ok {
+  border-color: var(--ok-line);
+  background: var(--ok-bg);
+  color: var(--ok-ink);
+}
+
+.wb-pill-err {
+  border-color: var(--err-line);
+  background: var(--err-bg);
+  color: var(--err-ink);
+}
+
+.wb-pill-accent {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+}
+
+.wb-pill-warn {
+  border-color: var(--warn-line);
+  background: var(--warn-bg);
+  color: var(--warn-ink);
+}

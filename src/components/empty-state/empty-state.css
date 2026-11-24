@@ -1,0 +1,33 @@
+/* Empty state: what goes here, and how to fill it */
+
+.wb-empty {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 32px 16px;
+  text-align: center;
+}
+
+.wb-empty-icon {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 4px;
+  color: var(--faint);
+}
+
+.wb-empty-title {
+  margin: 0;
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.wb-empty p {
+  max-width: 360px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.wb-empty .wb-btn-row {
+  margin-top: 8px;
+}

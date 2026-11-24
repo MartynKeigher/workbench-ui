@@ -1,0 +1,85 @@
+/* Loading: a spinner, a progress bar (native <progress>) and skeleton blocks */
+
+.wb-spinner {
+  display: inline-block;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--line);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  vertical-align: middle;
+  animation: wb-spin 0.8s linear infinite;
+}
+
+.wb-spinner-lg {
+  width: 32px;
+  height: 32px;
+  border-width: 3px;
+}
+
+@keyframes wb-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.wb-progress {
+  display: block;
+  width: 100%;
+  height: 8px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  background: var(--chip);
+  color: var(--accent);
+  appearance: none;
+}
+
+.wb-progress::-webkit-progress-bar {
+  background: var(--chip);
+}
+
+.wb-progress::-webkit-progress-value {
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+.wb-progress::-moz-progress-bar {
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+/* Placeholder blocks while content loads. Hide them from screen readers. */
+.wb-skeleton {
+  display: block;
+  height: 12px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--chip) 25%, var(--hover) 50%, var(--chip) 75%);
+  background-size: 200% 100%;
+  animation: wb-shimmer 1.4s ease-in-out infinite;
+}
+
+.wb-skeleton + .wb-skeleton {
+  margin-top: 8px;
+}
+
+@keyframes wb-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wb-spinner {
+    animation-duration: 2.4s;
+  }
+
+  .wb-skeleton {
+    animation: none;
+  }
+}
